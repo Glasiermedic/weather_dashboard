@@ -1,8 +1,10 @@
 import sqlite3
 from datetime import datetime
 import os
+import pandas as pd
 
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data_exports", "weather.db"))
+# Correct relative path to database
+DB_PATH = os.path.join("..", "..", "data_exports", "weather.db")
 
 def aggregate_hourly():
     conn = sqlite3.connect(DB_PATH)
@@ -34,36 +36,42 @@ def aggregate_hourly():
             if not rows:
                 continue
 
-            # Convert to DataFrame for easy aggregation
-            import pandas as pd
             df = pd.DataFrame(rows, columns=[
-                'station_id', 'local_time', 'temp', 'humidity', 'wind_speed',
-                'wind_gust', 'dew_point', 'windchill', 'heatindex', 'pressure',
-                'precip_rate', 'precip_total', 'solar_radiation', 'uv'
+                "station_id", "local_time",
+                "temp_avg", "temp_low", "temp_high",
+                "humidity_avg", "wind_speed_high", "wind_speed_low", "wind_speed_avg",
+                "wind_gust_max", "dew_point_avg", "windchillAvg", "heatindexAvg",
+                "pressureTrend", "solar_rad_max", "uv_max", "precipRate", "precip_total"
             ])
 
             agg_row = {
                 'station_id': station,
-                'local_time': hour_prefix + ":00",  # e.g., 2025-06-06 15:00
-                'temp_avg': df['temp'].mean(),
-                'humidity_avg': df['humidity'].mean(),
-                'wind_speed_avg': df['wind_speed'].mean(),
-                'wind_gust_max': df['wind_gust'].max(),
-                'dew_point_avg': df['dew_point'].mean(),
-                'windchill_avg': df['windchill'].mean(),
-                'heatindex_avg': df['heatindex'].mean(),
-                'pressure_avg': df['pressure'].mean(),
-                'precip_total': df['precip_total'].sum(),
-                'solar_rad_max': df['solar_radiation'].max(),
-                'uv_max': df['uv'].max()
+                'local_time': hour_prefix + ":00",
+                'temp_avg': df['temp_avg'].mean(),
+                'temp_low': df['temp_low'].min(),
+                'temp_high': df['temp_high'].max(),
+                'humidity_avg': df['humidity_avg'].mean(),
+                'wind_speed_high': df['wind_speed_high'].max(),
+                'wind_speed_low': df['wind_speed_low'].min(),
+                'wind_speed_avg': df['wind_speed_avg'].mean(),
+                'wind_gust_max': df['wind_gust_max'].max(),
+                'dew_point_avg': df['dew_point_avg'].mean(),
+                'windchillAvg': df['windchillAvg'].mean(),
+                'heatindexAvg': df['heatindexAvg'].mean(),
+                'pressureTrend': df['pressureTrend'].mean(),
+                'solar_rad_max': df['solar_rad_max'].max(),
+                'uv_max': df['uv_max'].max(),
+                'precipRate': df['precipRate'].mean(),
+                'precip_total': df['precip_total'].sum()
             }
 
             cursor.execute("""
                 INSERT INTO weather_hourly (
-                    station_id, local_time, temp_avg, humidity_avg, wind_speed_avg,
-                    wind_gust_max, dew_point_avg, windchill_avg, heatindex_avg,
-                    pressure_avg, precip_total, solar_rad_max, uv_max
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    station_id, local_time, temp_avg, temp_low, temp_high,
+                    humidity_avg, wind_speed_high, wind_speed_low, wind_speed_avg,
+                    wind_gust_max, dew_point_avg, windchillAvg, heatindexAvg,
+                    pressureTrend, solar_rad_max, uv_max, precipRate, precip_total
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, tuple(agg_row.values()))
 
         conn.commit()
@@ -71,6 +79,5 @@ def aggregate_hourly():
     conn.close()
     print("✅ Hourly aggregation complete.")
 
-# === Main ===
 if __name__ == "__main__":
     aggregate_hourly()

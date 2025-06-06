@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data_exports", "weather.db"))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(BASE_DIR, "data_exports", "weather.db")
 JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data_exports", "1day.json"))
 
 def load_json():

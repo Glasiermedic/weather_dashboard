@@ -1,61 +1,82 @@
-# backend/fetch/aggregate_to_daily.py
-import os
 import sqlite3
 import pandas as pd
 from datetime import datetime
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data_exports", "weather.db"))
+import os
 
-
-
-def create_daily_table_if_needed(conn):
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS weather_daily (
-            station_id TEXT,
-            local_date TEXT,
-            temp_avg REAL,
-            humidity_avg REAL,
-            wind_speed_avg REAL,
-            precip_total REAL,
-            PRIMARY KEY (station_id, local_date)
-        )
-    """)
-    conn.commit()
+# Correct path to the database
+DB_PATH = os.path.join("..", "..", "data_exports", "weather.db")
 
 def aggregate_daily():
     conn = sqlite3.connect(DB_PATH)
-    create_daily_table_if_needed(conn)
+    cursor = conn.cursor()
 
-    stations = pd.read_sql("SELECT DISTINCT station_id FROM weather_hourly", conn)["station_id"]
+    cursor.execute("SELECT DISTINCT station_id FROM weather_hourly")
+    stations = [row[0] for row in cursor.fetchall()]
 
-    for station_id in stations:
-        print(f"🔁 Aggregating daily for station: {station_id}")
-
-        df = pd.read_sql(f"""
-            SELECT * FROM weather_hourly
+    for station in stations:
+        print(f"🔁 Aggregating daily for station: {station}")
+        cursor.execute("""
+            SELECT DISTINCT substr(local_time, 1, 10) AS day
+            FROM weather_hourly
             WHERE station_id = ?
-        """, conn, params=(station_id,))
+              AND substr(local_time, 1, 10) NOT IN (
+                  SELECT substr(local_date, 1, 10) FROM weather_daily WHERE station_id = ?
+              )
+            ORDER BY day
+        """, (station, station))
+        days = [row[0] for row in cursor.fetchall()]
 
-        if df.empty:
-            continue
+        for day in days:
+            cursor.execute("""
+                SELECT * FROM weather_hourly
+                WHERE station_id = ?
+                  AND substr(local_time, 1, 10) = ?
+            """, (station, day))
+            rows = cursor.fetchall()
+            if not rows:
+                continue
 
-        df["local_time"] = pd.to_datetime(df["local_time"])
-        df["local_date"] = df["local_time"].dt.date
+            df = pd.DataFrame(rows, columns=[
+                "station_id", "local_time", "temp_avg", "temp_low", "temp_high",
+                "humidity_avg", "wind_speed_high", "wind_speed_low", "wind_speed_avg",
+                "wind_gust_max", "dew_point_avg", "windchillAvg", "heatindexAvg",
+                "pressureTrend", "solar_rad_max", "uv_max", "precipRate", "precip_total"
+            ])
 
-        daily = df.groupby("local_date").agg({
-            "temp_avg": "mean",
-            "humidity_avg": "mean",
-            "wind_speed_avg": "mean",
-            "precip_total": "sum"
-        }).reset_index()
+            daily = {
+                'station_id': station,
+                'local_date': day,
+                'temp_avg': df['temp_avg'].mean(),
+                'temp_low': df['temp_low'].min(),
+                'temp_high': df['temp_high'].max(),
+                'humidity_avg': df['humidity_avg'].mean(),
+                'wind_speed_high': df['wind_speed_high'].max(),
+                'wind_speed_low': df['wind_speed_low'].min(),
+                'wind_speed_avg': df['wind_speed_avg'].mean(),
+                'wind_gust_max': df['wind_gust_max'].max(),
+                'dew_point_avg': df['dew_point_avg'].mean(),
+                'windchillAvg': df['windchillAvg'].mean(),
+                'heatindexAvg': df['heatindexAvg'].mean(),
+                'pressureTrend': df['pressureTrend'].mean(),
+                'solar_rad_max': df['solar_rad_max'].max(),
+                'uv_max': df['uv_max'].max(),
+                'precipRate': df['precipRate'].mean(),
+                'precip_total': df['precip_total'].sum()
+            }
 
-        daily["station_id"] = station_id
-        daily["local_date"] = daily["local_date"].astype(str)
+            cursor.execute("""
+                INSERT INTO weather_daily (
+                    station_id, local_date, temp_avg, temp_low, temp_high,
+                    humidity_avg, wind_speed_high, wind_speed_low, wind_speed_avg,
+                    wind_gust_max, dew_point_avg, windchillAvg, heatindexAvg,
+                    pressureTrend, solar_rad_max, uv_max, precipRate, precip_total
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, tuple(daily.values()))
 
-        daily.to_sql("weather_daily", conn, if_exists="append", index=False)
+        conn.commit()
 
-    print("✅ Daily aggregation complete.")
     conn.close()
+    print("✅ Daily aggregation complete.")
 
 if __name__ == "__main__":
     aggregate_daily()

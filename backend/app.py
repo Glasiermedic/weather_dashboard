@@ -1,187 +1,85 @@
-from flask import Flask, request, jsonify
-import sqlite3
-import pandas as pd
 import os
-import requests
-from datetime import datetime, timedelta
-from dotenv import load_dotenv
+import sqlite3
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
-load_dotenv()
 
-# === Configuration ===
-DB_PATH = os.path.join(os.path.dirname(__file__), '../data_exports/weather.db')
-API_KEY = os.getenv("WEATHER_API_KEY")
+# ✅ Correct relative path from backend/app.py to data_exports/weather.db
+DB_PATH = os.path.join("..", "data_exports", "weather.db")
 
-STATION_ID_MAP = {
-    "propdada": "KORMCMIN133",
-    "dustprop": "KORMCMIN127"
-}
-
-# === Helper Function ===
-def filter_by_period(df, period):
-    now = datetime.now()
-    df["local_time"] = pd.to_datetime(df["local_time"])
-
-    if period == "1d":
-        return df[df["local_time"] >= now - timedelta(days=1)]
-    elif period == "7d":
-        return df[df["local_time"] >= now - timedelta(days=7)]
-    elif period == "30d":
-        return df[df["local_time"] >= now - timedelta(days=30)]
-    elif period == "week":
-        return df[df["local_time"] >= now - timedelta(days=now.weekday())]
-    elif period == "month":
-        return df[(df["local_time"].dt.month == now.month) & (df["local_time"].dt.year == now.year)]
-    elif period == "ytd":
-        return df[df["local_time"].dt.year == now.year]
-    return df
-
-# === Endpoints ===
 @app.route("/api/summary_data")
-def summary_data():
+def get_summary_data():
     station_id = request.args.get("station_id")
-    period = request.args.get("period", "30d")
-
-    if not station_id:
-        return jsonify({"error": "Missing station_id"}), 400
+    period = request.args.get("period", "1d")
 
     conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query("SELECT * FROM weather WHERE station_id = ?", conn, params=(station_id,))
+    df = pd.read_sql_query(f"SELECT * FROM weather_hourly WHERE station_id = ?", conn, params=(station_id,))
     conn.close()
 
-    if df.empty:
-        return jsonify({"error": "No data found"}), 404
+    df["local_time"] = pd.to_datetime(df["local_time"])
+    df = df.sort_values("local_time")
 
-    df = filter_by_period(df, period)
+    now = pd.Timestamp.now()
+    if period == "1d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=1)]
+    elif period == "7d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=7)]
+    elif period == "30d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=30)]
+    elif period == "ytd":
+        df = df[df["local_time"].dt.year == now.year]
 
     summary = {
-        "temp_avg": round(df['temp_avg'].mean(), 1) if 'temp_avg' in df else None,
-        "humidity_avg": round(df['humidity_avg'].mean(), 1) if 'humidity_avg' in df else None,
-        "wind_speed_avg": round(df['wind_speed_avg'].mean(), 1) if 'wind_speed_avg' in df else None,
-        "precip_total": round(df['precip_total'].sum(), 2) if 'precip_total' in df else None,
+        "temp_avg": round(df["temp_avg"].mean(skipna=True), 2),
+        "temp_low": round(df["temp_avg"].min(skipna=True), 2),
+        "temp_high": round(df["temp_avg"].max(skipna=True), 2),
+        "humidity_avg": round(df["humidity_avg"].mean(skipna=True), 2),
+        "wind_speed_high": round(df["wind_speed_avg"].max(skipna=True), 2),
+        "wind_speed_low": round(df["wind_speed_avg"].min(skipna=True), 2),
+        "wind_speed_avg": round(df["wind_speed_avg"].mean(skipna=True), 2),
+        "wind_gust_max": round(df["wind_gust_max"].max(skipna=True), 2),
+        "dew_point_avg": round(df["dew_point_avg"].mean(skipna=True), 2),
+        "windchillAvg": round(df["windchillAvg"].mean(skipna=True), 2),
+        "heatindexAvg": round(df["heatindexAvg"].mean(skipna=True), 2),
+        "pressureTrend": round(df["pressureTrend"].mean(skipna=True), 2),
+        "solar_rad_max": round(df["solar_rad_max"].max(skipna=True), 2),
+        "uv_max": round(df["uv_max"].max(skipna=True), 2),
+        "precipRate": 0.0,
+        "precip_total": round(df["precip_total"].sum(skipna=True), 2)
     }
+
     return jsonify(summary)
 
 @app.route("/api/graph_data")
-def graph_data():
+def get_graph_data():
     station_id = request.args.get("station_id")
-    period = request.args.get("period")
-    column = request.args.get("column")
-
-    if not station_id or not period or not column:
-        return jsonify({"error": "Missing parameters"}), 400
-
-    # Choose the correct table
-    if period == "1d":
-        table = "weather_raw"
-        time_column = "local_time"
-        time_cutoff = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S")
-    elif period == "7d":
-        table = "weather_hourly"
-        time_column = "local_hour"
-        time_cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d %H:%M:%S")
-    else:
-        table = "weather_daily"
-        time_column = "local_date"
-        if period == "30d":
-            time_cutoff = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
-        elif period == "ytd":
-            time_cutoff = f"{datetime.now().year}-01-01"
-        else:
-            return jsonify({"error": "Invalid period"}), 400
-
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute(f"""
-            SELECT {time_column}, {column}
-            FROM {table}
-            WHERE station_id = ?
-            AND {time_column} >= ?
-            ORDER BY {time_column}
-        """, (station_id, time_cutoff))
-        rows = cursor.fetchall()
-        conn.close()
-
-        labels = [r[0] for r in rows]
-        data = [r[1] for r in rows]
-
-        return jsonify({
-            "labels": labels,
-            "data": data
-        })
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route("/api/current_data")
-def current_data():
-    station_id = request.args.get("station_id")
-    if not station_id:
-        return jsonify({"error": "Missing station_id"}), 400
+    period = request.args.get("period", "1d")
+    column = request.args.get("column", "temp_avg")
 
     conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query("SELECT * FROM weather WHERE station_id = ? ORDER BY local_time DESC LIMIT 1", conn, params=(station_id,))
+    df = pd.read_sql_query(f"SELECT local_time, {column} FROM weather_hourly WHERE station_id = ?", conn, params=(station_id,))
     conn.close()
 
-    if df.empty:
-        return jsonify({"error": "No data found"}), 404
+    df["local_time"] = pd.to_datetime(df["local_time"])
+    df = df.sort_values("local_time")
 
-    row = df.iloc[0]
+    now = pd.Timestamp.now()
+    if period == "1d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=1)]
+    elif period == "7d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=7)]
+    elif period == "30d":
+        df = df[df["local_time"] >= now - pd.Timedelta(days=30)]
+    elif period == "ytd":
+        df = df[df["local_time"].dt.year == now.year]
+
     return jsonify({
-        "timestamp": row["local_time"],
-        "temp": row.get("temp_avg"),
-        "humidity": row.get("humidity_avg"),
-        "wind_speed": row.get("wind_speed_avg"),
-        "precip": row.get("precip_total"),
-        "fallback": True
+        "labels": df["local_time"].dt.strftime("%m-%d %H:%M").tolist(),
+        "data": df[column].fillna(0).round(2).tolist()
     })
-
-@app.route("/api/current_data_live")
-def current_data_live():
-    station_id = request.args.get("station_id")
-    if not station_id:
-        return jsonify({"error": "Missing station_id"}), 400
-
-    real_station_id = STATION_ID_MAP.get(station_id, station_id)
-    url = "https://api.weather.com/v2/pws/observations/current"
-    params = {
-        "stationId": real_station_id,
-        "format": "json",
-        "units": "e",
-        "apiKey": API_KEY
-    }
-
-    try:
-        response = requests.get(url, params=params, timeout=5)
-        response.raise_for_status()
-        print(f"\n🔍 Raw API response:\n{response.text}\n")
-
-        data = response.json()
-        obs_list = data.get("observations")
-
-        if obs_list and len(obs_list) > 0:
-            obs = obs_list[0]
-            current = {
-                "timestamp": obs.get("obsTimeLocal"),
-                "temp": obs.get("imperial", {}).get("temp"),
-                "humidity": obs.get("humidity"),
-                "wind_speed": obs.get("imperial", {}).get("windSpeed"),
-                "precip": obs.get("imperial", {}).get("precipTotal"),
-                "fallback": False
-            }
-            return jsonify(current)
-
-        raise ValueError("No valid live observation found")
-
-    except Exception as e:
-        print(f"⚠️ Live API failed for {station_id}. Falling back to DB. Error: {e}")
-        fallback = current_data().json
-        fallback["fallback"] = True
-        return jsonify(fallback)
 
 if __name__ == "__main__":
     app.run(debug=True)

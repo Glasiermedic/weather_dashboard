@@ -1,0 +1,26 @@
+# Ignore Python cache and virtualenv
+__pycache__/
+*.py[cod]
+.venv/
+
+# Ignore environment config
+.env
+
+# Ignore logs and data exports
+logs/
+*.log
+*.sqlite3
+data_exports/
+*.db
+
+# Node modules and React build
+node_modules/
+build/
+dist/
+.env.local
+.env.production
+.env.development
+
+# System files
+.DS_Store
+Thumbs.db
