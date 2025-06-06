@@ -31,6 +31,25 @@ const timeRanges = {
   'ytd': 'Year to Date'
 };
 
+const metricOptions = {
+  temp_avg: "average temp",
+  temp_low: "low temp",
+  temp_high: "high temp",
+  humidity_avg: "average humidity",
+  wind_speed_high: "high wind",
+  wind_speed_low: "low wind",
+  wind_speed_avg: "average wind",
+  wind_gust_max: "max wind gust",
+  dew_point_avg: "average dewpoint",
+  windchillAvg: "average wind chill",
+  heatindexAvg: "ave heat index",
+  pressureTrend: "pressure trend",
+  solar_rad_max: "solar radiation",
+  uv_max: "UV",
+  precipRate: "precipitation rate",
+  precip_total: "total precip"
+};
+
 const spinnerStyle = {
   width: "1.5rem",
   height: "1.5rem",
@@ -48,13 +67,12 @@ const fadeInStyle = {
 function WeatherDashboard() {
   const [selectedStations, setSelectedStations] = useState(['propdada']);
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
-  const [summaries, setSummaries] = useState({});
+  const [selectedMetric, setSelectedMetric] = useState('temp_avg');
   const [graphSeries, setGraphSeries] = useState({});
   const [currentData, setCurrentData] = useState({});
   const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
 
   const fetchAll = async () => {
-    const newSummaries = {};
     const newGraphs = {};
     const newCurrent = {};
     setIsLoadingCurrent(true);
@@ -62,12 +80,10 @@ function WeatherDashboard() {
     await Promise.all(
       selectedStations.map(async (station) => {
         try {
-          const [summaryRes, graphRes, currentRes] = await Promise.all([
-            axios.get(`http://localhost:5000/api/summary_data?station_id=${station}&period=${selectedPeriod}`),
-            axios.get(`http://localhost:5000/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=temp_avg`),
+          const [graphRes, currentRes] = await Promise.all([
+            axios.get(`http://localhost:5000/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
             axios.get(`http://localhost:5000/api/current_data_live?station_id=${station}`)
           ]);
-          newSummaries[station] = summaryRes.data;
           newGraphs[station] = graphRes.data;
           newCurrent[station] = currentRes.data;
         } catch (err) {
@@ -76,16 +92,14 @@ function WeatherDashboard() {
       })
     );
 
-    setSummaries(newSummaries);
     setGraphSeries(newGraphs);
     setCurrentData(newCurrent);
     setIsLoadingCurrent(false);
   };
 
   useEffect(() => {
-  fetchAll(); // fetch once on load or when station/time range changes
-}, [selectedStations, selectedPeriod]);
-
+    fetchAll();
+  }, [selectedStations, selectedPeriod, selectedMetric]);
 
   const toggleStation = (stationId) => {
     setSelectedStations((prev) =>
@@ -93,28 +107,6 @@ function WeatherDashboard() {
         ? prev.filter((id) => id !== stationId)
         : [...prev, stationId]
     );
-  };
-
-  const combinedSummary = () => {
-    const count = selectedStations.length;
-    const total = { temp_avg: 0, humidity_avg: 0, wind_speed_avg: 0, precip_total: 0 };
-
-    selectedStations.forEach((id) => {
-      const s = summaries[id];
-      if (s) {
-        total.temp_avg += s.temp_avg || 0;
-        total.humidity_avg += s.humidity_avg || 0;
-        total.wind_speed_avg += s.wind_speed_avg || 0;
-        total.precip_total += s.precip_total || 0;
-      }
-    });
-
-    return count === 0 ? null : {
-      temp_avg: (total.temp_avg / count).toFixed(1),
-      humidity_avg: (total.humidity_avg / count).toFixed(1),
-      wind_speed_avg: (total.wind_speed_avg / count).toFixed(1),
-      precip_total: total.precip_total.toFixed(2)
-    };
   };
 
   const nowData = () => {
@@ -143,19 +135,13 @@ function WeatherDashboard() {
     };
   };
 
-  const summary = combinedSummary();
   const now = nowData();
-
-  const allLabelsSet = new Set();
-  selectedStations.forEach((id) => {
-    graphSeries[id]?.labels?.forEach((label) => allLabelsSet.add(label));
-  });
-  const allLabels = Array.from(allLabelsSet).sort();
 
   return (
     <div style={{ padding: "2rem" }}>
       <h2>Weather Dashboard</h2>
 
+      {/* Station Selector */}
       <div style={{ border: "1px solid #ccc", padding: "1rem", marginBottom: "1rem" }}>
         <h4>Select Stations</h4>
         {Object.entries(stations).map(([id, label]) => (
@@ -171,7 +157,8 @@ function WeatherDashboard() {
         ))}
       </div>
 
-      <div style={{ marginBottom: "1.5rem" }}>
+      {/* Time Range Selector */}
+      <div style={{ marginBottom: "1rem" }}>
         <label htmlFor="range-select" style={{ fontWeight: "bold", marginRight: "0.5rem" }}>
           Select Time Range:
         </label>
@@ -186,12 +173,29 @@ function WeatherDashboard() {
         </select>
       </div>
 
+      {/* Metric Selector */}
+      <div style={{ marginBottom: "2rem" }}>
+        <label htmlFor="metric-select" style={{ fontWeight: "bold", marginRight: "0.5rem" }}>
+          Select Metric:
+        </label>
+        <select
+          id="metric-select"
+          value={selectedMetric}
+          onChange={(e) => setSelectedMetric(e.target.value)}
+        >
+          {Object.entries(metricOptions).map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Right Now Section */}
       <div style={{ marginBottom: "2rem", background: "#f3f3f3", padding: "1rem", borderRadius: "0.5rem" }}>
         <h3>
           Right Now
           {now?.timestamp && (
             <span style={{ fontSize: "1rem", fontWeight: "normal", marginLeft: "1rem" }}>
-              (as of {new Date(now.timestamp).toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" })})
+              (as of {new Date(now.timestamp).toLocaleString("en-US", { timeZone: "America/Los_Angeles" })})
             </span>
           )}
         </h3>
@@ -205,57 +209,60 @@ function WeatherDashboard() {
               <li>Humidity: {now.humidity}%</li>
               <li>Wind Speed: {now.wind_speed} mph</li>
               <li>Precipitation: {now.precip} in</li>
+              {now.fallback && (
+                <li style={{ color: "gray", fontStyle: "italic" }}>Data shown from local DB (live unavailable)</li>
+              )}
             </ul>
-            <small style={{ color: now.fallback ? "#c00" : "#555" }}>
-              {now.fallback ? "Data shown from local DB (live unavailable)" : "Live data"}
-            </small>
+            <button onClick={fetchAll} style={{ marginTop: "0.5rem" }}>Refresh</button>
           </div>
         ) : (
           <p><em>No current data available.</em></p>
         )}
-        <button onClick={fetchAll} style={{ marginTop: "0.5rem" }}>Refresh</button>
       </div>
 
-      <h3>Summary ({timeRanges[selectedPeriod]})</h3>
-      {summary ? (
-        <ul>
-          <li>Temp Avg: {summary.temp_avg}</li>
-          <li>Humidity Avg: {summary.humidity_avg}</li>
-          <li>Wind Speed Avg: {summary.wind_speed_avg}</li>
-          <li>Precip Total: {summary.precip_total}</li>
-        </ul>
-      ) : (
-        <p>Loading summary...</p>
-      )}
+      {/* Graph Section */}
+      <h3>{metricOptions[selectedMetric]} Trend</h3>
+      {Object.keys(graphSeries).length > 0 ? (() => {
+        const allLabelsSet = new Set();
+        selectedStations.forEach((id) => {
+          graphSeries[id]?.labels?.forEach((label) => allLabelsSet.add(label));
+        });
+        const allLabels = Array.from(allLabelsSet).sort();
 
-      <h3>Temperature Trend</h3>
-      {Object.keys(graphSeries).length > 0 ? (
-        <Line
-          data={{
-            labels: allLabels,
-            datasets: selectedStations
-              .filter((id) => graphSeries[id])
-              .map((id) => {
-                const stationLabels = graphSeries[id].labels;
-                const stationData = graphSeries[id].data;
-                const dataMap = {};
-                stationLabels.forEach((label, i) => {
-                  dataMap[label] = stationData[i];
-                });
-                return {
-                  label: stations[id],
-                  data: allLabels.map((label) => dataMap[label] ?? null),
-                  borderColor: stationColors[id],
-                  fill: false,
-                  tension: 0.1
-                };
-              })
-          }}
-        />
-      ) : (
+        const datasets = selectedStations
+          .filter((id) => graphSeries[id])
+          .map((id) => {
+            const dataMap = {};
+            graphSeries[id].labels.forEach((label, idx) => {
+              dataMap[label] = graphSeries[id].data[idx];
+            });
+
+            const alignedData = allLabels.map((label) =>
+              dataMap.hasOwnProperty(label) ? dataMap[label] : null
+            );
+
+            return {
+              label: stations[id],
+              data: alignedData,
+              borderColor: stationColors[id],
+              fill: false,
+              tension: 0.1
+            };
+          });
+
+        return (
+          <Line
+            data={{
+              labels: allLabels,
+              datasets: datasets
+            }}
+          />
+        );
+      })() : (
         <p>Loading graph...</p>
       )}
 
+      {/* Inline CSS Keyframes */}
       <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }

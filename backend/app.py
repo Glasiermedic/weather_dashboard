@@ -12,7 +12,7 @@ CORS(app)
 load_dotenv()
 
 # === Configuration ===
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data_exports", "weather.db"))
+DB_PATH = os.path.join(os.path.dirname(__file__), '../data_exports/weather.db')
 API_KEY = os.getenv("WEATHER_API_KEY")
 
 STATION_ID_MAP = {
@@ -68,31 +68,54 @@ def summary_data():
 @app.route("/api/graph_data")
 def graph_data():
     station_id = request.args.get("station_id")
+    period = request.args.get("period")
     column = request.args.get("column")
-    period = request.args.get("period", "30d")
 
-    if not station_id or not column:
-        return jsonify({"error": "Missing station_id or column"}), 400
+    if not station_id or not period or not column:
+        return jsonify({"error": "Missing parameters"}), 400
 
-    conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query("SELECT * FROM weather WHERE station_id = ?", conn, params=(station_id,))
-    conn.close()
-
-    if df.empty:
-        return jsonify({"error": "No data found"}), 404
-
-    df = filter_by_period(df, period)
-
+    # Choose the correct table
     if period == "1d":
-        df["x_label"] = df["local_time"].dt.strftime("%H:%M")
+        table = "weather_raw"
+        time_column = "local_time"
+        time_cutoff = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S")
+    elif period == "7d":
+        table = "weather_hourly"
+        time_column = "local_hour"
+        time_cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d %H:%M:%S")
     else:
-        df["x_label"] = df["local_time"].dt.strftime("%Y-%m-%d")
+        table = "weather_daily"
+        time_column = "local_date"
+        if period == "30d":
+            time_cutoff = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+        elif period == "ytd":
+            time_cutoff = f"{datetime.now().year}-01-01"
+        else:
+            return jsonify({"error": "Invalid period"}), 400
 
-    grouped = df.groupby("x_label")[column].mean().reset_index()
-    labels = grouped["x_label"].astype(str).tolist()
-    values = grouped[column].tolist()
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(f"""
+            SELECT {time_column}, {column}
+            FROM {table}
+            WHERE station_id = ?
+            AND {time_column} >= ?
+            ORDER BY {time_column}
+        """, (station_id, time_cutoff))
+        rows = cursor.fetchall()
+        conn.close()
 
-    return jsonify({"labels": labels, "data": values, "column": column})
+        labels = [r[0] for r in rows]
+        data = [r[1] for r in rows]
+
+        return jsonify({
+            "labels": labels,
+            "data": data
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/api/current_data")
 def current_data():
