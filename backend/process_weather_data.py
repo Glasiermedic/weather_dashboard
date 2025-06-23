@@ -50,7 +50,7 @@ def save_summary(df):
         conn.close()
 
 # Main
-def main():
+def run_all():
     raw_df = load_raw_data()
     if raw_df.empty:
         return
