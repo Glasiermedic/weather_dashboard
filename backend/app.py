@@ -1,23 +1,31 @@
 import os
-import sqlite3
+import psycopg2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pandas as pd
 from process_weather_data import main as run_all
+import requests
+from urllib.parse import urlparse
+
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Correct relative path from backend/app.py to data_exports/weather.db
-DB_PATH = os.path.join("..", "data_exports", "weather.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+def get_pg_connection():
+    return psycopg2.connect(DATABASE_URL)
 
 @app.route("/api/summary_data")
 def get_summary_data():
     station_id = request.args.get("station_id")
     period = request.args.get("period", "1d")
 
-    conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query(f"SELECT * FROM weather_hourly WHERE station_id = ?", conn, params=(station_id,))
-    conn.close()
+    with get_pg_connection() as conn:
+        df = pd.read_sql_query(
+            "SELECT * FROM weather_hourly WHERE station_id = %s",
+            conn,
+            params=(station_id,)
+        )
 
     df["local_time"] = pd.to_datetime(df["local_time"])
     df = df.sort_values("local_time")
@@ -62,7 +70,6 @@ def get_graph_data():
     if not station_id or not column:
         return jsonify({"error": "Missing required parameters"}), 400
 
-    # Choose table and timestamp field based on time period
     if period == "1d":
         table = "weather_raw"
         timestamp_field = "local_time"
@@ -75,16 +82,13 @@ def get_graph_data():
     else:
         return jsonify({"error": "Invalid period"}), 400
 
-    # Build SQL query
-    conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query(
-        f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = ?",
-        conn,
-        params=(station_id,)
-    )
-    conn.close()
+    with get_pg_connection() as conn:
+        df = pd.read_sql_query(
+            f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
+            conn,
+            params=(station_id,)
+        )
 
-    # Convert and filter by period
     df["timestamp"] = pd.to_datetime(df["timestamp"])
     now = pd.Timestamp.now()
 
@@ -145,24 +149,23 @@ def get_current_data_live():
     except Exception as e:
         print(f"❌ Live data error: {e}")
 
-    # Fallback: get the most recent value from SQLite
     try:
-        conn = sqlite3.connect(DB_PATH)
-        df = pd.read_sql_query(
-            "SELECT * FROM weather_raw WHERE station_id = ? ORDER BY local_time DESC LIMIT 1",
-            conn, params=(station_id,)
-        )
-        conn.close()
-        if not df.empty:
-            row = df.iloc[0]
-            return jsonify({
-                "temp": row.get("temp"),
-                "humidity": row.get("humidity"),
-                "wind_speed": row.get("wind_speed"),
-                "precip": row.get("precipRate", 0.0),
-                "timestamp": row.get("local_time"),
-                "fallback": True
-            })
+        with get_pg_connection() as conn:
+            df = pd.read_sql_query(
+                "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
+                conn,
+                params=(station_id,)
+            )
+            if not df.empty:
+                row = df.iloc[0]
+                return jsonify({
+                    "temp": row.get("temp"),
+                    "humidity": row.get("humidity"),
+                    "wind_speed": row.get("wind_speed"),
+                    "precip": row.get("precipRate", 0.0),
+                    "timestamp": row.get("local_time"),
+                    "fallback": True
+                })
     except Exception as e:
         print(f"❌ Fallback error: {e}")
 
@@ -171,7 +174,6 @@ def get_current_data_live():
 @app.route("/api/generate_summary")
 def generate_summary():
     try:
-        # Optional: use query params ?period=30d or ?station_ids=dustprop,propdada
         period = request.args.get("period", "7d")
         stations_param = request.args.get("station_ids")
         station_ids = stations_param.split(",") if stations_param else None
