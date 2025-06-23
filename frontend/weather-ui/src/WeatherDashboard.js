@@ -71,6 +71,8 @@ function WeatherDashboard() {
   const [graphSeries, setGraphSeries] = useState({});
   const [currentData, setCurrentData] = useState({});
   const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [refreshMessage, setRefreshMessage] = useState("");
 
   const fetchAll = async () => {
     const newGraphs = {};
@@ -97,9 +99,26 @@ function WeatherDashboard() {
     setIsLoadingCurrent(false);
   };
 
-  useEffect(() => {
-    fetchAll();
-  }, [selectedStations, selectedPeriod, selectedMetric]);
+  const refreshSummaries = async () => {
+    setIsRefreshing(true);
+    setRefreshMessage("");
+
+    try {
+      const response = await axios.get(`http://localhost:5000/api/generate_summary?period=${selectedPeriod}`);
+      setRefreshMessage("✅ Summaries refreshed successfully.");
+      console.log("Summary results:", response.data);
+    } catch (error) {
+      console.error("❌ Error refreshing summaries:", error);
+      setRefreshMessage("❌ Failed to refresh summaries.");
+    }
+
+    setIsRefreshing(false);
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
+  fetchAll();
+}, [selectedStations, selectedPeriod, selectedMetric]);
 
   const toggleStation = (stationId) => {
     setSelectedStations((prev) =>
@@ -217,6 +236,17 @@ function WeatherDashboard() {
           </div>
         ) : (
           <p><em>No current data available.</em></p>
+        )}
+      </div>
+
+      {/* Refresh Summaries Section */}
+      <div style={{ marginBottom: "2rem", borderTop: "1px solid #ccc", paddingTop: "1rem" }}>
+        <h4>Backend Summary Tools</h4>
+        <button onClick={refreshSummaries} disabled={isRefreshing}>
+          {isRefreshing ? "Refreshing..." : "Refresh Backend Summaries"}
+        </button>
+        {refreshMessage && (
+          <div style={{ marginTop: "0.5rem", fontStyle: "italic" }}>{refreshMessage}</div>
         )}
       </div>
 

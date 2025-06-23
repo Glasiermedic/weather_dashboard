@@ -1,85 +1,62 @@
+import os
 import sqlite3
 import pandas as pd
-import logging
-from pathlib import Path
+from datetime import datetime
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+# Paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # backend/
+DB_PATH = os.path.join(BASE_DIR, "data_exports", "weather.db")
 
-# Path setup
-BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = BASE_DIR / "data_exports" / "weather.db"
-
-def summarize_by_period(df: pd.DataFrame, period: str) -> pd.DataFrame:
-    if df.empty:
-        logging.warning("DataFrame is empty. Skipping summary.")
-        return pd.DataFrame()
-
+# Connect to DB and read raw data
+def load_raw_data():
+    print("📦 Connecting to DB...")
+    conn = sqlite3.connect(DB_PATH)
     try:
-        df['local_time'] = pd.to_datetime(df['local_time'], errors='coerce')
-        df = df.dropna(subset=['local_time'])
+        df = pd.read_sql("SELECT * FROM weather_raw", conn, parse_dates=["local_time"])
+        if df.empty:
+            print("⚠️ No data in weather_raw table.")
+        return df
+    finally:
+        conn.close()
 
-        if period == "7d":
-            df = df[df['local_time'] >= pd.Timestamp.now() - pd.Timedelta(days=7)]
-        elif period == "30d":
-            df = df[df['local_time'] >= pd.Timestamp.now() - pd.Timedelta(days=30)]
-        elif period == "ytd":
-            df = df[df['local_time'].dt.year == pd.Timestamp.now().year]
-
-    except Exception as e:
-        logging.error(f"Error during time filtering: {e}")
+# Basic aggregation
+def process_data(df):
+    if df.empty:
         return pd.DataFrame()
 
-    return df
+    print(f"📊 Columns in df: {df.columns.tolist()}")
 
-def create_summary(df: pd.DataFrame) -> dict:
+    df["local_time"] = pd.to_datetime(df["local_time"])
+    df["local_time"] = df["local_time"].dt.floor("h")
+
+    numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
+    group_cols = ["station_id", "local_time"]
+
+    summary_df = df.groupby(group_cols)[numeric_cols].mean().reset_index()
+
+    return summary_df
+
+# Save to SQLite
+def save_summary(df):
     if df.empty:
-        logging.warning("No data to summarize.")
-        return {}
+        print("⚠️ No data to save.")
+        return
 
-    def safe_mean(col):
-        return round(df[col].mean(), 2) if col in df.columns else None
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        df.to_sql("weather_hourly", conn, if_exists="replace", index=False)
+        print("✅ Saved processed data to 'weather_hourly' table.")
+    finally:
+        conn.close()
 
-    def safe_max(col):
-        return round(df[col].max(), 2) if col in df.columns else None
+# Main
+def main():
+    raw_df = load_raw_data()
+    if raw_df.empty:
+        return
 
-    def safe_min(col):
-        return round(df[col].min(), 2) if col in df.columns else None
-
-    summary = {
-        "temp_avg": safe_mean("temp_avg"),
-        "temp_low": safe_min("temp_low"),
-        "temp_high": safe_max("temp_high"),
-        "humidity_avg": safe_mean("humidity_avg"),
-        "wind_speed_high": safe_max("wind_speed_high"),
-        "wind_speed_low": safe_min("wind_speed_low"),
-        "wind_speed_avg": safe_mean("wind_speed_avg"),
-        "wind_gust_max": safe_max("wind_gust_max"),
-        "dew_point_avg": safe_mean("dew_point_avg"),
-        "windchillAvg": safe_mean("windchillAvg"),
-        "heatindexAvg": safe_mean("heatindexAvg"),
-        "pressureTrend": safe_mean("pressureTrend"),
-        "solar_rad_max": safe_max("solar_rad_max"),
-        "uv_max": safe_max("uv_max"),
-        "precipRate": safe_mean("precipRate"),
-        "precip_total": safe_mean("precip_total"),
-    }
-    return summary
+    summary_df = process_data(raw_df)
+    save_summary(summary_df)
 
 if __name__ == "__main__":
-    station_id = "dustprop"
-    period = "7d"
-
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        df = pd.read_sql_query(f"SELECT * FROM weather_hourly WHERE station_id = ?", conn, params=(station_id,))
-        conn.close()
-    except Exception as e:
-        logging.error(f"Failed to load data: {e}")
-        df = pd.DataFrame()
-
-    df_filtered = summarize_by_period(df, period)
-    summary = create_summary(df_filtered)
-
-    for key, value in summary.items():
-        logging.info(f"{key}: {value}")
+    main()

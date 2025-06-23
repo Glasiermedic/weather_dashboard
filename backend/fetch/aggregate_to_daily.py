@@ -1,82 +1,88 @@
+import os
 import sqlite3
 import pandas as pd
-from datetime import datetime
-import os
+from pathlib import Path
 
-# Correct path to the database
-DB_PATH = os.path.join("..", "..", "data_exports", "weather.db")
+# Setup paths
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # goes from fetch → backend
+DB_PATH = os.path.join(BASE_DIR, "data_exports", "weather.db")
 
 def aggregate_daily():
     conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
 
-    cursor.execute("SELECT DISTINCT station_id FROM weather_hourly")
-    stations = [row[0] for row in cursor.fetchall()]
+    try:
+        df = pd.read_sql_query("SELECT * FROM weather_hourly", conn)
+    except Exception as e:
+        print(f"❌ Failed to read weather_hourly: {e}")
+        conn.close()
+        return
 
-    for station in stations:
-        print(f"🔁 Aggregating daily for station: {station}")
-        cursor.execute("""
-            SELECT DISTINCT substr(local_time, 1, 10) AS day
-            FROM weather_hourly
-            WHERE station_id = ?
-              AND substr(local_time, 1, 10) NOT IN (
-                  SELECT substr(local_date, 1, 10) FROM weather_daily WHERE station_id = ?
-              )
-            ORDER BY day
-        """, (station, station))
-        days = [row[0] for row in cursor.fetchall()]
+    if df.empty:
+        print("⚠️ No data found in weather_hourly.")
+        conn.close()
+        return
 
-        for day in days:
-            cursor.execute("""
-                SELECT * FROM weather_hourly
-                WHERE station_id = ?
-                  AND substr(local_time, 1, 10) = ?
-            """, (station, day))
-            rows = cursor.fetchall()
-            if not rows:
-                continue
+    df["local_time"] = pd.to_datetime(df["local_time"])
+    df["local_date"] = df["local_time"].dt.date
 
-            df = pd.DataFrame(rows, columns=[
-                "station_id", "local_time", "temp_avg", "temp_low", "temp_high",
-                "humidity_avg", "wind_speed_high", "wind_speed_low", "wind_speed_avg",
-                "wind_gust_max", "dew_point_avg", "windchillAvg", "heatindexAvg",
-                "pressureTrend", "solar_rad_max", "uv_max", "precipRate", "precip_total"
-            ])
+    group_cols = ["station_id", "local_date"]
+    available = set(df.columns)
 
-            daily = {
-                'station_id': station,
-                'local_date': day,
-                'temp_avg': df['temp_avg'].mean(),
-                'temp_low': df['temp_low'].min(),
-                'temp_high': df['temp_high'].max(),
-                'humidity_avg': df['humidity_avg'].mean(),
-                'wind_speed_high': df['wind_speed_high'].max(),
-                'wind_speed_low': df['wind_speed_low'].min(),
-                'wind_speed_avg': df['wind_speed_avg'].mean(),
-                'wind_gust_max': df['wind_gust_max'].max(),
-                'dew_point_avg': df['dew_point_avg'].mean(),
-                'windchillAvg': df['windchillAvg'].mean(),
-                'heatindexAvg': df['heatindexAvg'].mean(),
-                'pressureTrend': df['pressureTrend'].mean(),
-                'solar_rad_max': df['solar_rad_max'].max(),
-                'uv_max': df['uv_max'].max(),
-                'precipRate': df['precipRate'].mean(),
-                'precip_total': df['precip_total'].sum()
-            }
+    # Define metrics to aggregate if present
+    metrics = {
+        "temp": "mean",
+        "humidity": "mean",
+        "wind_speed": ["mean", "min", "max"],
+        "wind_gust": "max",
+        "dew_point": "mean",
+        "windchill": "mean",
+        "heatindex": "mean",
+        "pressure": "mean",
+        "solar_rad": "max",
+        "uv": "max",
+        "precip_rate": "mean",
+        "precip_total": "sum"
+    }
 
-            cursor.execute("""
-                INSERT INTO weather_daily (
-                    station_id, local_date, temp_avg, temp_low, temp_high,
-                    humidity_avg, wind_speed_high, wind_speed_low, wind_speed_avg,
-                    wind_gust_max, dew_point_avg, windchillAvg, heatindexAvg,
-                    pressureTrend, solar_rad_max, uv_max, precipRate, precip_total
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, tuple(daily.values()))
+    # Only include available columns
+    safe_metrics = {
+        col: agg for col, agg in metrics.items() if col in available
+    }
 
-        conn.commit()
+    if not safe_metrics:
+        print("❌ No matching columns available to aggregate.")
+        conn.close()
+        return
 
+    agg_df = df.groupby(group_cols).agg(safe_metrics).reset_index()
+
+    # Flatten MultiIndex columns
+    agg_df.columns = ["_".join(col).strip("_") if isinstance(col, tuple) else col for col in agg_df.columns]
+
+    # Rename for consistency with rest of app
+    rename_map = {
+        "temp_mean": "temp_avg",
+        "humidity_mean": "humidity_avg",
+        "wind_speed_mean": "wind_speed_avg",
+        "wind_speed_min": "wind_speed_low",
+        "wind_speed_max": "wind_speed_high",
+        "wind_gust_max": "wind_gust_max",
+        "dew_point_mean": "dew_point_avg",
+        "windchill_mean": "windchillAvg",
+        "heatindex_mean": "heatindexAvg",
+        "pressure_mean": "pressureTrend",
+        "solar_rad_max": "solar_rad_max",
+        "uv_max": "uv_max",
+        "precip_rate_mean": "precipRate",
+        "precip_total_sum": "precip_total"
+    }
+
+    agg_df.rename(columns=rename_map, inplace=True)
+
+    # Write to DB
+    agg_df.to_sql("weather_daily", conn, if_exists="replace", index=False)
     conn.close()
-    print("✅ Daily aggregation complete.")
+    print("✅ Aggregated daily data saved to weather_daily.")
 
 if __name__ == "__main__":
     aggregate_daily()
