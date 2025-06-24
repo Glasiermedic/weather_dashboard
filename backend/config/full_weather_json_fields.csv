@@ -1,0 +1,38 @@
+Source Field (from JSON),Suggested DB Column Name,alias
+epoch,epoch,epoch
+humidityAvg,avg_humidity,Average humidity
+humidityHigh,humidity_max,Maximum Humidity
+humidityLow,humidity_min,Minimum Humidity
+imperial.dewptAvg,avg_dewpt,Average Dew Point
+imperial.dewptHigh,dewpt_max,Maximum Dew Point
+imperial.dewptLow,dewpt_min,Minimum Dew Point
+imperial.heatindexAvg,avg_heat_indx,Average Heat Index
+imperial.heatindexHigh,heat_index_max,Maximum Heat Index
+imperial.heatindexLow,heat_index_min,Minimum Heat Index
+imperial.precipRate,precip_rate,Precip Rate
+imperial.precipTotal,total_precip,Total Precip
+imperial.pressureMax,pressure_max,Maximum Pressure
+imperial.pressureMin,pressure_min,Minimum Pressure
+imperial.pressureTrend,pressure_trend,Pressure Trend
+imperial.tempAvg,avg_temp,Average Temp
+imperial.tempHigh,temp_max,Maximum Temp
+imperial.tempLow,temp_min,Minimum Temp
+imperial.windchillAvg,avg_wnd_chill,Average Wind Chill
+imperial.windchillHigh,wnd_chill_max,Maximum Wind Chill
+imperial.windchillLow,wnd_chill_min,Minimum Wind Chill
+imperial.windgustAvg,avg_wnd_gust,Average Wind Gust
+imperial.windgustHigh,wnd_gust_max,Maximum Wind Gust
+imperial.windgustLow,wnd_gust_min,Minimum Wind Gust
+imperial.windspeedAvg,avg_wnd_spd,Average Wind Speed
+imperial.windspeedHigh,wnd_spd_max,Maximum Wind Speed
+imperial.windspeedLow,wnd_spd_min,Minimum Wind Speed
+lat,lat,Latitude
+lon,lon,Longitude
+obsTimeLocal,local_time,Local Time
+obsTimeUtc,utc_time,UTC Time
+qcStatus,qcStatus,QC Status
+solarRadiationHigh,solar_rad_max,Max Solar Radiation
+stationID,stationID,Station ID
+tz,tz,TZ
+uvHigh,uv_max,Maximum UV
+winddirAvg,avg_wnd_dir,Average Wind Direction
