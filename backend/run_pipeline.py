@@ -31,11 +31,11 @@ logger = logging.getLogger(__name__)
 
 # Scripts to run in order (relative paths from project root)
 scripts = [
-    "backend/fetch/fetch_pws_history.py",
-    "backend/fetch/weatherjson_to_csv.py",
-    "backend/process_weather_data.py",
-    "backend/fetch/aggregate_to_daily.py",
-    "backend/fetch/aggregate_to_hourly.py"
+    "fetch/fetch_pws_history.py",
+    "fetch/weatherjson_to_csv.py",
+    "process_weather_data.py",
+    "fetch/aggregate_to_daily.py",
+    "fetch/aggregate_to_hourly.py"
 ]
 
 def run_script(script_path):
