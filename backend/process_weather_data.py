@@ -61,7 +61,7 @@ def flatten_columns(df):
     df.columns = ["_".join(col) if isinstance(col, tuple) else col for col in df.columns]
     return df
 
-def main():
+def run_all():
     stations = ["dustprop", "propdada"]
     dates = pd.date_range(end=pd.Timestamp.today(), periods=3).strftime("%Y%m%d")
 

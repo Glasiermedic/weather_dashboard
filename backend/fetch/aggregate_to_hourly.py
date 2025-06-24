@@ -1,83 +1,73 @@
-import sqlite3
-from datetime import datetime
 import os
 import pandas as pd
+import psycopg2
+from datetime import datetime
+from dotenv import load_dotenv
 
-# Correct relative path to database
-DB_PATH = os.path.join("..", "..", "data_exports", "weather.db")
+load_dotenv()
 
-def aggregate_hourly():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-    cursor.execute("SELECT DISTINCT station_id FROM weather_raw")
-    stations = [row[0] for row in cursor.fetchall()]
+def get_pg_connection():
+    return psycopg2.connect(DATABASE_URL)
 
-    for station in stations:
-        print(f"\n🔁 Aggregating for station: {station}")
-        cursor.execute("""
-            SELECT DISTINCT substr(local_time, 1, 13) AS hour
-            FROM weather_raw
-            WHERE station_id = ?
-              AND substr(local_time, 1, 13) NOT IN (
-                  SELECT substr(local_time, 1, 13) FROM weather_hourly WHERE station_id = ?
-              )
-            ORDER BY hour
-        """, (station, station))
-        hours = [row[0] for row in cursor.fetchall()]
+def main():
+    with get_pg_connection() as conn:
+        df = pd.read_sql_query("SELECT * FROM weather_raw", conn)
 
-        for hour_prefix in hours:
-            cursor.execute("""
-                SELECT * FROM weather_raw
-                WHERE station_id = ?
-                  AND substr(local_time, 1, 13) = ?
-            """, (station, hour_prefix))
-            rows = cursor.fetchall()
-            if not rows:
-                continue
+    if df.empty:
+        print("No data in weather_raw table.")
+        return
 
-            df = pd.DataFrame(rows, columns=[
-                "station_id", "local_time",
-                "temp_avg", "temp_low", "temp_high",
-                "humidity_avg", "wind_speed_high", "wind_speed_low", "wind_speed_avg",
-                "wind_gust_max", "dew_point_avg", "windchillAvg", "heatindexAvg",
-                "pressureTrend", "solar_rad_max", "uv_max", "precipRate", "precip_total"
-            ])
+    df["local_time"] = pd.to_datetime(df["local_time"])
+    df["hour"] = df["local_time"].dt.strftime("%Y-%m-%d %H:00:00")
 
-            agg_row = {
-                'station_id': station,
-                'local_time': hour_prefix + ":00",
-                'temp_avg': df['temp_avg'].mean(),
-                'temp_low': df['temp_low'].min(),
-                'temp_high': df['temp_high'].max(),
-                'humidity_avg': df['humidity_avg'].mean(),
-                'wind_speed_high': df['wind_speed_high'].max(),
-                'wind_speed_low': df['wind_speed_low'].min(),
-                'wind_speed_avg': df['wind_speed_avg'].mean(),
-                'wind_gust_max': df['wind_gust_max'].max(),
-                'dew_point_avg': df['dew_point_avg'].mean(),
-                'windchillAvg': df['windchillAvg'].mean(),
-                'heatindexAvg': df['heatindexAvg'].mean(),
-                'pressureTrend': df['pressureTrend'].mean(),
-                'solar_rad_max': df['solar_rad_max'].max(),
-                'uv_max': df['uv_max'].max(),
-                'precipRate': df['precipRate'].mean(),
-                'precip_total': df['precip_total'].sum()
-            }
+    agg = df.groupby(["station_id", "hour"]).agg({
+        "avg_temp": ["mean", "min", "max"],
+        "avg_humidity": ["mean", "min", "max"],
+        "avg_wnd_spd": ["mean", "min", "max"],
+        "avg_wnd_gust": "max",
+        "avg_dewpt": "mean",
+        "avg_wnd_chill": "mean",
+        "avg_heat_indx": "mean",
+        "pressure_max": "max",
+        "pressure_min": "min",
+        "pressure_trend": "mean",
+        "total_precip": "sum",
+        "solar_rad_max": "max",
+        "uv_max": "max"
+    })
 
-            cursor.execute("""
-                INSERT INTO weather_hourly (
-                    station_id, local_time, temp_avg, temp_low, temp_high,
-                    humidity_avg, wind_speed_high, wind_speed_low, wind_speed_avg,
-                    wind_gust_max, dew_point_avg, windchillAvg, heatindexAvg,
-                    pressureTrend, solar_rad_max, uv_max, precipRate, precip_total
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, tuple(agg_row.values()))
+    agg.columns = [
+        "temp_avg", "temp_min", "temp_max",
+        "humidity_avg", "humidity_min", "humidity_max",
+        "wind_speed_avg", "wind_speed_min", "wind_speed_max",
+        "wind_gust_max", "dew_point_avg", "windchill_avg",
+        "heatindex_avg", "pressure_max", "pressure_min",
+        "pressure_avg", "precip_total", "solar_rad_max", "uv_max"
+    ]
+    agg = agg.reset_index()
 
-        conn.commit()
+    with get_pg_connection() as conn:
+        with conn.cursor() as cur:
+            for _, row in agg.iterrows():
+                cur.execute("""
+                    INSERT INTO weather_hourly (
+                        station_id, hour,
+                        temp_avg, temp_min, temp_max,
+                        humidity_avg, humidity_min, humidity_max,
+                        wind_speed_avg, wind_speed_min, wind_speed_max,
+                        wind_gust_max, dew_point_avg, windchill_avg, heatindex_avg,
+                        pressure_max, pressure_min, pressure_avg,
+                        precip_total, solar_rad_max, uv_max
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (station_id, hour) DO NOTHING
+                """, tuple(row))
 
-    conn.close()
-    print("✅ Hourly aggregation complete.")
+            conn.commit()
+
+    print("✅ Hourly aggregation complete and inserted into weather_hourly.")
 
 if __name__ == "__main__":
-    aggregate_hourly()
+    main()

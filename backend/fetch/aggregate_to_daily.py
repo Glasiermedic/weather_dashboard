@@ -1,88 +1,74 @@
 import os
-import sqlite3
 import pandas as pd
-from pathlib import Path
+import psycopg2
+from datetime import datetime
+from dotenv import load_dotenv
 
-# Setup paths
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # goes from fetch → backend
-DB_PATH = os.path.join(BASE_DIR, "data_exports", "weather.db")
+load_dotenv()
 
-def aggregate_daily():
-    conn = sqlite3.connect(DB_PATH)
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-    try:
-        df = pd.read_sql_query("SELECT * FROM weather_hourly", conn)
-    except Exception as e:
-        print(f"❌ Failed to read weather_hourly: {e}")
-        conn.close()
-        return
+def get_pg_connection():
+    return psycopg2.connect(DATABASE_URL)
+
+def main():
+    with get_pg_connection() as conn:
+        df = pd.read_sql_query("SELECT * FROM weather_raw", conn)
 
     if df.empty:
-        print("⚠️ No data found in weather_hourly.")
-        conn.close()
+        print("No data in weather_raw table.")
         return
 
     df["local_time"] = pd.to_datetime(df["local_time"])
-    df["local_date"] = df["local_time"].dt.date
+    df["date"] = df["local_time"].dt.date
 
-    group_cols = ["station_id", "local_date"]
-    available = set(df.columns)
+    # Group and aggregate
+    agg = df.groupby(["station_id", "date"]).agg({
+        "avg_temp": ["mean", "min", "max"],
+        "avg_humidity": ["mean", "min", "max"],
+        "avg_wnd_spd": ["mean", "min", "max"],
+        "avg_wnd_gust": "max",
+        "avg_dewpt": "mean",
+        "avg_wnd_chill": "mean",
+        "avg_heat_indx": "mean",
+        "pressure_trend": "mean",
+        "pressure_max": "max",
+        "pressure_min": "min",
+        "total_precip": "sum",
+        "solar_rad_max": "max",
+        "uv_max": "max"
+    })
 
-    # Define metrics to aggregate if present
-    metrics = {
-        "temp": "mean",
-        "humidity": "mean",
-        "wind_speed": ["mean", "min", "max"],
-        "wind_gust": "max",
-        "dew_point": "mean",
-        "windchill": "mean",
-        "heatindex": "mean",
-        "pressure": "mean",
-        "solar_rad": "max",
-        "uv": "max",
-        "precip_rate": "mean",
-        "precip_total": "sum"
-    }
+    agg.columns = [
+        "temp_avg", "temp_low", "temp_high",
+        "humidity_avg", "humidity_min", "humidity_max",
+        "wind_speed_avg", "wind_speed_low", "wind_speed_high",
+        "wind_gust_max", "dew_point_avg", "windchill_avg",
+        "heatindex_avg", "pressureTrend", "pressure_max",
+        "pressure_min", "precip_total", "solar_rad_max", "uv_max"
+    ]
+    agg = agg.reset_index()
 
-    # Only include available columns
-    safe_metrics = {
-        col: agg for col, agg in metrics.items() if col in available
-    }
+    with get_pg_connection() as conn:
+        with conn.cursor() as cur:
+            for _, row in agg.iterrows():
+                cur.execute("""
+                    INSERT INTO weather_daily (
+                        station_id, date,
+                        temp_avg, temp_low, temp_high,
+                        humidity_avg, humidity_min, humidity_max,
+                        wind_speed_avg, wind_speed_low, wind_speed_high,
+                        wind_gust_max, dew_point_avg, windchill_avg, heatindex_avg,
+                        pressureTrend, pressure_max, pressure_min,
+                        precip_total, solar_rad_max, uv_max
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (station_id, date) DO NOTHING
+                """, tuple(row))
 
-    if not safe_metrics:
-        print("❌ No matching columns available to aggregate.")
-        conn.close()
-        return
+            conn.commit()
 
-    agg_df = df.groupby(group_cols).agg(safe_metrics).reset_index()
-
-    # Flatten MultiIndex columns
-    agg_df.columns = ["_".join(col).strip("_") if isinstance(col, tuple) else col for col in agg_df.columns]
-
-    # Rename for consistency with rest of app
-    rename_map = {
-        "temp_mean": "temp_avg",
-        "humidity_mean": "humidity_avg",
-        "wind_speed_mean": "wind_speed_avg",
-        "wind_speed_min": "wind_speed_low",
-        "wind_speed_max": "wind_speed_high",
-        "wind_gust_max": "wind_gust_max",
-        "dew_point_mean": "dew_point_avg",
-        "windchill_mean": "windchillAvg",
-        "heatindex_mean": "heatindexAvg",
-        "pressure_mean": "pressureTrend",
-        "solar_rad_max": "solar_rad_max",
-        "uv_max": "uv_max",
-        "precip_rate_mean": "precipRate",
-        "precip_total_sum": "precip_total"
-    }
-
-    agg_df.rename(columns=rename_map, inplace=True)
-
-    # Write to DB
-    agg_df.to_sql("weather_daily", conn, if_exists="replace", index=False)
-    conn.close()
-    print("✅ Aggregated daily data saved to weather_daily.")
+    print("✅ Daily aggregation complete and inserted into weather_daily.")
 
 if __name__ == "__main__":
-    aggregate_daily()
+    main()

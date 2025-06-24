@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv()
 import pandas as pd
 import subprocess
 import logging
@@ -33,7 +35,8 @@ scripts = [
     "fetch/fetch_pws_history.py",
     "fetch/weatherjson_to_csv.py",
     "process_weather_data.py",
-    "fetch/aggregate_to_daily.py"
+    "fetch/aggregate_to_daily.py",
+    "fetch/aggregate_to_hourly.py"
 ]
 
 def run_script(script_path):
