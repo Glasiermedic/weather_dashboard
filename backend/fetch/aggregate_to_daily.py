@@ -1,6 +1,9 @@
 import os
 import pandas as pd
-import psycopg2
+from sqlalchemy import create_engine
+
+engine = create_engine("postgresql+psycopg2://username:password@host:port/dbname")
+df = pd.read_sql("SELECT * FROM weather_raw", engine)
 from datetime import datetime
 from dotenv import load_dotenv
 
