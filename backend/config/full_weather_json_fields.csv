@@ -32,7 +32,6 @@ obsTimeLocal,local_time,Local Time
 obsTimeUtc,utc_time,UTC Time
 qcStatus,qcStatus,QC Status
 solarRadiationHigh,solar_rad_max,Max Solar Radiation
-stationID,stationID,Station ID
 tz,tz,TZ
 uvHigh,uv_max,Maximum UV
 winddirAvg,avg_wnd_dir,Average Wind Direction
