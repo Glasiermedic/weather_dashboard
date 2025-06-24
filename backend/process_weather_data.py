@@ -79,6 +79,8 @@ def run_all():
 
             daily = flatten_columns(aggregate_daily(processed))
             insert_dataframe(daily, "weather_daily")
-
+def main():
+    print("✅ ETL process_weather_data.py ran successfully")
+    run_all()
 if __name__ == "__main__":
     main()
