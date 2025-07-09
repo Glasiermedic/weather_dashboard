@@ -38,22 +38,32 @@ The Weather Dashboard combines automated data ingestion, robust backend processi
 ## 🏗️ Project Architecture
 
 weather_dashboard/
-├── backend/
-│ ├── fetch/ # Scripts to pull & transform raw weather data
-│ ├── aggregate_to_hourly.py # Hourly aggregation script
-│ ├── aggregate_to_daily.py # Daily aggregation script
-│ ├── process_weather_data.py# Cleans raw → structured tables
-│ ├── app.py # Flask API endpoints
-│ └── config/ # Field maps, helpers, logging config
-├── data/ # Raw JSON data (persisted only in dev)
-├── frontend/weather-ui/ # React weather dashboard UI
-├── run_pipeline.py # Orchestrates full ETL pipeline
-├── .env # API keys & DB URL (excluded from repo)
-└── README.md
 
-yaml
-Copy
-Edit
+├── backend/
+
+│ ├── fetch/ # Scripts to pull & transform raw weather data
+
+│ ├── aggregate_to_hourly.py # Hourly aggregation script
+
+│ ├── aggregate_to_daily.py # Daily aggregation script
+
+│ ├── process_weather_data.py# Cleans raw → structured tables
+
+│ ├── app.py # Flask API endpoints
+
+│ └── config/ # Field maps, helpers, logging config
+
+├── data/ # Raw JSON data (persisted only in dev)
+
+├── frontend/weather-ui/ # React weather dashboard UI
+
+├── run_pipeline.py # Orchestrates full ETL pipeline
+
+├── .env # API keys & DB URL (excluded from repo)
+
+└── README.md
+"
+
 
 ---
 
