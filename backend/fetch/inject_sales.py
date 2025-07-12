@@ -15,11 +15,9 @@ REGIONS = ['US-East', 'US-North', 'US-South', 'US-West', 'CA', 'EUR', 'AFR-North
            'AUS', 'PAC-Islands', 'RUS', 'CHIN', 'JPN', 'AMER-South', 'AMER-Central']
 PRODUCT_TYPES = ['Cast Resin', 'Dry-Type', 'Oil-Insulated', 'Padmount', 'Substation', 'Switchgear', 'Three-Phase']
 PREFERRED_UNITS = [1, 2, 4, 5, 7, 3]
-PREFERRED_WEIGHTS = [0.2, 0.18, 0.16, 0.14, 0.12, 0.1]
-OTHER_UNITS = list(range(8, 26))
-OTHER_WEIGHTS = [0.01] * len(OTHER_UNITS)
-UNIT_OPTIONS = PREFERRED_UNITS + OTHER_UNITS
-UNIT_WEIGHTS = PREFERRED_WEIGHTS + OTHER_WEIGHTS
+PREFERRED_WEIGHTS = [0.42, 0.28, 0.16, 0.14]
+UNIT_OPTIONS = PREFERRED_UNITS
+UNIT_WEIGHTS = PREFERRED_WEIGHTS
 
 def generate_transaction(order_id, timestamp):
     units_sold = random.choices(UNIT_OPTIONS, weights=UNIT_WEIGHTS, k=1)[0]
