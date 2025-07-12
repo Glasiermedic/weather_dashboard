@@ -1,14 +1,21 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WeatherDashboard from './WeatherDashboard';
+import Layout from './components/Layout';
+import Homepage from './pages/Homepage';
+import WeatherDashboard from './pages/WeatherDashboard';
+import AwtowbotzPage from './pages/AwtowbotzPage';
+import SkateToneForge from './pages/SkateToneForge';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<h1>Homepage</h1>} />
-        <Route path="/weather" element={<WeatherDashboard />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Homepage />} />
+          <Route path="weather" element={<WeatherDashboard />} />
+          <Route path="awtowbotz" element={<AwtowbotzPage />} />
+          <Route path="skatestone" element={<SkateToneForge />} />
+        </Route>
       </Routes>
     </Router>
   );

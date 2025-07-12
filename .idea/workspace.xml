@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="🔧 Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking">
-      <change afterPath="$PROJECT_DIR$/backend/data_exports/weather.db" afterDir="false" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions">
+      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/components/Layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/components/Navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/AwtowbotzPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/Homepage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/SkateToneForge.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/fetch/aggregate_to_daily.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/fetch/aggregate_to_daily.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/init_weather_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/init_weather_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/process_weather_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/process_weather_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_exports/weather.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/WeatherDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,8 +50,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Glasiermedic/weather_dashboard&quot;,
-    &quot;accountId&quot;: &quot;a07ec963-8313-4064-827b-0e7e6bdb4763&quot;
+    &quot;url&quot;: &quot;https://github.com/Glasiermedic/weather_dashboard.git&quot;,
+    &quot;accountId&quot;: &quot;3bfa71bc-e31c-4eb2-9617-7b04835ecfc1&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -76,6 +76,7 @@
     "Python.fetch_pws_5min_raw.executor": "Run",
     "Python.fetch_pws_history.executor": "Run",
     "Python.init_weather_tables.executor": "Run",
+    "Python.inject_sales.executor": "Run",
     "Python.insert_weather_raw.executor": "Run",
     "Python.process_weather_data.executor": "Run",
     "Python.removal_kormcmin127_f_tables.executor": "Run",
@@ -89,24 +90,51 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard/backend/process_weather_data.py",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "vcs.Git",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\frontend\weather-ui\src\pages" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\data" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="inject_sales" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="weather_dashboard" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (awtowbotz)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend/fetch" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/fetch/inject_sales.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="process_weather_data" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -116,7 +144,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11 (weather_dashboard)" />
       <option name="WORKING_DIRECTORY" value="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -150,6 +177,8 @@
       <updated>1748926875900</updated>
       <workItem from="1748926876925" duration="57580000" />
       <workItem from="1749457731309" duration="23246000" />
+      <workItem from="1752086638031" duration="984000" />
+      <workItem from="1752251808261" duration="10448000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -199,7 +228,31 @@
       <option name="project" value="LOCAL" />
       <updated>1749232571175</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updated the Readme to reflect current status and the new changes to the road map and data validation/cleaning processes">
+      <option name="closed" value="true" />
+      <created>1752086933132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752086933132</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions">
+      <option name="closed" value="true" />
+      <created>1752293448452</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1752293448452</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions">
+      <option name="closed" value="true" />
+      <created>1752294416796</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752294416796</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +262,9 @@
     <MESSAGE value="Initial project files to work from.  I used Chat GPT to review the files for errors at each step." />
     <MESSAGE value="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features" />
     <MESSAGE value=" Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking" />
+    <MESSAGE value="Updated the Readme to reflect current status and the new changes to the road map and data validation/cleaning processes" />
+    <MESSAGE value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -238,6 +293,7 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1748935590947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_weather_daily_table.coverage" NAME="repair_weather_daily_table Coverage Results" MODIFIED="1749195653502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$reset_db.coverage" NAME="reset_db Coverage Results" MODIFIED="1750660700207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/config" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$inject_sales.coverage" NAME="inject_sales Coverage Results" MODIFIED="1752257549473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$run_pipeline.coverage" NAME="run_pipeline Coverage Results" MODIFIED="1750351668618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$aggregate_to_hourly.coverage" NAME="aggregate_to_hourly Coverage Results" MODIFIED="1749230975867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$init_weather_tables.coverage" NAME="init_weather_tables Coverage Results" MODIFIED="1750661422357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
