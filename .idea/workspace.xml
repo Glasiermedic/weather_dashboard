@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing potential error from the app.py file allowing us to render the data needed for our site." />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +168,7 @@
       <workItem from="1748926876925" duration="57580000" />
       <workItem from="1749457731309" duration="23246000" />
       <workItem from="1752086638031" duration="984000" />
-      <workItem from="1752251808261" duration="10784000" />
+      <workItem from="1752251808261" duration="11298000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -258,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752336937296</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt.">
+      <option name="closed" value="true" />
+      <created>1752337439372</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1752337439372</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,7 +280,8 @@
     <MESSAGE value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
     <MESSAGE value="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress" />
     <MESSAGE value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
+    <MESSAGE value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

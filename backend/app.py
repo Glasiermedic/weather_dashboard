@@ -182,6 +182,13 @@ def generate_summary():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+@app.route("/api/debug/columns")
+def debug_columns():
+    con = get_db_connection()
+    cur = con.cursor()
+    cur.execute("SELECT * FROM weather_daily LIMIT 1;")
+    row = cur.fetchone()
+    return {"columns": list(row.keys())}
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
