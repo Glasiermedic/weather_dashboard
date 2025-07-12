@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions">
-      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/components/Layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/components/Navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/AwtowbotzPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/Homepage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/SkateToneForge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
-    </list>
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing potential error from the app.py file allowing us to render the data needed for our site." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +168,7 @@
       <workItem from="1748926876925" duration="57580000" />
       <workItem from="1749457731309" duration="23246000" />
       <workItem from="1752086638031" duration="984000" />
-      <workItem from="1752251808261" duration="10448000" />
+      <workItem from="1752251808261" duration="10784000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -252,7 +242,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752294416796</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress">
+      <option name="closed" value="true" />
+      <created>1752336891808</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752336891808</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixing potential error from the app.py file allowing us to render the data needed for our site.">
+      <option name="closed" value="true" />
+      <created>1752336937296</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1752336937296</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +270,9 @@
     <MESSAGE value=" Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking" />
     <MESSAGE value="Updated the Readme to reflect current status and the new changes to the road map and data validation/cleaning processes" />
     <MESSAGE value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
+    <MESSAGE value="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress" />
+    <MESSAGE value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
