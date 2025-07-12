@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="adding temporary debug route to app.py to get the column names">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/weather_dashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/weather_dashboard.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/process_weather_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/process_weather_data.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -81,18 +87,21 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard",
+    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\.venv" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\frontend\weather-ui\src\pages" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
@@ -101,6 +110,30 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="weather_dashboard" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (firstapp)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="inject_sales" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -168,7 +201,7 @@
       <workItem from="1748926876925" duration="57580000" />
       <workItem from="1749457731309" duration="23246000" />
       <workItem from="1752086638031" duration="984000" />
-      <workItem from="1752251808261" duration="11298000" />
+      <workItem from="1752251808261" duration="14376000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -266,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752337439372</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="adding temporary debug route to app.py to get the column names">
+      <option name="closed" value="true" />
+      <created>1752337566677</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1752337566677</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +322,8 @@
     <MESSAGE value="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress" />
     <MESSAGE value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
     <MESSAGE value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
+    <MESSAGE value="adding temporary debug route to app.py to get the column names" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding temporary debug route to app.py to get the column names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -296,10 +338,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/weather_dashboard$Patch_schema.coverage" NAME="Patch_schema Coverage Results" MODIFIED="1749193955366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$process_weather_data.coverage" NAME="process_weather_data Coverage Results" MODIFIED="1750350228257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$process_weather_data.coverage" NAME="process_weather_data Coverage Results" MODIFIED="1752338669067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_wather_raw_table.coverage" NAME="repair_wather_raw_table Coverage Results" MODIFIED="1749227024488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$aggregate_to_daily.coverage" NAME="aggregate_to_daily Coverage Results" MODIFIED="1750351659795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1750355001830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1752339990195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$removal_kormcmin127_f_tables.coverage" NAME="removal_kormcmin127_f_tables Coverage Results" MODIFIED="1749194379565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$data_freshness.coverage" NAME="data_freshness Coverage Results" MODIFIED="1749217873872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_5min_raw.coverage" NAME="fetch_pws_5min_raw Coverage Results" MODIFIED="1749231299455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
@@ -307,8 +349,8 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_history.coverage" NAME="fetch_pws_history Coverage Results" MODIFIED="1750349933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$weatherjson_to_csv.coverage" NAME="weatherjson_to_csv Coverage Results" MODIFIED="1750661558447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_weather_hourly_table.coverage" NAME="repair_weather_hourly_table Coverage Results" MODIFIED="1749230861653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1748935590947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_weather_daily_table.coverage" NAME="repair_weather_daily_table Coverage Results" MODIFIED="1749195653502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1752339735506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weather_dashboard$reset_db.coverage" NAME="reset_db Coverage Results" MODIFIED="1750660700207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/config" />
     <SUITE FILE_PATH="coverage/weather_dashboard$inject_sales.coverage" NAME="inject_sales Coverage Results" MODIFIED="1752257549473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$run_pipeline.coverage" NAME="run_pipeline Coverage Results" MODIFIED="1750351668618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />

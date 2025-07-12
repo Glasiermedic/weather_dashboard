@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import psycopg2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -7,11 +8,17 @@ from process_weather_data import run_all
 import requests
 from urllib.parse import urlparse
 
-app = Flask(__name__)
-CORS(app)
+# 🔍 Locate and load the .env from project root
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ENV_PATH = os.path.join(ROOT_DIR, ".env")
+
+print("Looking for .env at:", ENV_PATH)  # 👈 For debugging
+load_dotenv(dotenv_path=ENV_PATH)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
+print("Loaded DATABASE_URL:", DATABASE_URL)  # 👈 Confirm it's working
+app = Flask(__name__)
+CORS(app)
 def get_pg_connection():
     return psycopg2.connect(DATABASE_URL)
 
@@ -184,11 +191,14 @@ def generate_summary():
         return jsonify({"error": str(e)}), 500
 @app.route("/api/debug/columns")
 def debug_columns():
-    con = get_db_connection()
-    cur = con.cursor()
-    cur.execute("SELECT * FROM weather_daily LIMIT 1;")
-    row = cur.fetchone()
-    return {"columns": list(row.keys())}
+    try:
+        with get_pg_connection() as con:
+            cur = con.cursor()
+            cur.execute("SELECT * FROM weather_daily LIMIT 1;")
+            colnames = [desc[0] for desc in cur.description]
+            return jsonify({"columns": colnames})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

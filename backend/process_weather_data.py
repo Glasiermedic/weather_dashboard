@@ -1,11 +1,17 @@
-import os
 import pandas as pd
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 
-load_dotenv()  # Load .env if running locally
+import os
+from dotenv import load_dotenv
+
+# Always load .env from project root
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ENV_PATH = os.path.join(ROOT_DIR, ".env")
+load_dotenv(dotenv_path=ENV_PATH)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+print("✅ Loaded DATABASE_URL:", DATABASE_URL)  # Optional debug
 
 # SQLAlchemy engine
 engine = create_engine(DATABASE_URL)
