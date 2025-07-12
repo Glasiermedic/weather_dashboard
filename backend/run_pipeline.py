@@ -35,7 +35,8 @@ scripts = [
     "fetch/weatherjson_to_csv.py",
     "process_weather_data.py",
     "fetch/aggregate_to_daily.py",
-    "fetch/aggregate_to_hourly.py"
+    "fetch/aggregate_to_hourly.py",
+    "fetch/inject_sales.py"
 ]
 
 def run_script(script_path):
