@@ -78,7 +78,7 @@ def get_graph_data():
         timestamp_field = "local_time"
     elif period in ["30d", "ytd"]:
         table = "weather_daily"
-        timestamp_field = "local_date"
+        timestamp_field = "local_time"
     else:
         return jsonify({"error": "Invalid period"}), 400
 
