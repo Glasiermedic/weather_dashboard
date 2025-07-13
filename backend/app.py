@@ -74,6 +74,8 @@ def get_graph_data():
     period = request.args.get("period", "1d")
     column = request.args.get("column", "temp_avg")
 
+    print(f"📊 Request: station={station_id}, period={period}, column={column}")  # Debug log
+
     if not station_id or not column:
         return jsonify({"error": "Missing required parameters"}), 400
 
@@ -89,16 +91,21 @@ def get_graph_data():
     else:
         return jsonify({"error": "Invalid period"}), 400
 
-    with get_pg_connection() as conn:
-        df = pd.read_sql_query(
-            f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
-            conn,
-            params=(station_id,)
-        )
+    try:
+        with get_pg_connection() as conn:
+            df = pd.read_sql_query(
+                f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
+                conn,
+                params=(station_id,)
+            )
+    except Exception as e:
+        print(f"❌ SQL error: {e}")
+        return jsonify({"error": str(e)}), 500
 
     df["timestamp"] = pd.to_datetime(df["timestamp"])
-    now = pd.Timestamp.now()
+    df = df.sort_values("timestamp")
 
+    now = pd.Timestamp.now()
     if period == "1d":
         df = df[df["timestamp"] >= now - pd.Timedelta(days=1)]
         label_format = "%H:%M"
@@ -112,12 +119,11 @@ def get_graph_data():
         df = df[df["timestamp"].dt.year == now.year]
         label_format = "%m-%d"
 
-    df = df.sort_values("timestamp")
-
     return jsonify({
         "labels": df["timestamp"].dt.strftime(label_format).tolist(),
         "data": df[column].fillna(0).round(2).tolist()
     })
+
 
 @app.route("/api/current_data_live")
 def get_current_data_live():
