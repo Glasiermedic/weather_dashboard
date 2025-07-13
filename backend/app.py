@@ -195,7 +195,7 @@ def get_weather_daily_columns():
                 cur.execute("""
                     SELECT column_name
                     FROM information_schema.columns
-                    WHERE table_name = 'weather_daily';
+                    WHERE table_name = 'weather_hourly';
                 """)
                 columns = [row[0] for row in cur.fetchall()]
         return jsonify({"columns": columns})
