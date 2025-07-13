@@ -16,22 +16,9 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const API_BASE = "https://weather-dashboard-hqpk.onrender.com";
 
-const stations = {
-  KORMCMIN127: 'Propeller Sensor',
-  KORMCMIN133: 'Dust Sensor'
-};
-
-
 const stationColors = {
   KORMCMIN127: 'blue',
   KORMCMIN133: 'red'
-};
-
-const timeRanges = {
-  '1d': 'Today',
-  '7d': 'Last 7 Days',
-  '30d': 'Last 30 Days',
-  'ytd': 'Year to Date'
 };
 
 const metricLabels = {
@@ -44,14 +31,13 @@ const metricLabels = {
   wind_speed_avg: "average wind",
   wind_gust_max: "max wind gust",
   dew_point_avg: "average dewpoint",
-  windchillAvg: "average wind chill",
-  heatindexAvg: "ave heat index",
-  pressureTrend: "pressure trend",
+  windchill_avg: "average wind chill",
+  heatindex_avg: "ave heat index",
+  pressure_trend: "pressure trend",
   solar_rad_max: "solar radiation",
   uv_max: "UV",
   precip_total: "total precip"
 };
-
 
 const spinnerStyle = {
   width: "1.5rem",
@@ -63,10 +49,6 @@ const spinnerStyle = {
   margin: "0.5rem auto"
 };
 
-const fadeInStyle = {
-  animation: "fadein 0.4s ease-in"
-};
-
 function WeatherDashboard() {
   const [selectedStations, setSelectedStations] = useState(['KORMCMIN127']);
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
@@ -74,12 +56,14 @@ function WeatherDashboard() {
   const [graphSeries, setGraphSeries] = useState({});
   const [currentData, setCurrentData] = useState({});
   const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
+  const [isLoadingGraph, setIsLoadingGraph] = useState(false);
   const [availableMetrics, setAvailableMetrics] = useState([]);
 
   const fetchAll = async () => {
     const newGraphs = {};
     const newCurrent = {};
     setIsLoadingCurrent(true);
+    setIsLoadingGraph(true);
 
     await Promise.all(
       selectedStations.map(async (station) => {
@@ -107,28 +91,23 @@ function WeatherDashboard() {
     setGraphSeries(newGraphs);
     setCurrentData(newCurrent);
     setIsLoadingCurrent(false);
+    setIsLoadingGraph(false);
   };
+
   useEffect(() => {
-  axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
-    .then((res) => {
-      const cols = res.data.columns || [];
-      setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
-    })
-    .catch((err) => {
-      console.error("Failed to load metric columns:", err.message);
-    });
-}, []);
+    axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
+      .then((res) => {
+        const cols = res.data.columns || [];
+        setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
+      })
+      .catch((err) => {
+        console.error("Failed to load metric columns:", err.message);
+      });
+  }, []);
+
   useEffect(() => {
     fetchAll();
   }, [selectedStations, selectedPeriod, selectedMetric]);
-
-  const toggleStation = (stationId) => {
-    setSelectedStations((prev) =>
-      prev.includes(stationId)
-        ? prev.filter((id) => id !== stationId)
-        : [...prev, stationId]
-    );
-  };
 
   const nowData = () => {
     const count = selectedStations.length;
@@ -158,31 +137,72 @@ function WeatherDashboard() {
 
   const now = nowData();
 
+  const chartData = {
+    labels: graphSeries[selectedStations[0]]?.map((row) => row.timestamp) || [],
+    datasets: selectedStations.map((stationId) => ({
+      label: stationId,
+      data: graphSeries[stationId]?.map((row) => row[selectedMetric]) || [],
+      borderColor: stationColors[stationId] || 'gray',
+      backgroundColor: stationColors[stationId] || 'gray',
+      fill: false,
+      tension: 0.4
+    }))
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: metricLabels[selectedMetric] || selectedMetric }
+    }
+  };
+
   return (
-  <div style={{ padding: "2rem" }}>
-    <h2>Weather Dashboard</h2>
+    <div style={{ padding: "2rem" }}>
+      <h2>Weather Dashboard</h2>
 
-    <div style={{ marginBottom: "1rem" }}>
-      <label htmlFor="metric-select" style={{ marginRight: "0.5rem" }}>
-        Metric:
-      </label>
-      <select
-        id="metric-select"
-        value={selectedMetric}
-        onChange={(e) => setSelectedMetric(e.target.value)}
-      >
-        {availableMetrics.map((key) => (
-          <option key={key} value={key}>
-            {metricLabels[key] || key}
-          </option>
-        ))}
-      </select>
+      <div style={{ marginBottom: "1rem" }}>
+        <label htmlFor="metric-select" style={{ marginRight: "0.5rem" }}>
+          Metric:
+        </label>
+        <select
+          id="metric-select"
+          value={selectedMetric}
+          onChange={(e) => setSelectedMetric(e.target.value)}
+        >
+          {availableMetrics.map((key) => (
+            <option key={key} value={key}>
+              {metricLabels[key] || key}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {isLoadingGraph ? (
+        <div style={spinnerStyle}></div>
+      ) : (
+        <Line options={chartOptions} data={chartData} />
+      )}
+
+      <div style={{ marginTop: "2rem" }}>
+        <h3>Right Now Summary</h3>
+        {isLoadingCurrent ? (
+          <div style={spinnerStyle}></div>
+        ) : now ? (
+          <div>
+            <p><strong>Temp:</strong> {now.temp} °F</p>
+            <p><strong>Humidity:</strong> {now.humidity} %</p>
+            <p><strong>Wind:</strong> {now.wind_speed} mph</p>
+            <p><strong>Precip:</strong> {now.precip} in</p>
+            <p><strong>Updated:</strong> {now.timestamp}</p>
+            {now.fallback && <p style={{ color: "orange" }}>⚠️ Fallback data used</p>}
+          </div>
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
     </div>
-
-    {/* You can add more dropdowns, station toggles, charts, etc. below */}
-  </div>
-);
-
+  );
 }
 
 export default WeatherDashboard;
