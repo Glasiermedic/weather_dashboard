@@ -14,6 +14,8 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+const [availableMetrics, setAvailableMetrics] = useState(Object.keys(metricOptions));
+
 const API_BASE = "https://weather-dashboard-hqpk.onrender.com";
 
 const stations = {
@@ -33,7 +35,7 @@ const timeRanges = {
   'ytd': 'Year to Date'
 };
 
-const metricOptions = {
+const metricLabels = {
   temp_avg: "average temp",
   temp_low: "low temp",
   temp_high: "high temp",
@@ -43,14 +45,14 @@ const metricOptions = {
   wind_speed_avg: "average wind",
   wind_gust_max: "max wind gust",
   dew_point_avg: "average dewpoint",
-  windchill_avg: "average wind chill",
-  heatindex_avg: "ave heat index",
-  pressure_trend: "pressure trend",
+  windchillAvg: "average wind chill",
+  heatindexAvg: "ave heat index",
+  pressureTrend: "pressure trend",
   solar_rad_max: "solar radiation",
   uv_max: "UV",
-  //precipRate: "precipitation rate",
   precip_total: "total precip"
 };
+
 
 const spinnerStyle = {
   width: "1.5rem",
@@ -106,7 +108,16 @@ function WeatherDashboard() {
     setCurrentData(newCurrent);
     setIsLoadingCurrent(false);
   };
-
+  useEffect(() => {
+  axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
+    .then((res) => {
+      const cols = res.data.columns || [];
+      setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
+    })
+    .catch((err) => {
+      console.error("Failed to load metric columns:", err.message);
+    });
+}, []);
   useEffect(() => {
     fetchAll();
   }, [selectedStations, selectedPeriod, selectedMetric]);
@@ -148,11 +159,30 @@ function WeatherDashboard() {
   const now = nowData();
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Weather Dashboard</h2>
-      {/* ... existing UI unchanged ... */}
+  <div style={{ padding: "2rem" }}>
+    <h2>Weather Dashboard</h2>
+
+    <div style={{ marginBottom: "1rem" }}>
+      <label htmlFor="metric-select" style={{ marginRight: "0.5rem" }}>
+        Metric:
+      </label>
+      <select
+        id="metric-select"
+        value={selectedMetric}
+        onChange={(e) => setSelectedMetric(e.target.value)}
+      >
+        {availableMetrics.map((key) => (
+          <option key={key} value={key}>
+            {metricLabels[key] || key}
+          </option>
+        ))}
+      </select>
     </div>
-  );
+
+    {/* You can add more dropdowns, station toggles, charts, etc. below */}
+  </div>
+);
+
 }
 
 export default WeatherDashboard;
