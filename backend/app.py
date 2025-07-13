@@ -171,16 +171,21 @@ def generate_summary():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-@app.route("/api/debug/columns")
-def debug_columns():
+@app.route("/api/debug/weather_daily_columns")
+def get_weather_daily_columns():
     try:
-        with get_pg_connection() as con:
-            cur = con.cursor()
-            cur.execute("SELECT * FROM weather_daily LIMIT 1;")
-            colnames = [desc[0] for desc in cur.description]
-            return jsonify({"columns": colnames})
+        with get_pg_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    SELECT column_name
+                    FROM information_schema.columns
+                    WHERE table_name = 'weather_daily';
+                """)
+                columns = [row[0] for row in cur.fetchall()]
+        return jsonify({"columns": columns})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"❌ Error in get_weather_daily_columns: {e}")
+        return jsonify({"error": "Failed to fetch columns"}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
