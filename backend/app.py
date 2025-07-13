@@ -74,55 +74,31 @@ def get_graph_data():
     period = request.args.get("period", "1d")
     column = request.args.get("column", "temp_avg")
 
-    print(f"📊 Request: station={station_id}, period={period}, column={column}")  # Debug log
+    print(f"📊 Request received: station_id={station_id}, period={period}, column={column}")
 
     if not station_id or not column:
         return jsonify({"error": "Missing required parameters"}), 400
 
     if period == "1d":
         table = "weather_raw"
-        timestamp_field = "local_time"
     elif period == "7d":
         table = "weather_hourly"
-        timestamp_field = "local_time"
     elif period in ["30d", "ytd"]:
         table = "weather_daily"
-        timestamp_field = "local_time"
     else:
         return jsonify({"error": "Invalid period"}), 400
 
     try:
         with get_pg_connection() as conn:
             df = pd.read_sql_query(
-                f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
+                f"SELECT local_time AS timestamp, {column} FROM {table} WHERE station_id = %s",
                 conn,
                 params=(station_id,)
             )
     except Exception as e:
-        print(f"❌ SQL error: {e}")
+        print(f"❌ SQL error in /api/graph_data: {e}")
         return jsonify({"error": str(e)}), 500
 
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
-    df = df.sort_values("timestamp")
-
-    now = pd.Timestamp.now()
-    if period == "1d":
-        df = df[df["timestamp"] >= now - pd.Timedelta(days=1)]
-        label_format = "%H:%M"
-    elif period == "7d":
-        df = df[df["timestamp"] >= now - pd.Timedelta(days=7)]
-        label_format = "%m-%d %H:%M"
-    elif period == "30d":
-        df = df[df["timestamp"] >= now - pd.Timedelta(days=30)]
-        label_format = "%m-%d"
-    elif period == "ytd":
-        df = df[df["timestamp"].dt.year == now.year]
-        label_format = "%m-%d"
-
-    return jsonify({
-        "labels": df["timestamp"].dt.strftime(label_format).tolist(),
-        "data": df[column].fillna(0).round(2).tolist()
-    })
 
 
 @app.route("/api/current_data_live")
