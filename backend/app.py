@@ -92,23 +92,24 @@ def get_graph_data():
 
     if period == "1d":
         table = "weather_raw"
+        timestamp_field = "local_time"
     elif period == "7d":
         table = "weather_hourly"
+        timestamp_field = "local_time"
     elif period in ["30d", "ytd"]:
         table = "weather_daily"
+        timestamp_field = "date"
     else:
         return jsonify({"error": "Invalid period"}), 400
-
-    if not column_exists(table, column):
-        return jsonify({"error": f"Invalid column '{column}' for table '{table}'"}), 400
 
     try:
         with get_pg_connection() as conn:
             df = pd.read_sql_query(
-                f"SELECT local_time AS timestamp, {column} FROM {table} WHERE station_id = %s",
+                f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
                 conn,
                 params=(station_id,)
             )
+
 
     except Exception as e:
         print(f"❌ SQL error in /api/graph_data: {e}")
