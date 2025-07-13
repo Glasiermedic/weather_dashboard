@@ -14,8 +14,6 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const [availableMetrics, setAvailableMetrics] = useState(Object.keys(metricOptions));
-
 const API_BASE = "https://weather-dashboard-hqpk.onrender.com";
 
 const stations = {
@@ -75,6 +73,7 @@ function WeatherDashboard() {
   const [graphSeries, setGraphSeries] = useState({});
   const [currentData, setCurrentData] = useState({});
   const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
+  const [availableMetrics, setAvailableMetrics] = useState([]);
 
   const fetchAll = async () => {
     const newGraphs = {};
