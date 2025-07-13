@@ -1,18 +1,43 @@
-import sqlite3
+import os
+import psycopg2
+import pandas as pd
+from dotenv import load_dotenv
 
-DB_PATH = "../data_exports/weather.db"
+# Load environment variables from .env
+load_dotenv()
 
-conn = sqlite3.connect(DB_PATH)
-cursor = conn.cursor()
+# Load DB connection string from .env
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-cursor.execute("""
-    SELECT station_id, MAX(local_time)
-    FROM weather
-    GROUP BY station_id;
-""")
+def fetch_latest_weather_raw(station_id="propdada"):
+    query = """
+        SELECT * FROM weather_raw
+        WHERE station_id = %s
+        ORDER BY local_time DESC
+        LIMIT 1;
+    """
+    try:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            df = pd.read_sql_query(query, conn, params=(station_id,))
+            if df.empty:
+                print("⚠️ No data found.")
+            else:
+                print("✅ Latest record:")
+                print(df.T)  # Transposed for easier column viewing
+    except Exception as e:
+        print(f"❌ Error fetching data: {e}")
 
-results = cursor.fetchall()
-for station_id, max_time in results:
-    print(f"{station_id}: Latest timestamp = {max_time}")
+def list_station_ids():
+    query = "SELECT DISTINCT station_id FROM weather_raw;"
+    try:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            df = pd.read_sql_query(query, conn)
+            print("Available station IDs in weather_raw:")
+            print(df)
+    except Exception as e:
+        print(f"❌ Error fetching station IDs: {e}")
 
-conn.close()
+if __name__ == "__main__":
+    fetch_latest_weather_raw("KORMCMIN127")
+    list_station_ids()
+

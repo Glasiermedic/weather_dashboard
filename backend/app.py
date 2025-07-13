@@ -80,6 +80,7 @@ def get_summary_data():
     return jsonify(summary)
 
 @app.route("/api/graph_data")
+@app.route("/api/graph_data")
 def get_graph_data():
     station_id = request.args.get("station_id")
     period = request.args.get("period", "1d")
@@ -102,18 +103,32 @@ def get_graph_data():
     else:
         return jsonify({"error": "Invalid period"}), 400
 
+    if not column_exists(table, column):
+        return jsonify({"error": f"Invalid column '{column}' for table '{table}'"}), 400
+
     try:
         with get_pg_connection() as conn:
             df = pd.read_sql_query(
-                f"SELECT {timestamp_field} AS timestamp, {column} FROM {table} WHERE station_id = %s",
+                "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
                 conn,
                 params=(station_id,)
             )
-
-
+            print("📦 Fallback DB result:", df.head())
+            if not df.empty:
+                row = df.iloc[0]
+                return jsonify({
+                    "temp": row.get("temp"),
+                    "humidity": row.get("humidity"),
+                    "wind_speed": row.get("wind_speed"),
+                    "precip": row.get("precipRate", 0.0),
+                    "timestamp": row.get("local_time"),
+                    "fallback": True
+                })
+            else:
+                print("⚠️ No fallback data found in weather_raw.")
     except Exception as e:
-        print(f"❌ SQL error in /api/graph_data: {e}")
-        return jsonify({"error": str(e)}), 500
+        print(f"❌ Fallback error: {e}")
+
 
 
 
@@ -164,10 +179,10 @@ def get_current_data_live():
             if not df.empty:
                 row = df.iloc[0]
                 return jsonify({
-                    "temp": row.get("temp"),
-                    "humidity": row.get("humidity"),
-                    "wind_speed": row.get("wind_speed"),
-                    "precip": row.get("precipRate", 0.0),
+                    "temp": row.get("avg_temp"),
+                    "humidity": row.get("avg_humidity"),
+                    "wind_speed": row.get("avg_wnd_spd"),
+                    "precip": row.get("precip_rate", 0.0),
                     "timestamp": row.get("local_time"),
                     "fallback": True
                 })

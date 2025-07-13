@@ -7,6 +7,8 @@
     <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/check_latest_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/check_latest_times.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +200,7 @@
       <workItem from="1748926876925" duration="57580000" />
       <workItem from="1749457731309" duration="23246000" />
       <workItem from="1752086638031" duration="984000" />
-      <workItem from="1752251808261" duration="27262000" />
+      <workItem from="1752251808261" duration="29864000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -376,7 +378,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752418141173</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
+      <option name="closed" value="true" />
+      <created>1752419695536</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1752419695536</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
+      <option name="closed" value="true" />
+      <created>1752420476516</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1752420476516</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,6 +421,12 @@
           <line>10</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js</url>
+          <line>69</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -426,6 +450,6 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$run_pipeline.coverage" NAME="run_pipeline Coverage Results" MODIFIED="1750351668618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$aggregate_to_hourly.coverage" NAME="aggregate_to_hourly Coverage Results" MODIFIED="1749230975867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$init_weather_tables.coverage" NAME="init_weather_tables Coverage Results" MODIFIED="1750661422357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$check_latest_times.coverage" NAME="check_latest_times Coverage Results" MODIFIED="1749187850395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$check_latest_times.coverage" NAME="check_latest_times Coverage Results" MODIFIED="1752421662759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
   </component>
 </project>

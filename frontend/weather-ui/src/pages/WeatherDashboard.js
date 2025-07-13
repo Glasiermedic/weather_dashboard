@@ -17,13 +17,14 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const API_BASE = "https://weather-dashboard-hqpk.onrender.com";
 
 const stations = {
-  propdada: 'Propeller Sensor',
-  dustprop: 'Dust Sensor'
+  KORMCMIN127: 'Propeller Sensor',
+  KORMCMIN133: 'Dust Sensor'
 };
 
+
 const stationColors = {
-  propdada: 'blue',
-  dustprop: 'red'
+  KORMCMIN127: 'blue',
+  KORMCMIN133: 'red'
 };
 
 const timeRanges = {
@@ -67,7 +68,7 @@ const fadeInStyle = {
 };
 
 function WeatherDashboard() {
-  const [selectedStations, setSelectedStations] = useState(['propdada']);
+  const [selectedStations, setSelectedStations] = useState(['KORMCMIN127']);
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
   const [selectedMetric, setSelectedMetric] = useState('temp_avg');
   const [graphSeries, setGraphSeries] = useState({});
