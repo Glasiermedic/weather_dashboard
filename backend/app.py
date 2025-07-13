@@ -22,6 +22,17 @@ CORS(app)
 def get_pg_connection():
     return psycopg2.connect(DATABASE_URL)
 
+def column_exists(table, column):
+    with get_pg_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT EXISTS (
+                    SELECT 1 FROM information_schema.columns
+                    WHERE table_name = %s AND column_name = %s
+                );
+            """, (table, column))
+            return cur.fetchone()[0]
+
 @app.route("/api/summary_data")
 def get_summary_data():
     station_id = request.args.get("station_id")
@@ -88,6 +99,9 @@ def get_graph_data():
     else:
         return jsonify({"error": "Invalid period"}), 400
 
+    if not column_exists(table, column):
+        return jsonify({"error": f"Invalid column '{column}' for table '{table}'"}), 400
+
     try:
         with get_pg_connection() as conn:
             df = pd.read_sql_query(
@@ -95,6 +109,7 @@ def get_graph_data():
                 conn,
                 params=(station_id,)
             )
+
     except Exception as e:
         print(f"❌ SQL error in /api/graph_data: {e}")
         return jsonify({"error": str(e)}), 500
