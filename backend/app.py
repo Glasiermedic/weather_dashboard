@@ -112,7 +112,11 @@ def get_graph_data():
                 "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
                 conn,
                 params=(station_id,)
-            )
+
+            if df.empty:
+                return jsonify({"error": "No data found"}), 404
+            return jsonify(df.to_dict(orient="records"))
+
             print("📦 Fallback DB result:", df.head())
             if not df.empty:
                 row = df.iloc[0]
