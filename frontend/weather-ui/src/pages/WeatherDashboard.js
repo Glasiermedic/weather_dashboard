@@ -138,16 +138,17 @@ function WeatherDashboard() {
   const now = nowData();
 
   const chartData = {
-    labels: graphSeries[selectedStations[0]]?.map((row) => row.timestamp) || [],
-    datasets: selectedStations.map((stationId) => ({
-      label: stationId,
-      data: graphSeries[stationId]?.map((row) => row[selectedMetric]) || [],
-      borderColor: stationColors[stationId] || 'gray',
-      backgroundColor: stationColors[stationId] || 'gray',
-      fill: false,
-      tension: 0.4
-    }))
-  };
+  labels: graphSeries[selectedStations[0]]?.timestamps || [],
+  datasets: selectedStations.map((stationId) => ({
+    label: stationId,
+    data: graphSeries[stationId]?.values || [],
+    borderColor: stationColors[stationId] || 'gray',
+    backgroundColor: stationColors[stationId] || 'gray',
+    fill: false,
+    tension: 0.4
+  }))
+};
+
 
   const chartOptions = {
     responsive: true,
