@@ -111,6 +111,7 @@ def get_graph_data():
                 "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
                 conn,
                 params=(station_id,)
+            )
 
             if df.empty:
                 return jsonify({"error": "No data found"}), 404
