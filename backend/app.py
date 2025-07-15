@@ -80,7 +80,6 @@ def get_summary_data():
     return jsonify(summary)
 
 @app.route("/api/graph_data")
-@app.route("/api/graph_data")
 def get_graph_data():
     station_id = request.args.get("station_id")
     period = request.args.get("period", "1d")

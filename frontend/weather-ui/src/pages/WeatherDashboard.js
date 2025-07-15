@@ -158,51 +158,62 @@ function WeatherDashboard() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Weather Dashboard</h2>
-
-      <div style={{ marginBottom: "1rem" }}>
-        <label htmlFor="metric-select" style={{ marginRight: "0.5rem" }}>
-          Metric:
-        </label>
-        <select
-          id="metric-select"
-          value={selectedMetric}
-          onChange={(e) => setSelectedMetric(e.target.value)}
-        >
-          {availableMetrics.map((key) => (
-            <option key={key} value={key}>
-              {metricLabels[key] || key}
-            </option>
-          ))}
-        </select>
+  <div style={{ padding: "2rem" }}>
+    <h2>Weather Dashboard</h2>
+    {isLoadingGraph && <div style={spinnerStyle}></div>}
+    {/* Right Now Section (Optional) */}
+    {now && (
+      <div>
+        <p><strong>Right Now</strong> ({now.timestamp})</p>
+        <p>🌡 Temp: {now.temp} °F</p>
+        <p>💧 Humidity: {now.humidity} %</p>
+        <p>💨 Wind: {now.wind_speed} mph</p>
+        <p>🌧 Precip: {now.precip} in</p>
+        {now.fallback && <p style={{ color: "orange" }}>⚠️ Data fallback in use</p>}
       </div>
+    )}
 
-      {isLoadingGraph ? (
-        <div style={spinnerStyle}></div>
-      ) : (
-        <Line options={chartOptions} data={chartData} />
-      )}
+    {/* Graphs for each station */}
+    {Object.entries(graphSeries).map(([station, series]) => {
+      if (!series || !Array.isArray(series.timestamps)) {
+        return <div key={station}>⚠️ No data for {station}</div>;
+      }
 
-      <div style={{ marginTop: "2rem" }}>
-        <h3>Right Now Summary</h3>
-        {isLoadingCurrent ? (
-          <div style={spinnerStyle}></div>
-        ) : now ? (
-          <div>
-            <p><strong>Temp:</strong> {now.temp} °F</p>
-            <p><strong>Humidity:</strong> {now.humidity} %</p>
-            <p><strong>Wind:</strong> {now.wind_speed} mph</p>
-            <p><strong>Precip:</strong> {now.precip} in</p>
-            <p><strong>Updated:</strong> {now.timestamp}</p>
-            {now.fallback && <p style={{ color: "orange" }}>⚠️ Fallback data used</p>}
-          </div>
-        ) : (
-          <p>No data available</p>
-        )}
-      </div>
-    </div>
-  );
-}
+      const chartData = {
+        labels: series.timestamps,
+        datasets: [
+          {
+            label: `${station} - ${metricLabels[selectedMetric] || selectedMetric}`,
+            data: series.values,
+            borderColor: stationColors[station] || 'gray',
+            backgroundColor: 'transparent',
+            pointRadius: 0,
+            borderWidth: 2
+          }
+        ]
+      };
+
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: true },
+          title: { display: false }
+        },
+        scales: {
+          x: { display: true, title: { display: true, text: 'Time' }},
+          y: { display: true, title: { display: true, text: metricLabels[selectedMetric] || selectedMetric }}
+        }
+      };
+
+      return (
+        <div key={station} style={{ margin: '2rem 0', height: '300px' }}>
+          <Line data={chartData} options={options} />
+        </div>
+      );
+    })}
+  </div>
+);
+
 
 export default WeatherDashboard;
