@@ -55,45 +55,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.App.js.executor": "Run",
-    "Python.Patch_schema.executor": "Run",
-    "Python.Unnamed.executor": "Run",
-    "Python.aggregate_to_daily.executor": "Run",
-    "Python.aggregate_to_hourly.executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.check_latest_times.executor": "Run",
-    "Python.data_freshness.executor": "Run",
-    "Python.fetch_pws_5min_raw.executor": "Run",
-    "Python.fetch_pws_history.executor": "Run",
-    "Python.init_weather_tables.executor": "Run",
-    "Python.inject_sales.executor": "Run",
-    "Python.insert_weather_raw.executor": "Run",
-    "Python.process_weather_data.executor": "Run",
-    "Python.removal_kormcmin127_f_tables.executor": "Run",
-    "Python.repair_wather_raw_table.executor": "Run",
-    "Python.repair_weather_daily_table.executor": "Run",
-    "Python.repair_weather_hourly_table.executor": "Run",
-    "Python.reset_db.executor": "Run",
-    "Python.run_pipeline.executor": "Run",
-    "Python.test_env.executor": "Run",
-    "Python.weatherjson_to_csv.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Patch_schema.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggregate_to_daily.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggregate_to_hourly.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_latest_times.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_freshness.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fetch_pws_5min_raw.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fetch_pws_history.executor&quot;: &quot;Run&quot;,
+    &quot;Python.init_weather_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inject_sales.executor&quot;: &quot;Run&quot;,
+    &quot;Python.insert_weather_raw.executor&quot;: &quot;Run&quot;,
+    &quot;Python.process_weather_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.removal_kormcmin127_f_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_wather_raw_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_weather_daily_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_weather_hourly_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reset_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_env.executor&quot;: &quot;Run&quot;,
+    &quot;Python.weatherjson_to_csv.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\.venv" />
@@ -105,7 +105,7 @@
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\data" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -115,7 +115,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.13 (firstapp)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -139,7 +138,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.13 (awtowbotz)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend/fetch" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
