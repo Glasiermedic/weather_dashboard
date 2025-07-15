@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +40,12 @@
     &quot;assignee&quot;: &quot;Glasiermedic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Glasiermedic/weather_dashboard.git&quot;,
-    &quot;accountId&quot;: &quot;3bfa71bc-e31c-4eb2-9617-7b04835ecfc1&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Glasiermedic/weather_dashboard",
+    "accountId": "a07ec963-8313-4064-827b-0e7e6bdb4763"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -196,6 +196,7 @@
       <workItem from="1749457731309" duration="23246000" />
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
+      <workItem from="1752561020553" duration="729000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -405,7 +406,31 @@
       <option name="project" value="LOCAL" />
       <updated>1752422881809</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
+      <option name="closed" value="true" />
+      <created>1752556240708</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1752556240708</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
+      <option name="closed" value="true" />
+      <created>1752557377334</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1752557377334</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
+      <option name="closed" value="true" />
+      <created>1752557760606</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1752557760606</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,12 +456,6 @@
           <url>file://$PROJECT_DIR$/backend/fetch/aggregate_to_hourly.py</url>
           <line>10</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js</url>
-          <line>51</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
