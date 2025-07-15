@@ -66,26 +66,26 @@ function WeatherDashboard() {
     setIsLoadingGraph(true);
 
     await Promise.all(
-      selectedStations.map(async (station) => {
-        try {
-          const [graphRes, currentRes] = await Promise.all([
-            axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
-            axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
-          ]);
-          newGraphs[station] = graphRes.data;
-          newCurrent[station] = currentRes.data;
-        } catch (err) {
-          console.error(`Fetch failed for ${station}:`, err.message);
-          if (err.response) {
-            console.error("Response data:", err.response.data);
-            console.error("Status:", err.response.status);
-          } else if (err.request) {
-            console.error("Request made but no response:", err.request);
-          } else {
-            console.error("Error setting up request:", err.message);
+        selectedStations.map(async (station) => {
+          try {
+            const [graphRes, currentRes] = await Promise.all([
+              axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
+              axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
+            ]);
+            newGraphs[station] = graphRes.data;
+            newCurrent[station] = currentRes.data;
+          } catch (err) {
+            console.error(`Fetch failed for ${station}:`, err.message);
+            if (err.response) {
+              console.error("Response data:", err.response.data);
+              console.error("Status:", err.response.status);
+            } else if (err.request) {
+              console.error("Request made but no response:", err.request);
+            } else {
+              console.error("Error setting up request:", err.message);
+            }
           }
-        }
-      })
+        })
     );
 
     setGraphSeries(newGraphs);
@@ -96,13 +96,13 @@ function WeatherDashboard() {
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
-      .then((res) => {
-        const cols = res.data.columns || [];
-        setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
-      })
-      .catch((err) => {
-        console.error("Failed to load metric columns:", err.message);
-      });
+        .then((res) => {
+          const cols = res.data.columns || [];
+          setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
+        })
+        .catch((err) => {
+          console.error("Failed to load metric columns:", err.message);
+        });
   }, []);
 
   useEffect(() => {
@@ -111,7 +111,7 @@ function WeatherDashboard() {
 
   const nowData = () => {
     const count = selectedStations.length;
-    const total = { temp: 0, humidity: 0, wind_speed: 0, precip: 0, timestamp: null, fallback: false };
+    const total = {temp: 0, humidity: 0, wind_speed: 0, precip: 0, timestamp: null, fallback: false};
 
     selectedStations.forEach((id) => {
       const s = currentData[id];
@@ -152,68 +152,69 @@ function WeatherDashboard() {
   const chartOptions = {
     responsive: true,
     plugins: {
-      legend: { position: 'top' },
-      title: { display: true, text: metricLabels[selectedMetric] || selectedMetric }
+      legend: {position: 'top'},
+      title: {display: true, text: metricLabels[selectedMetric] || selectedMetric}
     }
   };
 
   return (
-  <div style={{ padding: "2rem" }}>
-    <h2>Weather Dashboard</h2>
-    {isLoadingGraph && <div style={spinnerStyle}></div>}
-    {/* Right Now Section (Optional) */}
-    {now && (
-      <div>
-        <p><strong>Right Now</strong> ({now.timestamp})</p>
-        <p>🌡 Temp: {now.temp} °F</p>
-        <p>💧 Humidity: {now.humidity} %</p>
-        <p>💨 Wind: {now.wind_speed} mph</p>
-        <p>🌧 Precip: {now.precip} in</p>
-        {now.fallback && <p style={{ color: "orange" }}>⚠️ Data fallback in use</p>}
-      </div>
-    )}
+      <div style={{padding: "2rem"}}>
+        <h2>Weather Dashboard</h2>
+        {isLoadingGraph && <div style={spinnerStyle}></div>}
+        {/* Right Now Section (Optional) */}
+        {now && (
+            <div>
+              <p><strong>Right Now</strong> ({now.timestamp})</p>
+              <p>🌡 Temp: {now.temp} °F</p>
+              <p>💧 Humidity: {now.humidity} %</p>
+              <p>💨 Wind: {now.wind_speed} mph</p>
+              <p>🌧 Precip: {now.precip} in</p>
+              {now.fallback && <p style={{color: "orange"}}>⚠️ Data fallback in use</p>}
+            </div>
+        )}
 
-    {/* Graphs for each station */}
-    {Object.entries(graphSeries).map(([station, series]) => {
-      if (!series || !Array.isArray(series.timestamps)) {
-        return <div key={station}>⚠️ No data for {station}</div>;
-      }
-
-      const chartData = {
-        labels: series.timestamps,
-        datasets: [
-          {
-            label: `${station} - ${metricLabels[selectedMetric] || selectedMetric}`,
-            data: series.values,
-            borderColor: stationColors[station] || 'gray',
-            backgroundColor: 'transparent',
-            pointRadius: 0,
-            borderWidth: 2
+        {/* Graphs for each station */}
+        {Object.entries(graphSeries).map(([station, series]) => {
+          if (!series || !Array.isArray(series.timestamps)) {
+            return <div key={station}>⚠️ No data for {station}</div>;
           }
-        ]
-      };
 
-      const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: true },
-          title: { display: false }
-        },
-        scales: {
-          x: { display: true, title: { display: true, text: 'Time' }},
-          y: { display: true, title: { display: true, text: metricLabels[selectedMetric] || selectedMetric }}
-        }
-      };
+          const chartData = {
+            labels: series.timestamps,
+            datasets: [
+              {
+                label: `${station} - ${metricLabels[selectedMetric] || selectedMetric}`,
+                data: series.values,
+                borderColor: stationColors[station] || 'gray',
+                backgroundColor: 'transparent',
+                pointRadius: 0,
+                borderWidth: 2
+              }
+            ]
+          };
 
-      return (
-        <div key={station} style={{ margin: '2rem 0', height: '300px' }}>
-          <Line data={chartData} options={options} />
-        </div>
-      );
-    })}
-  </div>
-);
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {display: true},
+              title: {display: false}
+            },
+            scales: {
+              x: {display: true, title: {display: true, text: 'Time'}},
+              y: {display: true, title: {display: true, text: metricLabels[selectedMetric] || selectedMetric}}
+            }
+          };
 
+          return (
+              <div key={station} style={{margin: '2rem 0', height: '300px'}}>
+                <Line data={chartData} options={options}/>
+              </div>
+          );
+        })}
+      </div>
+  );
+}
 
-export default WeatherDashboard;
+  export default WeatherDashboard;
+
