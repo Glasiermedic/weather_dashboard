@@ -114,7 +114,7 @@ def get_graph_data():
                 f"""
                 SELECT {timestamp_field} AS ts, {column}
                 FROM {table}
-                WHERE station_id = %s AND {timestamp_field} >= CURRENT_DATE - INTERVAL '{days_back} days'
+                WHERE station_id = %s AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
                 ORDER BY {timestamp_field}
                 """,
                 conn,
