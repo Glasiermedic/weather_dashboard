@@ -131,8 +131,10 @@ def get_graph_data():
             })
 
     except Exception as e:
+        import traceback
         print(f"❌ Error loading graph data: {e}")
-        return jsonify({"error": "Internal server error"}), 500
+        traceback.print_exc()
+        return jsonify({"error": f"Internal server error: {str(e)}"}), 500
 
 
 
