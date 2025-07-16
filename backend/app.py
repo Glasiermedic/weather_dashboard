@@ -127,7 +127,7 @@ def get_graph_data():
             df["ts"] = pd.to_datetime(df["ts"])
             return jsonify({
                 "timestamps": df["ts"].dt.strftime("%Y-%m-%d %H:%M").tolist(),
-                "values": df[column].fillna(None).tolist()
+                "values": df[column].where(pd.notnull(df[column]), None).tolist()
             })
 
     except Exception as e:

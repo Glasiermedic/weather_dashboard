@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="issue with react-scripts not installed and in package.json">
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fix an issue with the backend not querying the data correctly">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,45 +55,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Patch_schema.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.aggregate_to_daily.executor&quot;: &quot;Run&quot;,
-    &quot;Python.aggregate_to_hourly.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.check_latest_times.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_freshness.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fetch_pws_5min_raw.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fetch_pws_history.executor&quot;: &quot;Run&quot;,
-    &quot;Python.init_weather_tables.executor&quot;: &quot;Run&quot;,
-    &quot;Python.inject_sales.executor&quot;: &quot;Run&quot;,
-    &quot;Python.insert_weather_raw.executor&quot;: &quot;Run&quot;,
-    &quot;Python.process_weather_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.removal_kormcmin127_f_tables.executor&quot;: &quot;Run&quot;,
-    &quot;Python.repair_wather_raw_table.executor&quot;: &quot;Run&quot;,
-    &quot;Python.repair_weather_daily_table.executor&quot;: &quot;Run&quot;,
-    &quot;Python.repair_weather_hourly_table.executor&quot;: &quot;Run&quot;,
-    &quot;Python.reset_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_env.executor&quot;: &quot;Run&quot;,
-    &quot;Python.weatherjson_to_csv.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.App.js.executor": "Run",
+    "Python.Patch_schema.executor": "Run",
+    "Python.Unnamed.executor": "Run",
+    "Python.aggregate_to_daily.executor": "Run",
+    "Python.aggregate_to_hourly.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.check_latest_times.executor": "Run",
+    "Python.data_freshness.executor": "Run",
+    "Python.fetch_pws_5min_raw.executor": "Run",
+    "Python.fetch_pws_history.executor": "Run",
+    "Python.fix_date_column_type.executor": "Run",
+    "Python.init_weather_tables.executor": "Run",
+    "Python.inject_sales.executor": "Run",
+    "Python.insert_weather_raw.executor": "Run",
+    "Python.process_weather_data.executor": "Run",
+    "Python.removal_kormcmin127_f_tables.executor": "Run",
+    "Python.repair_wather_raw_table.executor": "Run",
+    "Python.repair_weather_daily_table.executor": "Run",
+    "Python.repair_weather_hourly_table.executor": "Run",
+    "Python.reset_db.executor": "Run",
+    "Python.run_pipeline.executor": "Run",
+    "Python.test_env.executor": "Run",
+    "Python.weatherjson_to_csv.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\.venv" />
@@ -105,7 +106,7 @@
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -197,7 +198,7 @@
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
-      <workItem from="1752703031624" duration="3197000" />
+      <workItem from="1752703031624" duration="4901000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -495,7 +496,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752704790191</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="fix an issue with the backend not querying the data correctly">
+      <option name="closed" value="true" />
+      <created>1752706755153</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1752706755153</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +523,8 @@
     <MESSAGE value="fixing issue with weather data loading into weatherdashboard.js - table field misalignment" />
     <MESSAGE value="fixing issue with api/graph_data to generate correct response expected by frontend." />
     <MESSAGE value="issue with react-scripts not installed and in package.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="issue with react-scripts not installed and in package.json" />
+    <MESSAGE value="fix an issue with the backend not querying the data correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix an issue with the backend not querying the data correctly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -548,5 +558,6 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$aggregate_to_hourly.coverage" NAME="aggregate_to_hourly Coverage Results" MODIFIED="1749230975867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$init_weather_tables.coverage" NAME="init_weather_tables Coverage Results" MODIFIED="1750661422357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$check_latest_times.coverage" NAME="check_latest_times Coverage Results" MODIFIED="1752421662759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$fix_date_column_type.coverage" NAME="fix_date_column_type Coverage Results" MODIFIED="1752708261757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
   </component>
 </project>
