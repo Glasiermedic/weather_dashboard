@@ -197,7 +197,7 @@
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
-      <workItem from="1752703031624" duration="364000" />
+      <workItem from="1752703031624" duration="1101000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -471,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752703376523</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fixing issue with api/graph_data to generate correct response expected by frontend.">
+      <option name="closed" value="true" />
+      <created>1752703753809</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1752703753809</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
