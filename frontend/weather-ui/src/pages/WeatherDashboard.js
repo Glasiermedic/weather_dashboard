@@ -161,61 +161,75 @@ function WeatherDashboard() {
   return (
       <div style={{padding: "2rem"}}>
         <h2>Weather Dashboard</h2>
-        {isLoadingGraph && <div style={spinnerStyle}></div>}
-        {/* Right Now Section (Optional) */}
-        {now && (
-            <div>
-              <p><strong>Right Now</strong> ({now.timestamp})</p>
-              <p>🌡 Temp: {now.temp} °F</p>
-              <p>💧 Humidity: {now.humidity} %</p>
-              <p>💨 Wind: {now.wind_speed} mph</p>
-              <p>🌧 Precip: {now.precip} in</p>
-              {now.fallback && <p style={{color: "orange"}}>⚠️ Data fallback in use</p>}
-            </div>
-        )}
+        <div style={{
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "1rem",
+  marginBottom: "1.5rem",
+  alignItems: "center"
+}}>
+  <div>
+    <label><strong>Stations:</strong></label><br />
+    <select
+      multiple
+      value={selectedStations}
+      onChange={(e) =>
+        setSelectedStations(Array.from(e.target.selectedOptions, option => option.value))
+      }
+      style={{ minWidth: "150px", padding: "0.5rem" }}
+    >
+      <option value="KORMCMIN127">KORMCMIN127</option>
+      <option value="KORMCMIN133">KORMCMIN133</option>
+    </select>
+  </div>
 
-        {/* Graphs for each station */}
-        {Object.entries(graphSeries).map(([station, series]) => {
-          if (!series || !Array.isArray(series.timestamps)) {
-            return <div key={station}>⚠️ No data for {station}</div>;
-          }
+  <div>
+    <label><strong>Period:</strong></label><br />
+    <select
+      value={selectedPeriod}
+      onChange={(e) => setSelectedPeriod(e.target.value)}
+      style={{ padding: "0.5rem", minWidth: "100px" }}
+    >
+      <option value="1d">1 Day</option>
+      <option value="7d">7 Days</option>
+      <option value="30d">30 Days</option>
+      <option value="ytd">Year to Date</option>
+    </select>
+  </div>
 
-          const chartData = {
-            labels: series.timestamps,
-            datasets: [
-              {
-                label: `${station} - ${metricLabels[selectedMetric] || selectedMetric}`,
-                data: series.values,
-                borderColor: stationColors[station] || 'gray',
-                backgroundColor: 'transparent',
-                pointRadius: 0,
-                borderWidth: 2
-              }
-            ]
-          };
+  <div>
+    <label><strong>Metric:</strong></label><br />
+    <select
+      value={selectedMetric}
+      onChange={(e) => setSelectedMetric(e.target.value)}
+      style={{ padding: "0.5rem", minWidth: "180px" }}
+    >
+      {availableMetrics.map((metric) => (
+        <option key={metric} value={metric}>
+          {metricLabels[metric] || metric}
+        </option>
+      ))}
+    </select>
+  </div>
 
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {display: true},
-              title: {display: false}
-            },
-            scales: {
-              x: {display: true, title: {display: true, text: 'Time'}},
-              y: {display: true, title: {display: true, text: metricLabels[selectedMetric] || selectedMetric}}
-            }
-          };
+  <div>
+    <label>&nbsp;</label><br />
+    <button
+      onClick={() => {
+        setSelectedStations(['KORMCMIN127']);
+        setSelectedPeriod('30d');
+        setSelectedMetric('temp_avg');
+      }}
+      style={{
+        padding: "0.5rem 1rem",
+        backgroundColor: "#eee",
+        border: "1px solid #ccc",
+        cursor: "pointer"
+      }}
+    >
+      Reset
+    </button>
+  </div>
+</div>
 
-          return (
-              <div key={station} style={{margin: '2rem 0', height: '300px'}}>
-                <Line data={chartData} options={options}/>
-              </div>
-          );
-        })}
-      </div>
-  );
-}
-
-  export default WeatherDashboard;
 
