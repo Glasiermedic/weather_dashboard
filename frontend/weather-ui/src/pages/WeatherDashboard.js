@@ -66,26 +66,26 @@ function WeatherDashboard() {
     setIsLoadingGraph(true);
 
     await Promise.all(
-        selectedStations.map(async (station) => {
-          try {
-            const [graphRes, currentRes] = await Promise.all([
-              axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
-              axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
-            ]);
-            newGraphs[station] = graphRes.data;
-            newCurrent[station] = currentRes.data;
-          } catch (err) {
-            console.error(`Fetch failed for ${station}:`, err.message);
-            if (err.response) {
-              console.error("Response data:", err.response.data);
-              console.error("Status:", err.response.status);
-            } else if (err.request) {
-              console.error("Request made but no response:", err.request);
-            } else {
-              console.error("Error setting up request:", err.message);
-            }
+      selectedStations.map(async (station) => {
+        try {
+          const [graphRes, currentRes] = await Promise.all([
+            axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
+            axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
+          ]);
+          newGraphs[station] = graphRes.data;
+          newCurrent[station] = currentRes.data;
+        } catch (err) {
+          console.error(`Fetch failed for ${station}:`, err.message);
+          if (err.response) {
+            console.error("Response data:", err.response.data);
+            console.error("Status:", err.response.status);
+          } else if (err.request) {
+            console.error("Request made but no response:", err.request);
+          } else {
+            console.error("Error setting up request:", err.message);
           }
-        })
+        }
+      })
     );
 
     setGraphSeries(newGraphs);
@@ -96,13 +96,13 @@ function WeatherDashboard() {
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
-        .then((res) => {
-          const cols = res.data.columns || [];
-          setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
-        })
-        .catch((err) => {
-          console.error("Failed to load metric columns:", err.message);
-        });
+      .then((res) => {
+        const cols = res.data.columns || [];
+        setAvailableMetrics(cols.filter(col => col !== 'station_id' && col !== 'date' && col !== 'local_time'));
+      })
+      .catch((err) => {
+        console.error("Failed to load metric columns:", err.message);
+      });
   }, []);
 
   useEffect(() => {
@@ -111,7 +111,7 @@ function WeatherDashboard() {
 
   const nowData = () => {
     const count = selectedStations.length;
-    const total = {temp: 0, humidity: 0, wind_speed: 0, precip: 0, timestamp: null, fallback: false};
+    const total = { temp: 0, humidity: 0, wind_speed: 0, precip: 0, timestamp: null, fallback: false };
 
     selectedStations.forEach((id) => {
       const s = currentData[id];
@@ -137,99 +137,134 @@ function WeatherDashboard() {
 
   const now = nowData();
 
-  const chartData = {
-  labels: graphSeries[selectedStations[0]]?.timestamps || [],
-  datasets: selectedStations.map((stationId) => ({
-    label: stationId,
-    data: graphSeries[stationId]?.values || [],
-    borderColor: stationColors[stationId] || 'gray',
-    backgroundColor: stationColors[stationId] || 'gray',
-    fill: false,
-    tension: 0.4
-  }))
-};
-
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {position: 'top'},
-      title: {display: true, text: metricLabels[selectedMetric] || selectedMetric}
-    }
-  };
-
   return (
-      <div style={{padding: "2rem"}}>
-        <h2>Weather Dashboard</h2>
-        <div style={{
-  display: "flex",
-  flexWrap: "wrap",
-  gap: "1rem",
-  marginBottom: "1.5rem",
-  alignItems: "center"
-}}>
-  <div>
-    <label><strong>Stations:</strong></label><br />
-    <select
-      multiple
-      value={selectedStations}
-      onChange={(e) =>
-        setSelectedStations(Array.from(e.target.selectedOptions, option => option.value))
-      }
-      style={{ minWidth: "150px", padding: "0.5rem" }}
-    >
-      <option value="KORMCMIN127">KORMCMIN127</option>
-      <option value="KORMCMIN133">KORMCMIN133</option>
-    </select>
-  </div>
+    <div style={{ padding: "2rem" }}>
+      <h2>Weather Dashboard</h2>
 
-  <div>
-    <label><strong>Period:</strong></label><br />
-    <select
-      value={selectedPeriod}
-      onChange={(e) => setSelectedPeriod(e.target.value)}
-      style={{ padding: "0.5rem", minWidth: "100px" }}
-    >
-      <option value="1d">1 Day</option>
-      <option value="7d">7 Days</option>
-      <option value="30d">30 Days</option>
-      <option value="ytd">Year to Date</option>
-    </select>
-  </div>
+      <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "1rem",
+        marginBottom: "1.5rem",
+        alignItems: "center"
+      }}>
+        <div>
+          <label><strong>Stations:</strong></label><br />
+          <select
+            multiple
+            value={selectedStations}
+            onChange={(e) =>
+              setSelectedStations(Array.from(e.target.selectedOptions, option => option.value))
+            }
+            style={{ minWidth: "150px", padding: "0.5rem" }}
+          >
+            <option value="KORMCMIN127">KORMCMIN127</option>
+            <option value="KORMCMIN133">KORMCMIN133</option>
+          </select>
+        </div>
 
-  <div>
-    <label><strong>Metric:</strong></label><br />
-    <select
-      value={selectedMetric}
-      onChange={(e) => setSelectedMetric(e.target.value)}
-      style={{ padding: "0.5rem", minWidth: "180px" }}
-    >
-      {availableMetrics.map((metric) => (
-        <option key={metric} value={metric}>
-          {metricLabels[metric] || metric}
-        </option>
-      ))}
-    </select>
-  </div>
+        <div>
+          <label><strong>Period:</strong></label><br />
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+            style={{ padding: "0.5rem", minWidth: "100px" }}
+          >
+            <option value="1d">1 Day</option>
+            <option value="7d">7 Days</option>
+            <option value="30d">30 Days</option>
+            <option value="ytd">Year to Date</option>
+          </select>
+        </div>
 
-  <div>
-    <label>&nbsp;</label><br />
-    <button
-      onClick={() => {
-        setSelectedStations(['KORMCMIN127']);
-        setSelectedPeriod('30d');
-        setSelectedMetric('temp_avg');
-      }}
-      style={{
-        padding: "0.5rem 1rem",
-        backgroundColor: "#eee",
-        border: "1px solid #ccc",
-        cursor: "pointer"
-      }}
-    >
-      Reset
-    </button>
-  </div>
-</div>
+        <div>
+          <label><strong>Metric:</strong></label><br />
+          <select
+            value={selectedMetric}
+            onChange={(e) => setSelectedMetric(e.target.value)}
+            style={{ padding: "0.5rem", minWidth: "180px" }}
+          >
+            {availableMetrics.map((metric) => (
+              <option key={metric} value={metric}>
+                {metricLabels[metric] || metric}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div>
+          <label>&nbsp;</label><br />
+          <button
+            onClick={() => {
+              setSelectedStations(['KORMCMIN127']);
+              setSelectedPeriod('30d');
+              setSelectedMetric('temp_avg');
+            }}
+            style={{
+              padding: "0.5rem 1rem",
+              backgroundColor: "#eee",
+              border: "1px solid #ccc",
+              cursor: "pointer"
+            }}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
 
+      {isLoadingGraph && <div style={spinnerStyle}></div>}
+
+      {now && (
+        <div>
+          <p><strong>Right Now</strong> ({now.timestamp})</p>
+          <p>🌡 Temp: {now.temp} °F</p>
+          <p>💧 Humidity: {now.humidity} %</p>
+          <p>💨 Wind: {now.wind_speed} mph</p>
+          <p>🌧 Precip: {now.precip} in</p>
+          {now.fallback && <p style={{ color: "orange" }}>⚠️ Data fallback in use</p>}
+        </div>
+      )}
+
+      {Object.entries(graphSeries).map(([station, series]) => {
+        if (!series || !Array.isArray(series.timestamps)) {
+          return <div key={station}>⚠️ No data for {station}</div>;
+        }
+
+        const chartData = {
+          labels: series.timestamps,
+          datasets: [
+            {
+              label: `${station} - ${metricLabels[selectedMetric] || selectedMetric}`,
+              data: series.values,
+              borderColor: stationColors[station] || 'gray',
+              backgroundColor: 'transparent',
+              pointRadius: 0,
+              borderWidth: 2
+            }
+          ]
+        };
+
+        const options = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: true },
+            title: { display: false }
+          },
+          scales: {
+            x: { display: true, title: { display: true, text: 'Time' } },
+            y: { display: true, title: { display: true, text: metricLabels[selectedMetric] || selectedMetric } }
+          }
+        };
+
+        return (
+          <div key={station} style={{ margin: '2rem 0', height: '300px' }}>
+            <Line data={chartData} options={options} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default WeatherDashboard;
