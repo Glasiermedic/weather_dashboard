@@ -62,47 +62,53 @@ function WeatherDashboard() {
   const [tableColumns, setTableColumns] = useState([]);
 
   const fetchAll = async () => {
-    const newGraphs = {};
-    const newCurrent = {};
-    setIsLoadingCurrent(true);
-    setIsLoadingGraph(true);
+  const newGraphs = {};
+  const newCurrent = {};
+  const newTableRows = [];
+  let newTableCols = [];
 
-    await Promise.all(
-      selectedStations.map(async (station) => {
-        try {
-          const [graphRes, currentRes] = await Promise.all([
-            axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
-            axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
-          ]);
-          const tableRes = await axios.get(`${API_BASE}/api/table_data?station_id=${station}`);
-          if (tableRes.data?.rows?.length) {
-            newTableRows.push(...tableRes.data.rows.map(row => ({ station, ...row })));
-            newTableCols = [...new Set([...newTableCols, ...Object.keys(tableRes.data.rows[0])])];
-          }
-          newGraphs[station] = graphRes.data;
-          newCurrent[station] = currentRes.data;
-        } catch (err) {
-          console.error(`Fetch failed for ${station}:`, err.message);
-          if (err.response) {
-            console.error("Response data:", err.response.data);
-            console.error("Status:", err.response.status);
-          } else if (err.request) {
-            console.error("Request made but no response:", err.request);
-          } else {
-            console.error("Error setting up request:", err.message);
-          }
+  setIsLoadingCurrent(true);
+  setIsLoadingGraph(true);
+
+  await Promise.all(
+    selectedStations.map(async (station) => {
+      try {
+        const [graphRes, currentRes, tableRes] = await Promise.all([
+          axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
+          axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`),
+          axios.get(`${API_BASE}/api/table_data?station_id=${station}`)
+        ]);
+
+        newGraphs[station] = graphRes.data;
+        newCurrent[station] = currentRes.data;
+
+        if (tableRes.data?.rows?.length) {
+          newTableRows.push(...tableRes.data.rows.map(row => ({ station, ...row })));
+          newTableCols = [...new Set([...newTableCols, ...Object.keys(tableRes.data.rows[0])])];
         }
-      })
-    );
-    const newTableRows = [];
-    let newTableCols = [];
-    setGraphSeries(newGraphs);
-    setCurrentData(newCurrent);
-    setIsLoadingCurrent(false);
-    setIsLoadingGraph(false);
-    setTableData(newTableRows);
-    setTableColumns(newTableCols);
-  };
+
+      } catch (err) {
+        console.error(`Fetch failed for ${station}:`, err.message);
+        if (err.response) {
+          console.error("Response data:", err.response.data);
+          console.error("Status:", err.response.status);
+        } else if (err.request) {
+          console.error("Request made but no response:", err.request);
+        } else {
+          console.error("Error setting up request:", err.message);
+        }
+      }
+    })
+  );
+
+  setGraphSeries(newGraphs);
+  setCurrentData(newCurrent);
+  setTableData(newTableRows);
+  setTableColumns(newTableCols);
+  setIsLoadingCurrent(false);
+  setIsLoadingGraph(false);
+};
+
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/debug/weather_daily_columns`)

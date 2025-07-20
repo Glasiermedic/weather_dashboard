@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="adding more functionality ✅ Multi-select station dropdown&#10;&#10;✅ Well-spaced period and metric selectors&#10;&#10;✅ A Reset button to quickly go back to defaults">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
-    </list>
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="adding combined and all functionality along with table of data" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +196,7 @@
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
-      <workItem from="1752703031624" duration="16138000" />
+      <workItem from="1752703031624" duration="17098000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -547,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752762819047</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="adding combined and all functionality along with table of data">
+      <option name="closed" value="true" />
+      <created>1752973379956</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1752973379956</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +571,8 @@
     <MESSAGE value="issue with react-scripts not installed and in package.json" />
     <MESSAGE value="fix an issue with the backend not querying the data correctly" />
     <MESSAGE value="adding more functionality ✅ Multi-select station dropdown&#10;&#10;✅ Well-spaced period and metric selectors&#10;&#10;✅ A Reset button to quickly go back to defaults" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding more functionality ✅ Multi-select station dropdown&#10;&#10;✅ Well-spaced period and metric selectors&#10;&#10;✅ A Reset button to quickly go back to defaults" />
+    <MESSAGE value="adding combined and all functionality along with table of data" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding combined and all functionality along with table of data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
