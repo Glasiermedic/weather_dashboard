@@ -58,6 +58,8 @@ function WeatherDashboard() {
   const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
   const [isLoadingGraph, setIsLoadingGraph] = useState(false);
   const [availableMetrics, setAvailableMetrics] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [tableColumns, setTableColumns] = useState([]);
 
   const fetchAll = async () => {
     const newGraphs = {};
@@ -72,6 +74,11 @@ function WeatherDashboard() {
             axios.get(`${API_BASE}/api/graph_data?station_id=${station}&period=${selectedPeriod}&column=${selectedMetric}`),
             axios.get(`${API_BASE}/api/current_data_live?station_id=${station}`)
           ]);
+          const tableRes = await axios.get(`${API_BASE}/api/table_data?station_id=${station}`);
+          if (tableRes.data?.rows?.length) {
+            newTableRows.push(...tableRes.data.rows.map(row => ({ station, ...row })));
+            newTableCols = [...new Set([...newTableCols, ...Object.keys(tableRes.data.rows[0])])];
+          }
           newGraphs[station] = graphRes.data;
           newCurrent[station] = currentRes.data;
         } catch (err) {
@@ -87,11 +94,14 @@ function WeatherDashboard() {
         }
       })
     );
-
+    const newTableRows = [];
+    let newTableCols = [];
     setGraphSeries(newGraphs);
     setCurrentData(newCurrent);
     setIsLoadingCurrent(false);
     setIsLoadingGraph(false);
+    setTableData(newTableRows);
+    setTableColumns(newTableCols);
   };
 
   useEffect(() => {
@@ -263,6 +273,33 @@ function WeatherDashboard() {
           </div>
         );
       })}
+      {tableData.length > 0 && (
+  <div style={{ marginTop: "2rem", overflowX: "auto" }}>
+    <h3>Last 48 Hours Data</h3>
+    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <thead>
+        <tr>
+          {tableColumns.map(col => (
+            <th key={col} style={{ border: "1px solid #ccc", padding: "0.5rem", background: "#f0f0f0" }}>
+              {col}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {tableData.map((row, idx) => (
+          <tr key={idx}>
+            {tableColumns.map(col => (
+              <td key={col} style={{ border: "1px solid #ddd", padding: "0.5rem", fontSize: "0.85rem" }}>
+                {row[col] !== null ? row[col].toString() : ""}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
     </div>
   );
 }

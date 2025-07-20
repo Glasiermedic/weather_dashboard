@@ -81,14 +81,16 @@ def get_summary_data():
 
 @app.route("/api/graph_data")
 def get_graph_data():
-    station_id = request.args.get("station_id")
+    station_ids_param = request.args.get("station_id") or request.args.get("station_ids")
     period = request.args.get("period", "1d")
     column = request.args.get("column", "temp_avg")
 
-    print(f"📊 Request received: station_id={station_id}, period={period}, column={column}")
+    print(f"📊 Request received: station_ids={station_ids_param}, period={period}, column={column}")
 
-    if not station_id or not column:
+    if not station_ids_param or not column:
         return jsonify({"error": "Missing required parameters"}), 400
+
+    station_ids = station_ids_param.split(",")
 
     if period == "1d":
         table = "weather_raw"
@@ -110,16 +112,33 @@ def get_graph_data():
 
     try:
         with get_pg_connection() as conn:
-            df = pd.read_sql_query(
-                f"""
-                SELECT {timestamp_field} AS ts, {column}
-                FROM {table}
-                WHERE station_id = %s AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
-                ORDER BY {timestamp_field}
-                """,
-                conn,
-                params=(station_id,)
-            )
+            if len(station_ids) == 1:
+                # Single station case (as before)
+                df = pd.read_sql_query(
+                    f"""
+                    SELECT {timestamp_field} AS ts, {column}
+                    FROM {table}
+                    WHERE station_id = %s AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
+                    ORDER BY {timestamp_field}
+                    """,
+                    conn,
+                    params=(station_ids[0],)
+                )
+            else:
+                # Combined station average case
+                station_placeholders = ",".join(["%s"] * len(station_ids))
+                df = pd.read_sql_query(
+                    f"""
+                    SELECT {timestamp_field} AS ts, AVG({column}) AS {column}
+                    FROM {table}
+                    WHERE station_id IN ({station_placeholders})
+                      AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
+                    GROUP BY {timestamp_field}
+                    ORDER BY {timestamp_field}
+                    """,
+                    conn,
+                    params=station_ids
+                )
 
             if df.empty:
                 return jsonify({"timestamps": [], "values": []})
@@ -135,6 +154,7 @@ def get_graph_data():
         print(f"❌ Error loading graph data: {e}")
         traceback.print_exc()
         return jsonify({"error": f"Internal server error: {str(e)}"}), 500
+
 
 
 
@@ -224,6 +244,36 @@ def get_weather_daily_columns():
     except Exception as e:
         print(f"❌ Error in get_weather_daily_columns: {e}")
         return jsonify({"error": "Failed to fetch columns"}), 500
+
+@app.route("/api/table_data")
+def get_table_data():
+    station_ids_param = request.args.get("station_id") or request.args.get("station_ids")
+    if not station_ids_param:
+        return jsonify({"error": "Missing station_id(s)"}), 400
+
+    station_ids = station_ids_param.split(",")
+
+    try:
+        with get_pg_connection() as conn:
+            station_placeholders = ",".join(["%s"] * len(station_ids))
+            df = pd.read_sql_query(
+                f"""
+                SELECT *
+                FROM weather_hourly
+                WHERE station_id IN ({station_placeholders})
+                  AND local_time >= NOW() - INTERVAL '48 hours'
+                ORDER BY local_time DESC
+                """,
+                conn,
+                params=station_ids
+            )
+        return jsonify({
+            "rows": df.to_dict(orient="records")
+        })
+    except Exception as e:
+        print("❌ Error fetching table data:", e)
+        return jsonify({"error": "Internal server error"}), 500
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
