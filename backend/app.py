@@ -93,7 +93,7 @@ def get_graph_data():
     station_ids = station_ids_param.split(",")
 
     if period == "1d":
-        table = "weather_raw"
+        table = "weather_hourly"
         timestamp_field = "local_time"
         days_back = 1
     elif period == "7d":
