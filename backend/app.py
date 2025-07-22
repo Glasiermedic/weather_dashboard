@@ -113,26 +113,24 @@ def get_graph_data():
     try:
         with get_pg_connection() as conn:
             if len(station_ids) == 1:
-                # Single station case (as before)
                 df = pd.read_sql_query(
                     f"""
                     SELECT {timestamp_field} AS ts, {column}
                     FROM {table}
-                    WHERE station_id = %s AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
+                    WHERE station_id = %s AND {timestamp_field} >= NOW() - INTERVAL '{days_back} days'
                     ORDER BY {timestamp_field}
                     """,
                     conn,
                     params=(station_ids[0],)
                 )
             else:
-                # Combined station average case
                 station_placeholders = ",".join(["%s"] * len(station_ids))
                 df = pd.read_sql_query(
                     f"""
                     SELECT {timestamp_field} AS ts, AVG({column}) AS {column}
                     FROM {table}
                     WHERE station_id IN ({station_placeholders})
-                      AND {timestamp_field}::date >= CURRENT_DATE - INTERVAL '{days_back} days'
+                      AND {timestamp_field} >= NOW() - INTERVAL '{days_back} days'
                     GROUP BY {timestamp_field}
                     ORDER BY {timestamp_field}
                     """,
@@ -154,127 +152,3 @@ def get_graph_data():
         print(f"❌ Error loading graph data: {e}")
         traceback.print_exc()
         return jsonify({"error": f"Internal server error: {str(e)}"}), 500
-
-
-
-
-
-@app.route("/api/current_data_live")
-def get_current_data_live():
-    station_id = request.args.get("station_id")
-    if not station_id:
-        return jsonify({"error": "Missing station_id"}), 400
-
-    api_key = os.getenv("WEATHER_API_KEY")
-    if not api_key:
-        return jsonify({"error": "API key missing"}), 500
-
-    url = (
-        f"https://api.weather.com/v2/pws/observations/current?"
-        f"stationId={station_id}&format=json&units=e&apiKey={api_key}"
-    )
-
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            obs = data.get("observations", [])
-            if obs:
-                latest = obs[0]
-                return jsonify({
-                    "temp": latest.get("imperial", {}).get("temp"),
-                    "humidity": latest.get("humidity"),
-                    "wind_speed": latest.get("imperial", {}).get("windSpeed"),
-                    "precip": latest.get("imperial", {}).get("precipRate", 0.0),
-                    "timestamp": latest.get("obsTimeLocal"),
-                    "fallback": False
-                })
-        elif response.status_code == 204:
-            print("⚠️ No current data from API (204 No Content)")
-        else:
-            print(f"⚠️ Error from Weather API: {response.status_code}")
-    except Exception as e:
-        print(f"❌ Live data error: {e}")
-
-    try:
-        with get_pg_connection() as conn:
-            df = pd.read_sql_query(
-                "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
-                conn,
-                params=(station_id,)
-            )
-            if not df.empty:
-                row = df.iloc[0]
-                return jsonify({
-                    "temp": row.get("avg_temp"),
-                    "humidity": row.get("avg_humidity"),
-                    "wind_speed": row.get("avg_wnd_spd"),
-                    "precip": row.get("precip_rate", 0.0),
-                    "timestamp": row.get("local_time"),
-                    "fallback": True
-                })
-    except Exception as e:
-        print(f"❌ Fallback error: {e}")
-
-    return jsonify({"error": "No data available"}), 500
-
-@app.route("/api/generate_summary")
-def generate_summary():
-    try:
-        period = request.args.get("period", "7d")
-        stations_param = request.args.get("station_ids")
-        station_ids = stations_param.split(",") if stations_param else None
-
-        result = run_all(station_ids=station_ids, period=period)
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-@app.route("/api/debug/weather_daily_columns")
-def get_weather_daily_columns():
-    try:
-        with get_pg_connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute("""
-                    SELECT column_name
-                    FROM information_schema.columns
-                    WHERE table_name = 'weather_hourly';
-                """)
-                columns = [row[0] for row in cur.fetchall()]
-        return jsonify({"columns": columns})
-    except Exception as e:
-        print(f"❌ Error in get_weather_daily_columns: {e}")
-        return jsonify({"error": "Failed to fetch columns"}), 500
-
-@app.route("/api/table_data")
-def get_table_data():
-    station_ids_param = request.args.get("station_id") or request.args.get("station_ids")
-    if not station_ids_param:
-        return jsonify({"error": "Missing station_id(s)"}), 400
-
-    station_ids = station_ids_param.split(",")
-
-    try:
-        with get_pg_connection() as conn:
-            station_placeholders = ",".join(["%s"] * len(station_ids))
-            df = pd.read_sql_query(
-                f"""
-                SELECT *
-                FROM weather_hourly
-                WHERE station_id IN ({station_placeholders})
-                  AND local_time >= NOW() - INTERVAL '48 hours'
-                ORDER BY local_time DESC
-                """,
-                conn,
-                params=station_ids
-            )
-        return jsonify({
-            "rows": df.to_dict(orient="records")
-        })
-    except Exception as e:
-        print("❌ Error fetching table data:", e)
-        return jsonify({"error": "Internal server error"}), 500
-
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)

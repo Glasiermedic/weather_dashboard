@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="adding combined and all functionality along with table of data to frontend">
-      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/convert_hour_to_timestamp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/inspect_weather_tables.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/populate_time_columns.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/update_schema_add-time_columns.py" afterDir="false" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issues with the date and time fields that were causing errors in building the graphs and tables.">
+      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/Run_custom_query.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/check_latest_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql scripts/check_latest_times.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/test_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql scripts/test_env.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +61,7 @@
   "keyToString": {
     "Node.js.App.js.executor": "Run",
     "Python.Patch_schema.executor": "Run",
+    "Python.Run_custom_query.executor": "Run",
     "Python.Unnamed.executor": "Run",
     "Python.aggregate_to_daily.executor": "Run",
     "Python.aggregate_to_hourly.executor": "Run",
@@ -211,7 +207,7 @@
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
-      <workItem from="1752703031624" duration="23903000" />
+      <workItem from="1752703031624" duration="28501000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -573,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752979551899</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fixing issues with the date and time fields that were causing errors in building the graphs and tables.">
+      <option name="closed" value="true" />
+      <created>1753110185108</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1753110185108</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +600,8 @@
     <MESSAGE value="adding more functionality ✅ Multi-select station dropdown&#10;&#10;✅ Well-spaced period and metric selectors&#10;&#10;✅ A Reset button to quickly go back to defaults" />
     <MESSAGE value="adding combined and all functionality along with table of data" />
     <MESSAGE value="adding combined and all functionality along with table of data to frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding combined and all functionality along with table of data to frontend" />
+    <MESSAGE value="fixing issues with the date and time fields that were causing errors in building the graphs and tables." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing issues with the date and time fields that were causing errors in building the graphs and tables." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -616,6 +621,7 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$removal_kormcmin127_f_tables.coverage" NAME="removal_kormcmin127_f_tables Coverage Results" MODIFIED="1749194379565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$convert_hour_to_timestamp.coverage" NAME="convert_hour_to_timestamp Coverage Results" MODIFIED="1753109459670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql scripts" />
     <SUITE FILE_PATH="coverage/weather_dashboard$data_freshness.coverage" NAME="data_freshness Coverage Results" MODIFIED="1749217873872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$Run_custom_query.coverage" NAME="Run_custom_query Coverage Results" MODIFIED="1753169423149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql scripts" />
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_5min_raw.coverage" NAME="fetch_pws_5min_raw Coverage Results" MODIFIED="1749231299455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_history.coverage" NAME="fetch_pws_history Coverage Results" MODIFIED="1750349933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_weather_hourly_table.coverage" NAME="repair_weather_hourly_table Coverage Results" MODIFIED="1749230861653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
