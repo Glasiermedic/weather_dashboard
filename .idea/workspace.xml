@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issues with the date and time fields that were causing errors in building the graphs and tables.">
-      <change afterPath="$PROJECT_DIR$/backend/python_sql scripts/Run_custom_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
-    </list>
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="fixing issues with the date and time fields that were causing errors in building the graphs and tables." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,7 +203,7 @@
       <workItem from="1752086638031" duration="984000" />
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
-      <workItem from="1752703031624" duration="28501000" />
+      <workItem from="1752703031624" duration="29996000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project files to work from.  I used Chat GPT to review the files for errors at each step.">
       <option name="closed" value="true" />
@@ -577,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753110185108</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fixing issues with the date and time fields that were causing errors in building the graphs and tables.">
+      <option name="closed" value="true" />
+      <created>1753171933206</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1753171933206</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
