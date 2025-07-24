@@ -32,12 +32,12 @@ def main():
 
     # 🔧 Example 1: check recent hourly data
     run_query("""
-        SELECT hour, temp_avg
-        FROM weather_hourly
-        WHERE station_id = 'KORMCMIN127'
-          AND hour >= NOW() - INTERVAL '1 day'
-        ORDER BY hour DESC
-        LIMIT 10;;
+        SELECT 'weather_hourly' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_hourly'
+        UNION ALL
+        SELECT 'weather_daily' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_daily'
+        UNION ALL
+        SELECT 'weather_raw' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_raw';
+        ;
     """)
 
     # 👇 You can add other queries below as needed
