@@ -50,12 +50,35 @@ def main():
     ]
     agg = agg.reset_index()
 
+    agg["local_time"] = pd.to_datetime(agg["date"])
+    agg["day"] = agg["date"].astype(str)
+
     # Insert using SQLAlchemy
     with engine.begin() as conn:
         for _, row in agg.iterrows():
+            row_dict = row.to_dict()
+
+            # Normalize 'date'
+            if isinstance(row_dict.get("date"), pd.Timestamp):
+                row_dict["date"] = row_dict["date"].date()
+            elif isinstance(row_dict.get("date"), str):
+                row_dict["date"] = pd.to_datetime(row_dict["date"]).date()
+
+            # Ensure 'local_time' exists and is datetime
+            if "local_time" not in row_dict or pd.isna(row_dict["local_time"]):
+                row_dict["local_time"] = pd.to_datetime(row_dict["date"])
+
+            # Ensure 'day' is a string version of date
+            row_dict["day"] = row_dict["local_time"].strftime("%Y-%m-%d")
+
+            # Debug print (optional)
+            print(
+                f"⬇️ Inserting row with station_id {row_dict['station_id']}, date {row_dict['date']}, local_time {row_dict['local_time']}, day {row_dict['day']}")
+
+            # Insert
             conn.execute(text("""
                 INSERT INTO weather_daily (
-                    station_id, date,
+                    station_id, date, local_time, day,
                     temp_avg, temp_low, temp_high,
                     humidity_avg, humidity_min, humidity_max,
                     wind_speed_avg, wind_speed_low, wind_speed_high,
@@ -64,7 +87,7 @@ def main():
                     precip_total, solar_rad_max, uv_max
                 )
                 VALUES (
-                    :station_id, :date,
+                    :station_id, :date, :local_time, :day,
                     :temp_avg, :temp_low, :temp_high,
                     :humidity_avg, :humidity_min, :humidity_max,
                     :wind_speed_avg, :wind_speed_low, :wind_speed_high,
@@ -72,8 +95,29 @@ def main():
                     :pressureTrend, :pressure_max, :pressure_min,
                     :precip_total, :solar_rad_max, :uv_max
                 )
-                ON CONFLICT (station_id, date) DO NOTHING
-            """), row.to_dict())
+                ON CONFLICT (station_id, date) DO UPDATE
+                SET local_time = EXCLUDED.local_time,
+                    day = EXCLUDED.day,
+                    temp_avg = EXCLUDED.temp_avg,
+                    temp_low = EXCLUDED.temp_low,
+                    temp_high = EXCLUDED.temp_high,
+                    humidity_avg = EXCLUDED.humidity_avg,
+                    humidity_min = EXCLUDED.humidity_min,
+                    humidity_max = EXCLUDED.humidity_max,
+                    wind_speed_avg = EXCLUDED.wind_speed_avg,
+                    wind_speed_low = EXCLUDED.wind_speed_low,
+                    wind_speed_high = EXCLUDED.wind_speed_high,
+                    wind_gust_max = EXCLUDED.wind_gust_max,
+                    dew_point_avg = EXCLUDED.dew_point_avg,
+                    windchill_avg = EXCLUDED.windchill_avg,
+                    heatindex_avg = EXCLUDED.heatindex_avg,
+                    pressureTrend = EXCLUDED.pressureTrend,
+                    pressure_max = EXCLUDED.pressure_max,
+                    pressure_min = EXCLUDED.pressure_min,
+                    precip_total = EXCLUDED.precip_total,
+                    solar_rad_max = EXCLUDED.solar_rad_max,
+                    uv_max = EXCLUDED.uv_max
+            """), row_dict)
 
     print("✅ Daily aggregation complete and inserted into weather_daily.")
 

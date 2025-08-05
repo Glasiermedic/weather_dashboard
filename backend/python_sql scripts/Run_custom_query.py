@@ -29,14 +29,13 @@ def run_query(sql, params=None):
 
 def main():
     print("📊 Running custom query...\n")
-
+    print(f"🔗 Connected to: {engine.url}")
     # 🔧 Example 1: check recent hourly data
     run_query("""
-        SELECT 'weather_hourly' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_hourly'
-        UNION ALL
-        SELECT 'weather_daily' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_daily'
-        UNION ALL
-        SELECT 'weather_raw' AS table_name, column_name FROM information_schema.columns WHERE table_name = 'weather_raw';
+        SELECT station_id, day, local_time
+        FROM weather_hourly
+        ORDER BY day DESC
+        LIMIT 10;
         ;
     """)
 

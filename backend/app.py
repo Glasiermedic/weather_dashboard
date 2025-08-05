@@ -19,8 +19,34 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 print("Loaded DATABASE_URL:", DATABASE_URL)  # 👈 Confirm it's working
 app = Flask(__name__)
 CORS(app)
+from psycopg2 import pool
+
+# 👇 Create a global connection pool object
+db_pool = None
+
+# 👇 At startup, initialize the connection pool
+def init_db_pool():
+    global db_pool
+    if db_pool is None:
+        db_pool = pool.SimpleConnectionPool(
+            minconn=1,
+            maxconn=10,
+            dsn=DATABASE_URL
+        )
+        if db_pool:
+            print("✅ Database connection pool created")
+
+# 👇 Function to get a connection from the pool
 def get_pg_connection():
-    return psycopg2.connect(DATABASE_URL)
+    if db_pool is None:
+        init_db_pool()
+    return db_pool.getconn()
+
+# 👇 Function to return a connection back to the pool
+def release_pg_connection(conn):
+    if db_pool and conn:
+        db_pool.putconn(conn)
+
 
 def column_exists(table, column):
     with get_pg_connection() as conn:
@@ -94,7 +120,7 @@ def get_graph_data():
 
     if period == "1d":
         table = "weather_hourly"
-        timestamp_field = "local_time"
+        timestamp_field = "hour"  # 🔁 use 'hour' instead of 'local_time'
         days_back = 1
     elif period == "7d":
         table = "weather_hourly"
@@ -241,4 +267,4 @@ def generate_summary():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(d
