@@ -20,7 +20,7 @@ def main():
 
     # Convert to datetime and extract hour
     df["local_time"] = pd.to_datetime(df["local_time"])
-    df["hour"] = df["local_time"].dt.floor("H")
+    df["hour"] = df["local_time"].dt.floor("h")
 
     # Group and aggregate
     agg = df.groupby(["station_id", "hour"]).agg({
@@ -56,6 +56,7 @@ def main():
     # Insert aggregated data into weather_hourly
     with engine.begin() as conn:
         for _, row in agg.iterrows():
+            row_dict = row.to_dict()
             conn.execute(text("""
                 INSERT INTO weather_hourly (
                     station_id, hour, local_time, day, 

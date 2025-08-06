@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 # Load env variables
 load_dotenv()
 client = bigquery.Client(project=os.getenv("GCP_PROJECT_ID"))
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcp_service_account.json"
 TABLE_ID = f"{os.getenv('GCP_PROJECT_ID')}.{os.getenv('BQ_DATASET')}.transformer_sales"
 
 SALES_REPS = ['Ava', 'Carlos', 'John', 'Lisa', 'Mary', 'Noah']
@@ -14,7 +15,7 @@ SALES_WEIGHTS = [0.25, 0.25, 0.25, 0.1, 0.1, 0.05]
 REGIONS = ['US-East', 'US-North', 'US-South', 'US-West', 'CA', 'EUR', 'AFR-North', 'AFR-South',
            'AUS', 'PAC-Islands', 'RUS', 'CHIN', 'JPN', 'AMER-South', 'AMER-Central']
 PRODUCT_TYPES = ['Cast Resin', 'Dry-Type', 'Oil-Insulated', 'Padmount', 'Substation', 'Switchgear', 'Three-Phase']
-PREFERRED_UNITS = [1, 2, 4, 5, 7, 3]
+PREFERRED_UNITS = [1, 2, 4, 5]
 PREFERRED_WEIGHTS = [0.42, 0.28, 0.16, 0.14]
 UNIT_OPTIONS = PREFERRED_UNITS
 UNIT_WEIGHTS = PREFERRED_WEIGHTS
