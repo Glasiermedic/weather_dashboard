@@ -263,7 +263,15 @@ def generate_summary():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+@app.route("/api/test_db")
+def test_db():
+    try:
+        conn = get_pg_connection()
+        with conn.cursor() as cur:
+            cur.execute("SELECT 1;")
+            return jsonify({"result": cur.fetchone()[0]})
+    finally:
+        release_pg_connection(conn)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
