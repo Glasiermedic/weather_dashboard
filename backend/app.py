@@ -269,7 +269,7 @@ def test_db():
         conn = get_pg_connection()
         with conn.cursor() as cur:
             cur.execute("SELECT 1;")
-            return jsonify({"result": cur.fetchone()[0]})
+            return jsonify({"results": cur.fetchone()[0]})
     finally:
         release_pg_connection(conn)
 
