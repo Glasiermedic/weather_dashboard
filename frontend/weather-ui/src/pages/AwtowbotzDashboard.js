@@ -5,7 +5,7 @@ import TopRepsList from './components/TopRepsList'
 import SalesWindow from './components/SalesWindow';
 import './Awtowbotz.css';
 
-function Awtobotz{
+function Awtobotz(){
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
       <h1>aw-tow-botz-co: Transformer Co Sales Dashboard</h1>
@@ -17,4 +17,4 @@ function Awtobotz{
   );
 }
 
-export default AwtowbotzPage;
+export default Awtowbotz;
