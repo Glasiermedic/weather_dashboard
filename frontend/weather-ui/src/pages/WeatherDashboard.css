@@ -1,0 +1,112 @@
+
+
+.weather-dashboard {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.25rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.control-group label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.control-group select,
+.control-group button {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+
+.control-group button {
+  background-color: #f4f4f4;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.control-group button:hover {
+  background-color: #e0e0e0;
+}
+
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid #ccc;
+  border-top: 3px solid #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0.5rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.now-data {
+  margin-bottom: 2rem;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-left: 5px solid #0077cc;
+  border-radius: 4px;
+}
+
+.now-data p {
+  margin: 0.25rem 0;
+}
+
+.now-data .fallback {
+  color: #cc6600;
+  font-weight: bold;
+}
+
+.chart-container {
+  margin: 2rem 0;
+  height: 300px;
+}
+
+.table-wrapper {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+.table-wrapper th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: left;
+}
