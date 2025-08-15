@@ -122,7 +122,7 @@ const ordered = preferredOrder.filter(col => allActualKeys.has(col));
 
 // Add any unexpected columns (optional)
 const extras = [...allActualKeys].filter(col => !preferredOrder.includes(col));
-setTableColumns([...ordered, ...extras]);
+setTableColumns([...ordered]);   //, ...extras
 
 
     } catch (err) {
