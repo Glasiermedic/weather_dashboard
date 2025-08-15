@@ -93,9 +93,18 @@ function WeatherDashboard() {
       const rows = res.data?.rows || [];
       setTableData(rows);
 
-      const allColumns = new Set();
-      rows.forEach(row => Object.keys(row).forEach(key => allColumns.add(key)));
-      setTableColumns(Array.from(allColumns));
+     const hiddenColumns = new Set(['solar_rad_max', 'uv_max']);
+const allColumns = new Set();
+
+rows.forEach(row => {
+  Object.keys(row).forEach(key => {
+    if (!hiddenColumns.has(key)) {
+      allColumns.add(key);
+    }
+  });
+});
+
+setTableColumns(Array.from(allColumns));
 
     } catch (err) {
       console.error(`Failed to load table data for ${tableStation}:`, err.message);
