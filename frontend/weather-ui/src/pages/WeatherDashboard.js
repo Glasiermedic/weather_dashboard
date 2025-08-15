@@ -9,7 +9,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legendimport React, { useEffect, useState } from 'react';
+  Legend} from 'chart.js';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import {
