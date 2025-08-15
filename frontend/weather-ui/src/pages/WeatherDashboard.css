@@ -113,8 +113,10 @@
 
 .weather-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: collapse !important; /* <-- force override */
+  border-spacing: 0;
 }
+
 
 .weather-table th,
 .weather-table td {
