@@ -9,8 +9,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend} from 'chart.js';
-
+  Legend
+} from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -92,7 +92,11 @@ function WeatherDashboard() {
       const res = await axios.get(`${API_BASE}/api/table_data?station_id=${tableStation}`);
       const rows = res.data?.rows || [];
       setTableData(rows);
-      setTableColumns(rows.length ? Object.keys(rows[0]) : []);
+
+      const allColumns = new Set();
+      rows.forEach(row => Object.keys(row).forEach(key => allColumns.add(key)));
+      setTableColumns(Array.from(allColumns));
+
     } catch (err) {
       console.error(`Failed to load table data for ${tableStation}:`, err.message);
     }
@@ -144,12 +148,12 @@ function WeatherDashboard() {
   const now = nowData();
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="dashboard-container">
       <h2>Weather Dashboard</h2>
 
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "1rem" }}>
+      <div className="dashboard-controls">
         <div>
-          <label><strong>Stations (for Graph + Now):</strong></label><br />
+          <label>Stations (for Graph + Now):</label><br />
           <select multiple value={selectedStations} onChange={(e) => setSelectedStations(Array.from(e.target.selectedOptions, opt => opt.value))}>
             <option value="KORMCMIN127">KORMCMIN127</option>
             <option value="KORMCMIN133">KORMCMIN133</option>
@@ -157,7 +161,7 @@ function WeatherDashboard() {
         </div>
 
         <div>
-          <label><strong>Metric:</strong></label><br />
+          <label>Metric:</label><br />
           <select value={selectedMetric} onChange={(e) => setSelectedMetric(e.target.value)}>
             {availableMetrics.map(metric => (
               <option key={metric} value={metric}>{metricLabels[metric] || metric}</option>
@@ -166,7 +170,7 @@ function WeatherDashboard() {
         </div>
 
         <div>
-          <label><strong>Period:</strong></label><br />
+          <label>Period:</label><br />
           <select value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
             <option value="1d">1 Day</option>
             <option value="7d">7 Days</option>
@@ -176,7 +180,7 @@ function WeatherDashboard() {
         </div>
 
         <div>
-          <label><strong>Table Station:</strong></label><br />
+          <label>Table Station:</label><br />
           <select value={tableStation} onChange={(e) => setTableStation(e.target.value)}>
             <option value="KORMCMIN127">KORMCMIN127</option>
             <option value="KORMCMIN133">KORMCMIN133</option>
@@ -185,19 +189,19 @@ function WeatherDashboard() {
       </div>
 
       {now && (
-        <div>
+        <div className="dashboard-now">
           <p><strong>Right Now</strong> ({now.timestamp})</p>
           <p>🌡 Temp: {now.temp} °F</p>
           <p>💧 Humidity: {now.humidity} %</p>
           <p>💨 Wind: {now.wind_speed} mph</p>
           <p>🌧 Precip: {now.precip} in</p>
-          {now.fallback && <p style={{ color: "orange" }}>⚠️ Data fallback in use</p>}
+          {now.fallback && <p className="fallback-warning">⚠️ Data fallback in use</p>}
         </div>
       )}
 
-      <div style={{ marginTop: "2rem" }}>
+      <div className="dashboard-graph">
         <h3>Graph</h3>
-        <div style={{ height: "300px" }}>
+        <div className="graph-container">
           <Line data={{
             labels: graphSeries[selectedStations[0]]?.timestamps || [],
             datasets: selectedStations.map(station => ({
@@ -220,14 +224,14 @@ function WeatherDashboard() {
         </div>
       </div>
 
-      {tableData.length > 0 && (
-        <div style={{ marginTop: "2rem", overflowX: "auto" }}>
+      {tableData.length > 0 ? (
+        <div className="dashboard-table">
           <h3>Last 48 Hours Data ({tableStation})</h3>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table>
             <thead>
               <tr>
                 {tableColumns.map(col => (
-                  <th key={col} style={{ border: "1px solid #ccc", padding: "0.5rem", background: "#f0f0f0" }}>{col}</th>
+                  <th key={col}>{col}</th>
                 ))}
               </tr>
             </thead>
@@ -235,17 +239,18 @@ function WeatherDashboard() {
               {tableData.map((row, i) => (
                 <tr key={i}>
                   {tableColumns.map(col => (
-                    <td key={col} style={{ border: "1px solid #ddd", padding: "0.5rem" }}>{row[col] ?? ''}</td>
+                    <td key={col}>{Number.isNaN(row[col]) ? '—' : row[col] ?? ''}</td>
                   ))}
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      ) : (
+        <p>No recent 48-hour data available for {tableStation}</p>
       )}
     </div>
   );
 }
 
 export default WeatherDashboard;
-
