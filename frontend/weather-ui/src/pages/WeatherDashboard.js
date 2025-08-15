@@ -93,7 +93,18 @@ function WeatherDashboard() {
       const rows = res.data?.rows || [];
       setTableData(rows);
 
-     const hiddenColumns = new Set(['solar_rad_max', 'uv_max']);
+     const hiddenColumns = new Set(['day'
+                                                      , 'humidity_max'
+                                                      , 'humidity_min'
+                                                      , 'hour'
+                                                      , 'pressure_max'
+                                                      , 'pressure_min'
+                                                      , 'temp_max'
+                                                      , 'temp_min'
+                                                      , 'wind_speed_max'
+                                                      , 'wind_speed_min'
+                                                      ,'solar_rad_max'
+                                                      , 'uv_max']);
 const allColumns = new Set();
 
 rows.forEach(row => {
