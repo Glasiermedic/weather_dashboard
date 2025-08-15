@@ -32,10 +32,9 @@ def main():
     print(f"🔗 Connected to: {engine.url}")
     # 🔧 Example 1: check recent hourly data
     run_query("""
-        SELECT station_id, day, local_time
-        FROM weather_hourly
-        ORDER BY day DESC
-        LIMIT 10;
+        ALTER TABLE weather_hourly
+        DROP COLUMN IF EXISTS solar_rad_max,
+        DROP COLUMN IF EXISTS uv_max;
         ;
     """)
 

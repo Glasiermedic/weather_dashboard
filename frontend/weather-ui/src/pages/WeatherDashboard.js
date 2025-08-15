@@ -12,6 +12,8 @@ import {
   Legend
 } from 'chart.js';
 
+import './WeatherDashboard.css';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const API_BASE = "https://weather-dashboard-hqpk.onrender.com";
@@ -105,17 +107,23 @@ function WeatherDashboard() {
                                                       , 'wind_speed_min'
                                                       ,'solar_rad_max'
                                                       , 'uv_max']);
-const allColumns = new Set();
+const preferredOrder = [
+  "station_id", "local_time", "temp_avg",
+  "humidity_avg", "dew_point_avg", "wind_speed_avg", "wind_gust_max",
+  "windchill_avg", "heatindex_avg", "precip_total",
+  "pressure_avg"
+];
 
-rows.forEach(row => {
-  Object.keys(row).forEach(key => {
-    if (!hiddenColumns.has(key)) {
-      allColumns.add(key);
-    }
-  });
-});
+const allActualKeys = new Set();
+rows.forEach(row => Object.keys(row).forEach(key => allActualKeys.add(key)));
 
-setTableColumns(Array.from(allColumns));
+// Only include preferred columns that actually exist in the data
+const ordered = preferredOrder.filter(col => allActualKeys.has(col));
+
+// Add any unexpected columns (optional)
+const extras = [...allActualKeys].filter(col => !preferredOrder.includes(col));
+setTableColumns([...ordered, ...extras]);
+
 
     } catch (err) {
       console.error(`Failed to load table data for ${tableStation}:`, err.message);
@@ -247,7 +255,7 @@ setTableColumns(Array.from(allColumns));
       {tableData.length > 0 ? (
         <div className="dashboard-table">
           <h3>Last 48 Hours Data ({tableStation})</h3>
-          <table>
+          <table className="weather-table">
             <thead>
               <tr>
                 {tableColumns.map(col => (

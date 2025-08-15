@@ -110,3 +110,20 @@
   font-weight: bold;
   text-align: left;
 }
+
+.weather-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weather-table th,
+.weather-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.weather-table th {
+  background-color: #f0f0f0;
+}
