@@ -67,4 +67,4 @@ const valueStyle = {
   color: '#1f2937'
 };
 
-export default SummaryCards;
+export default archived_SummaryCards;

@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="✅ Goals for app.py&#10;Primary Functions:&#10;&#10;Serves /api endpoints for weather summaries, graphs, tables, live data, and debug tools.&#10;&#10;Pulls from PostgreSQL on Render.&#10;&#10;Uses psycopg2 + pandas.read_sql_query (with a SQLAlchemy warning).&#10;&#10;Converts weather data into JSON for React frontend.&#10;&#10;🔧 Key Fixes and Enhancements&#10;1. ✅ Fix SQLAlchemy Warnings&#10;Issue: pandas.read_sql_query warns about using psycopg2.connect() directly.&#10;&#10;Fix: Switch to a SQLAlchemy engine:&#10;&#10;python&#10;Copy&#10;Edit&#10;from sqlalchemy import create_engine&#10;engine = create_engine(DATABASE_URL)&#10;And then use:&#10;&#10;python&#10;Copy&#10;Edit&#10;df = pd.read_sql_query(&quot;SQL HERE&quot;, con=engine)&#10;2. ✅ Normalize Column Names (YTD failure root cause)&#10;Ensure that the React dropdown only passes valid backend columns.&#10;&#10;Tie in weather_columns.csv as a dictionary exposed via /api/columns.&#10;&#10;3. ✅ Improve Error Logging and Tracing&#10;Add better traceback logging in all /api/ endpoints, especially /graph_data and /table_data, which often silently fail or return [].&#10;&#10;4. ✅ Add /api/columns Endpoint&#10;Expose the validated column list:&#10;&#10;python&#10;Copy&#10;Edit&#10;@app.route(&quot;/api/columns&quot;)&#10;def get_columns_dict():&#10;    return jsonify(column_dict)&#10;5. ✅ Fix Graph API Logic&#10;Current 1-day requests return empty arrays because weather_hourly.local_time is a timestamp and comparison is done with NOW() - INTERVAL '1 day' which fails silently.&#10;&#10;Validate this logic and potentially cast timestamp explicitly or adjust local_time::date.&#10;&#10;📄 Planned app.py Changes by Section&#10;Section&#9;Description&#9;Action&#10;Imports&#9;Add sqlalchemy.create_engine&#9;✅&#10;Database Access&#9;Replace all psycopg2.connect() in read_sql with SQLAlchemy engine&#9;✅&#10;New endpoint&#9;/api/columns → expose the cleaned weather_columns.csv&#9;✅&#10;/api/graph_data&#9;Patch handling for 1d, 7d ranges to avoid time mismatch&#9;✅&#10;Error Handling&#9;Wrap and log traceback.format_exc() for all major routes&#9;✅">
+      <change afterPath="$PROJECT_DIR$/api/autobotz_flask_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/flask_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/archived_8.18.25_flask_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/utils/validMetics.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/utils/validMetics.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,52 +58,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.App.js.executor": "Run",
-    "Python.Patch_schema.executor": "Run",
-    "Python.Run_custom_query.executor": "Run",
-    "Python.Unnamed.executor": "Run",
-    "Python.aggregate_to_daily.executor": "Run",
-    "Python.aggregate_to_hourly.executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.check_latest_times.executor": "Run",
-    "Python.convert_hour_to_timestamp.executor": "Run",
-    "Python.data_freshness.executor": "Run",
-    "Python.fetch_pws_5min_raw.executor": "Run",
-    "Python.fetch_pws_history.executor": "Run",
-    "Python.first_alter_tables.executor": "Run",
-    "Python.fix_date_column_type.executor": "Run",
-    "Python.init_weather_tables.executor": "Run",
-    "Python.inject_sales.executor": "Run",
-    "Python.insert_weather_raw.executor": "Run",
-    "Python.inspect_weather_tables.executor": "Run",
-    "Python.populate_time_columns.executor": "Run",
-    "Python.process_weather_data.executor": "Run",
-    "Python.removal_kormcmin127_f_tables.executor": "Run",
-    "Python.repair_wather_raw_table.executor": "Run",
-    "Python.repair_weather_daily_table.executor": "Run",
-    "Python.repair_weather_hourly_table.executor": "Run",
-    "Python.reset_db.executor": "Run",
-    "Python.run_pipeline.executor": "Run",
-    "Python.test_env.executor": "Run",
-    "Python.update_schema_add-time_columns.executor": "Run",
-    "Python.weatherjson_to_csv.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Patch_schema.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Run_custom_query.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggregate_to_daily.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggregate_to_hourly.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_latest_times.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convert_hour_to_timestamp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_freshness.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fetch_pws_5min_raw.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fetch_pws_history.executor&quot;: &quot;Run&quot;,
+    &quot;Python.first_alter_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fix_date_column_type.executor&quot;: &quot;Run&quot;,
+    &quot;Python.init_weather_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inject_sales.executor&quot;: &quot;Run&quot;,
+    &quot;Python.insert_weather_raw.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inspect_weather_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.populate_time_columns.executor&quot;: &quot;Run&quot;,
+    &quot;Python.process_weather_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.removal_kormcmin127_f_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_wather_raw_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_weather_daily_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.repair_weather_hourly_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reset_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_env.executor&quot;: &quot;Run&quot;,
+    &quot;Python.update_schema_add-time_columns.executor&quot;: &quot;Run&quot;,
+    &quot;Python.weatherjson_to_csv.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2024.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\.venv" />
@@ -113,7 +116,7 @@
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\data" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -206,6 +209,7 @@
       <workItem from="1752251808261" duration="31627000" />
       <workItem from="1752561020553" duration="2514000" />
       <workItem from="1752703031624" duration="38623000" />
+      <workItem from="1755880018141" duration="1583000" />
     </task>
     <task id="LOCAL-00003" summary="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features">
       <option name="closed" value="true" />
