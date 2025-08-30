@@ -82,4 +82,4 @@ const loadingStyle = {
   color: '#9ca3af'
 };
 
-export default archived_SalesWindow;
+export default SalesWindow;

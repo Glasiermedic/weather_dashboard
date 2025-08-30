@@ -1,8 +1,8 @@
 import React from 'react';
 import SalesSummary from '../components/SalesSummary';
-import RegionChart from '../components/SalesByRegionChart';
-import TopRepsList from '../components/TopRepsTable';
-import SalesWindow from '../components/archived_SalesWindow';
+import SalesByRegionChart from '../components/SalesByRegionChart';
+import TopRepsTable from '../components/TopRepsTable';
+import SalesWindow from '../components/SalesWindow';
 import '../Awtowbotz.css';
 
 const AwtowbotzDashboard = () => {
