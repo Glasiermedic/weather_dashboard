@@ -12,7 +12,7 @@ const AwtowbotzDashboard = () => {
 
 
   return (
-      <div style={{ padding '2rem', fontfamily: 'Arial, sans-serif'}}>
+      <div style={{ padding: '2rem', fontfamily: 'Arial, sans-serif'}}>
         <h1>Awtowbotz Transformer Co: Sales Dashboard</h1>
 
         <SalesWindow />
