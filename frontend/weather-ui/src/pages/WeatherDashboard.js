@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'; //http client for making requests
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -10,9 +10,9 @@ import {
   Title,
   Tooltip,
   Legend
-} from 'chart.js';
+} from 'chart.js';  // to provide the scaffolding for the graphs and charts being displayed
 
-import './WeatherDashboard.css';
+import './WeatherDashboard.css';  // our wd_backend style sheet for making the page look nice
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

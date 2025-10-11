@@ -1,0 +1,139 @@
+2025-06-23 06:56:18,206 [INFO] 🚀 Starting weather data pipeline...
+
+2025-06-23 06:56:18,206 [INFO] ▶️ Running fetch/aggregate_to_daily.py...
+2025-06-23 06:56:18,599 [INFO] ⚠️ No data found in weather_hourly.
+
+2025-06-23 06:56:18,599 [INFO] ▶️ Running fetch/fetch_pws_history.py...
+2025-06-23 06:56:22,925 [INFO] 
+🔍 Checking propdada (KORMCMIN133) for 20240623 to 20240723
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240623&endDate=20240723&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240724 to 20240823
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240724&endDate=20240823&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240824 to 20240923
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240824&endDate=20240923&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240924 to 20241024
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240924&endDate=20241024&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241025 to 20241124
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241025&endDate=20241124&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241125 to 20241225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241125&endDate=20241225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241226 to 20250125
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241226&endDate=20250125&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250126 to 20250225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250126&endDate=20250225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250226 to 20250328
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250226&endDate=20250328&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250329 to 20250428
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250329&endDate=20250428&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250329_20250428.json
+
+🔍 Checking propdada (KORMCMIN133) for 20250429 to 20250529
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250429&endDate=20250529&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250429_20250529.json
+
+🔍 Checking propdada (KORMCMIN133) for 20250530 to 20250623
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250530&endDate=20250623&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250530_20250623.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20240623 to 20240723
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240623&endDate=20240723&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240724 to 20240823
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240724&endDate=20240823&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240824 to 20240923
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240824&endDate=20240923&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240924 to 20241024
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240924&endDate=20241024&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241025 to 20241124
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241025&endDate=20241124&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241125 to 20241225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241125&endDate=20241225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20241125_20241225.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20241226 to 20250125
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241226&endDate=20250125&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20241226_20250125.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250126 to 20250225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250126&endDate=20250225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250126_20250225.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250226 to 20250328
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250226&endDate=20250328&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250226_20250328.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250329 to 20250428
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250329&endDate=20250428&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250329_20250428.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250429 to 20250529
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250429&endDate=20250529&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250429_20250529.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250530 to 20250623
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250530&endDate=20250623&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250530_20250623.json
+
+2025-06-23 06:56:22,929 [INFO] ▶️ Running fetch/weatherjson_to_csv.py...
+2025-06-23 06:56:23,323 [INFO] 📁 Reading JSON files from: C:\Users\sewmo\PycharmProjects\weather_dashboard\data
+✅ Conversion complete and saving to SQLite.
+⚠️ No data to save.
+
+2025-06-23 06:56:23,323 [INFO] ▶️ Running process_weather_data.py...
+2025-06-23 06:56:23,709 [INFO] 📦 Connecting to DB...
+📊 Columns in df: ['station_id', 'local_time', 'avg_humidity', 'avg_temp', 'dewpt', 'feelslike', 'heatindex', 'humidity', 'precip_hrly', 'pressure', 'solar_radiation', 'temp', 'uv', 'wind_dir', 'wind_gust', 'wind_speed', 'windchill']
+⚠️ No data in weather_raw table.
+
+2025-06-23 06:56:23,710 [INFO] 
+✅ Pipeline complete.

@@ -1,4 +1,4 @@
-# backend/update_schema_add_time_columns.py
+# wd_backend/update_schema_add_time_columns.py
 
 import os
 from dotenv import load_dotenv

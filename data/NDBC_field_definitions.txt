@@ -1,0 +1,400 @@
+Measurement Descriptions and Units
+Real Time files generally contain the last 45 days of "Realtime" data - data that went through automated quality checks and were distributed as soon as they were received. Historical files have gone through post-processing analysis and represent the data sent to the archive centers. The formats for both are generally the same, with the major difference being the treatment of missing data. Missing data in the Realtime files are denoted by "MM" while a variable number of 9's are used to denote missing data in the Historical files, depending on the data type (for example: 999.0 99.0).
+
+General
+Units: Station pages display the current hour's measurements in Imperial units by default, but can be changed by the viewer to metric units. When accessing Real Time and Historical data files, the measurements are generally in metric units, as described below, and cannot be changed.
+
+Time: Station pages show current observations in station local time by default, but can be changed by the viewer to UTC (formerly GMT). Both Realtime and Historical files show times in UTC only. See the Acquisition Time help topic for a more detailed description of observation times. For more information on the times in the files, see the changes page.
+
+Station ID: Five-digit WMO Station Identifier, used since 1976. ID's can be reassigned to future deployments within the same 1 degree square.
+
+Formats: Data are classified according to the following groups. The header lines are shown at the beginning of group. Note that in the Realtime files, non-data lines begin with "#". Such lines should be treated as comment lines.
+
+Standard Meteorological Data
+#YY  MM DD hh mm WDIR WSPD GST  WVHT   DPD   APD MWD   PRES  ATMP  WTMP  DEWP  VIS PTDY  TIDE
+#yr  mo dy hr mn degT m/s  m/s     m   sec   sec degT   hPa  degC  degC  degC  nmi  hPa    ft
+2014 09 11 16 50 120  5.0  6.0   0.6     6   4.2 134 1016.5  29.3  30.5  24.4   MM +0.3    MM
+WDIR
+Wind direction (the direction the wind is coming from in degrees clockwise from true N) during the same period used for WSPD. See Wind Averaging Methods
+WSPD
+Wind speed (m/s) averaged over an eight-minute period for buoys and a two-minute period for land stations. Reported Hourly. See Wind Averaging Methods.
+GST
+Peak 5 or 8 second gust speed (m/s) measured during the eight-minute or two-minute period. The 5 or 8 second period can be determined by payload, See the Sensor Reporting, Sampling, and Accuracy section.
+WVHT
+Significant wave height (meters) is calculated as the average of the highest one-third of all of the wave heights during the 20-minute sampling period. See the Wave Measurements section.
+DPD
+Dominant wave period (seconds) is the period with the maximum wave energy. See the Wave Measurements section.
+APD
+Average wave period (seconds) of all waves during the 20-minute period. See the Wave Measurements section.
+MWD
+The direction from which the waves at the dominant period (DPD) are coming. The units are degrees from true North, increasing clockwise, with North as 0 (zero) degrees and East as 90 degrees. See the Wave Measurements section.
+PRES
+Sea level pressure (hPa). For C-MAN sites and Great Lakes buoys, the recorded pressure is reduced to sea level using the method described in NWS Technical Procedures Bulletin 291 (11/14/80). ( labeled BAR in Historical files)
+ATMP
+Air temperature (Celsius). For sensor heights on buoys, see Hull Descriptions. For sensor heights at C-MAN stations, see C-MAN Sensor Locations
+WTMP
+Sea surface temperature (Celsius). For buoys the depth is referenced to the hull's waterline. For fixed platforms it varies with tide, but is referenced to, or near Mean Lower Low Water (MLLW).
+DEWP
+Dew point temperature taken at the same height as the air temperature measurement.
+VIS
+Station visibility (nautical miles). Note that buoy stations are limited to reports from 0 to 1.6 nmi.
+PTDY
+Pressure Tendency is the direction (plus or minus) and the amount of pressure change (hPa)for a three hour period ending at the time of observation. (not in Historical files)
+TIDE
+The water level in feet above or below Mean Lower Low Water (MLLW).
+Standard Meteorological Data for Drifting Buoys
+#YY  MM DD hhmm     LAT      LON WDIR WSPD GST   PRES PTDY ATMP WTMP  DEWP  WVHT  DPD
+#yr  mo dy hrmn     deg      deg degT m/s  m/s    hPa  hPa degC degC  degC     m  sec
+2022 07 27 1200   25.99   -89.66  60  9.0   MM 1010.1   MM 25.2 24.5  24.2   1.2    8
+This format is also used for uncrewed surface vehicles.
+
+LAT
+Latitude in decimal degrees at which observation was taken. Positive values represent northern hemisphere while negative values represent southern hemisphere.
+LON
+Longitude in decimal degrees at which observation was taken. Positive values represent eastern hemisphere while negative values represent western hemisphere.
+WDIR
+Wind direction (the direction the wind is coming from in degrees clockwise from true N) during the same period used for WSPD. See Wind Averaging Methods
+WSPD
+Wind speed (m/s) averaged over an eight-minute period for buoys and a two-minute period for land stations. Reported Hourly. See Wind Averaging Methods.
+GST
+Peak 5 or 8 second gust speed (m/s) measured during the eight-minute or two-minute period. The 5 or 8 second period can be determined by payload, See the Sensor Reporting, Sampling, and Accuracy section.
+PRES
+Sea level pressure (hPa). For C-MAN sites and Great Lakes buoys, the recorded pressure is reduced to sea level using the method described in NWS Technical Procedures Bulletin 291 (11/14/80). ( labeled BAR in Historical files)
+PTDY
+Pressure Tendency is the direction (plus or minus) and the amount of pressure change (hPa)for a three hour period ending at the time of observation. (not in Historical files)
+ATMP
+Air temperature (Celsius). For sensor heights on buoys, see Hull Descriptions. For sensor heights at C-MAN stations, see C-MAN Sensor Locations
+WTMP
+Sea surface temperature (Celsius). For buoys the depth is referenced to the hull's waterline. For fixed platforms it varies with tide, but is referenced to, or near Mean Lower Low Water (MLLW).
+DEWP
+Dew point temperature taken at the same height as the air temperature measurement.
+WVHT
+Significant wave height (meters) is calculated as the average of the highest one-third of all of the wave heights during the 20-minute sampling period. See the Wave Measurements section.
+DPD
+Dominant wave period (seconds) is the period with the maximum wave energy. See the Wave Measurements section.
+Derived Met Values
+#YY  MM DD hh mm CHILL  HEAT   ICE WSPD10 WSPD20
+#yr  mo dy hr mn  degC  degC cm/hr    m/s    m/s
+2014 09 11 16 50    MM  34.4    MM      5      5
+HEAT
+For more information on heat index, please see the NWS Heat Wave page.
+CHILL
+Please note that NDBC uses unadjusted winds to calculate wind chill. The winds are calculated at anemometer height. For more information on wind chill, please see the NWS Wind Chill Temperature Index.
+ICE
+Estimated ice accretion in inches per hour based on an algorithm developed by Overland and Pease at the Pacific Marine Environmental Laboratory in the mid-1980s. The algorithm relates icing to the presently observed wind speed, air temperature, and sea surface temperature. The method is designed for trawlers in the 20 to 75 meter length range, underway at normal speeds in open seas and not heading downwind. In general, NWS forecasters translate ice accretion rates to the following categories:
+light: 0.0 to 0.24 inches of ice accretion/hour;
+moderate: 0.25 to 0.8 inches/hour; and
+heavy: greater than 0.8 inches/hour.
+WSPD10
+The estimation of Wind Speed (WSPD) measurement raised or lowered to a height of 10 meters. NDBC uses the method of Liu et al., 1979: Bulk parameterization of air-sea exchanges in heat and water vapor including molecular constraints at the interface, Journal of Atmospheric Science, 36, pp. 1722-1735.
+WSPD20
+The estimation of Wind Speed (WSPD) measurement raised or lowered to a height of 20 meters. NDBC uses the method of Liu et al., 1979: Bulk parameterization of air-sea exchanges in heat and water vapor including molecular constraints at the interface, Journal of Atmospheric Science, 36, pp. 1722-1735.
+Supplemental Measurements Data
+#YY  MM DD hh mm   PRES PTIME  WSPD  WDIR WTIME
+#yr  mo dy hr mn    hPa  hhmm   m/s  degT  hhmm
+2014 09 11 16 50     MM    MM     6   110  1603
+Lowest 1 minute pressure
+Lowest recorded atmospheric pressure for the hour to the nearest 0.1 hPa and the time at which it occurred (hour and minute).
+Highest 1 minute wind speed
+Highest recorded wind speed for the hour to the nearest 0.1 m/s, its corresponding direction to the nearest degree, and the time at which it occurred (hour and minute).
+Continuous Winds
+#YY  MM DD hh mm WDIR WSPD GDR GST GTIME
+#yr  mo dy hr mn degT m/s degT m/s hhmm
+2014 09 11 16 50 117  5.2 120  6.0 1644
+WDIR
+Ten-minute average wind direction measurements in degrees clockwise from true North. (DIR in Historical files)
+WSPD
+Ten-minute average wind speed values in m/s. (SPD in Historical files)
+GDR
+Direction, in degrees clockwise from true North, of the GST, reported at the last hourly 10-minute segment.
+GST
+Maximum 5-second peak gust during the measurement hour, reported at the last hourly 10-minute segment.
+GTIME
+The minute of the hour that the GSP occurred, reported at the last hourly 10-minute segment.
+For more information on continuous winds and the timing of these measurements, see the continuous winds help section.
+
+Detailed Wave Summary (Realtime data files only)
+#YY  MM DD hh mm WVHT  SwH  SwP  WWH  WWP SwD WWD  STEEPNESS  APD MWD
+#yr  mo dy hr mn    m    m  sec    m  sec  -  degT     -      sec degT
+2014 09 11 17 00  0.6  0.4  5.6  0.4  4.3  SE  MM        N/A  4.2 134
+WVHT
+Significant Wave Height is the average height (meters) of the highest one-third of the waves during a 20 minute sampling period.
+SwH
+Swell height is the vertical distance (meters) between any swell crest and the succeeding swell wave trough.
+SwP
+Swell Period is the time (usually measured in seconds) that it takes successive swell wave crests or troughs pass a fixed point.
+WWH
+Wind Wave Height is the vertical distance (meters) between any wind wave crest and the succeeding wind wave trough (independent of swell waves).
+WWP
+Wind Wave Period is the time (in seconds) that it takes successive wind wave crests or troughs to pass a fixed point.
+SwD
+The direction from which the swell waves at the swell wave period (SWPD) are coming. The units are degrees from true North, increasing clockwise, with North as 0 (zero) degrees and East as 90 degrees.
+WWD
+The direction from which the wind waves at the wind wave period (WWPD) are coming. The units are degrees from true North, increasing clockwise, with North as 0 (zero) degrees and East as 90 degrees.
+STEEPNESS
+Wave steepness is the ratio of wave height to wave length and is an indicator of wave stability. When wave steepness exceeds a 1/7 ratio; the wave becomes unstable and begins to break.
+APD
+Average Wave Period is the average period (seconds) of the highest one-third of the wave observed during a 20 minute sampling period.
+MWD
+The direction from which the waves at the dominant period (DPD) are coming. The units are degrees from true North, increasing clockwise, with North as 0 (zero) degrees and East as 90 degrees. See the Wave Measurements section.
+Spectral Wave Data
+#YY  MM DD hh mm Sep_Freq  < spec_1 (freq_1) spec_2 (freq_2) spec_3 (freq_3) ... >
+2014 09 11 17 00 0.225 0.000 (0.033) 0.000 (0.038) 0.000 (0.043) ...>
+#YY  MM DD hh mm alpha1_1 (freq_1) alpha1_2 (freq_2) alpha1_3 (freq_3) ... >
+2014 09 11 17 00 999.0 (0.033) 999.0 (0.038) 999.0 (0.043) ...>
+#YY  MM DD hh mm alpha2_1 (freq_1) alpha2_2 (freq_2) alpha2_3 (freq_3) ... >
+2014 09 11 17 00 999.0 (0.033) 999.0 (0.038) 999.0 (0.043) ...
+#YY  MM DD hh mm r1_1 (freq_1) r1_2 (freq_2) r1_3 (freq_3) ... >
+2014 09 11 17 00 999.00 (0.033) 999.00 (0.038) 999.00 (0.043) ...>
+#YY  MM DD hh mm r2_1 (freq_1) r2_2 (freq_2) r2_3 (freq_3) ... >
+2014 09 11 17 00 999.00 (0.033) 999.00 (0.038) 999.00 (0.043) ...>
+Sep_Freq
+The Separation Frequency is the frequency that separates wind waves (WWH, WWP, WWD) from swell waves (SWH, SWP,SWD). NDBC inserts the value 9.999 if Sep_Freq is missing.
+Spectral wave density
+Energy in (meter*meter)/Hz, for each frequency bin (typically from 0.03 Hz to 0.40 Hz).
+Spectral wave direction
+Mean wave direction, in degrees from true North, for each frequency bin. A list of directional stations is available.
+Directional Wave Spectrum
+= C11(f) * D(f,A), f=frequency (Hz), A=Azimuth angle measured clockwise from true North to the direction wave is from.
+D(f,A) = (1/PI)*(0.5+R1*COS(A-ALPHA1)+R2*COS(2*(A-ALPHA2))). R1 and R2 are the first and second normalized polar coordinates of the Fourier coefficients and are nondimensional. ALPHA1 and ALPHA2 are respectively mean and principal wave directions.
+In terms of Longuet-Higgins Fourier Coefficients
+R1 = (SQRT(a1*a1+b1*b1))/a0
+R2 = (SQRT(a2*a2+b2*b2))/a0
+ALPHA1 = 270.0-ARCTAN(b1,a1)
+ALPHA2 = 270.0-(0.5*ARCTAN(b2,a2)+{0. or 180.})
+Notes:
+The R1 and R2 values in the monthly and yearly historical data files are scaled by 100, a carryover from how the data are transported to the archive centers. The units are hundredths, so the R1 and R2 values in those files should be multiplied by 0.01.
+D(f,A) can take on negative values because of the trigonometric sine and cosine functions. There are several approaches to prevent or deal with the negative values. For more information and discussion of some approaches see: Use of advanced directional wave spectra analysis methods, M. D. Earle, K. E. Steele, and D. W. C. Wang, Ocean Engineering, Volume 26, Issue 12, December 1999, Pages 1421-1434.
+ALPHA2 has ambiguous results in using the arctangent function with the Fourier Coefficients,b 2 ,a 2 . When necessary, NDBC adds 180 degrees to ALPHA2 in order to minimize the difference between ALPHA 1 and ALPHA2.
+For more information on the mathematics behind the measuring of surface water waves, see the waves help section.
+
+Ocean Current Data
+#YY  MM DD hh mm DEP01 DIR01 SPD01 DEP02 DIR02 SPD02 DEP03 DIR03 SPD03 ...>
+#yr  mo dy hr mn     m  degT  cm/s     m  degT  cm/s     m  degT  cm/s ...>
+2014 09 11 17 04     2    40     8    10   120     5    14   250    13 ...>
+DEP01, DEP02, ...
+The distance from the sea surface to the middle of the depth cells, or bins, measured in meters.
+DIR01, DIR02, ...
+The direction the ocean current is flowing toward. 0-360 degrees, 360 is due north, 0 means no measurable current.
+SPD01, SPD02, ...
+The speed of the ocean current measured in cm/s.
+Ocean Current Data (Expanded ADCP format)
+#YY  MM DD hh mm I Bin   Depth Dir Speed ErrVl VerVl %Good3 %Good4 %GoodE   EI1   EI2   EI3   EI4   CM1   CM2   CM3   CM4 Flags
+#yr  mo dy hr mn -   -     m  degT  cm/s  cm/s  cm/s      %      %      %     -     -     -     -     -     -     -     - -
+2014 09 11 17 46 1   1    69.4 117  63.2  -0.7  -1.2      0    100      0   171   166   177   170   234   231   233   230 393333330
+2014 09 11 17 46 1   2   101.4 122  63.1  -1.0  -3.7      0    100      0   147   145   154   150   236   236   235   237 393333330
+2014 09 11 17 46 1   3   133.4 120  54.1   4.2  -3.4      0    100      0   142   134   142   140   225   238   236   238 393333330
+Instrument Number
+Stations may have more than one ADCP instrument. This field distinguishes these instruments by number. Valid values are 0-9, with 0 being reserved for surface measurements.
+Bin
+The bin number, ranging from 1 to 128, where 1 is the bin closest to the transducer head.
+Depth
+The distance from the sea surface to the middle of the depth cells, or bins, measured in meters.
+Dir
+The direction the ocean current is flowing toward. 0-360 degrees, 360 is due north, 0 means no measurable current.
+Speed
+The speed of the ocean current measured in cm/s.
+ErrVl
+The error velocity measured in cm/s.
+VerVl
+The vertical velocity of the ocean current measured in cm/s.
+%Good3
+The percentage of three-beam solutions that are good.
+%Good4
+The percentage of four-beam solutions that are good.
+%GoodE
+The percentage of transformations rejected.
+EI1, EI2, EI3, EI4
+The echo intensity values for the four beams. Valid values are 0 to 255.
+EI1 = Echo Intensity for beam #1;
+EI2 = Echo Intensity for beam #1;
+EI3 = Echo Intensity for beam #3; and
+EI4 = Echo Intensity for beam #4.
+CM1, CM2, CM3, CM4
+The correlation magnitude values for the four beams. Valid values are 0 to 255.
+CM1 = Correlation Magnitude for beam #1;
+CM2 = Correlation Magnitude for beam #1;
+CM3 = Correlation Magnitude for beam #3; and
+CM4 = Correlation Magnitude for beam #4.
+Flags
+The nine quality flags represent the results of the following quality tests based on their position in the flags field.
+
+Flag 1 represents the overall bin status.
+Flag 2 represents the ADCP Built-In Test (BIT) status.
+Flag 3 represents the Error Velocity test status.
+Flag 4 represents the Percent Good test status.
+Flag 5 represents the Correlation Magnitude test status.
+Flag 6 represents the Vertical Velocity test status.
+Flag 7 represents the North Horizontal Velocity test status.
+Flag 8 represents the East Horizontal Velocity test status.
+Flag 9 represents the Echo Intensity test status.
+
+Valid values are:
+0 = quality not evaluated;
+1 = failed quality test;
+2 = questionable or suspect data;
+3 = good data/passed quality test; and
+9 = missing data.
+
+Marsh-McBirney Current Measurements
+YY MM DD hh mm    DIR    SPD
+96 10 31 23  0    198    1.1
+DIR
+Direction the current is flowing TOWARDS, measured in degrees clockwise from North.
+SPD
+Current speed in cm/s.
+Water Level
+#YY  MM DD hh mm TG01 TG02 TG03 TG04 TG05 TG06 TG07 TG08 TG09 TG10
+2014 07 01 00 00 10.6 10.6 10.6 10.5 10.6 10.6 10.6 10.7 10.7 10.8
+TG01, TG02, ..., TG10
+Six-minute water levels representing the height, in feet, of the water above or below Mean Lower Low Water (MLLW), offset by 10 ft. to prevent negative values. Please subtract 10 ft. from every value to obtain the true water level value, in reference to MLLW.
+Oceanographic Data
+#YY  MM DD hh mm   DEPTH  OTMP   COND   SAL   O2% O2PPM  CLCON  TURB    PH    EH
+#yr  mo dy hr mn       m  degC  mS/cm   psu     %   ppm   ug/l   FTU     -    mv
+2014 09 11 17 00     1.0 29.05     MM 34.98    MM    MM     MM    MM    MM    MM
+Depth (DEPTH)
+Depth (meters) at which measurements are taken.
+Ocean Temperature (OTMP)
+The direct measurement (Celsius) of the Ocean Temperature (as opposed to the indirect measurement (see WTMP above)).
+Conductivity (COND)
+Conductivity is a measure of the electrical conductivity properties of seawater in milliSiemens per centimeter.
+Salinity (SAL)
+Salinity is computed by a known functional relationship between the measured electrical conductivity of seawater (CON), temperature (OTMP) and pressure. Salinity is computed using the Practical Salinity Scale of 1978 (PSS78) and reported in Practical Salinity Units.
+Oxygen Saturation (O2%)
+Dissolved oxygen as a percentage.
+Oxygen Concentration (O2PPM)
+Dissolved oxygen in parts per million.
+Chlorophyll Concentration (CLCON)
+Chlorophyll concentration in micrograms per liter (ug/l).
+Turbidity (TURB)
+Turbidity is an expression of the optical property that causes light to be scattered and absorbed rather than transmitted in straight lines through the sample (APHA 1980). Units are Formazin Turbidity Units (FTU).
+pH (PH)
+A measure of the acidity or alkalinity of the seawater.
+Eh (EH)
+Redox (oxidation and reduction) potential of seawater in millivolts.
+Solar Radiation Data
+#YY  MM DD hh mm  SRAD1  SWRAD  LWRAD
+#yr  mo dy hr mn   w/m2   w/m2   w/m2
+2014 09 11 18 00 1061.0     MM     MM
+Shortwave Radiation
+(SRAD1, SWRAD)
+Average shortwave radiation in watts per square meter for the preceding hour. Sample frequency is 2 times per second (2 Hz). If present, SRAD1 is from a LI-COR LI-200 pyranometer sensor, and SWRAD is from an Eppley PSP Precision Spectral Pyranometer.
+Longwave Radiation (LWRAD)
+Average downwelling longwave radiation in watts per square meter for the preceding hour. Sample frequency is 2 times per second (2 Hz). If present, LWRAD is from an Eppley PIR Precision Infrared Radiometer.
+DART® (Tsunameters) Measurements
+#YY  MM DD hh mm ss T   HEIGHT
+#yr  mo dy hr mn  s -        m
+2014 09 11 17 00 00 1 5848.422
+T (TYPE)
+Measurement Type:
+1 = 15-minute measurement;
+2 = 1-minute measurement; and
+3 = 15-second measurement.
+HEIGHT
+Height of water column in meters.
+tt = Tsunami Trigger Time, see the Tsunami Detection Algorithm
+ts = data Time Stamp(s)
+
+24-Hour Rain Measurements
+#YY  MM DD hh mm   RATE  PCT  SDEV
+#yr  mo dy hr mn   mm/h   %     -
+2008 01 01 12 00   0.0   0.0   0.1
+24-Hour Rain Rate
+Average precipitation rate in units of millimeters per hour over 24-hour period from 00:00 to 23:59.99 GMT.
+Percent Time Raining in 24-Hour Period
+Percentage of 144 ten-minute periods within a 24 hour period with a measurable accumulation of precipitation.
+SDev
+---
+Flag
+In the case of 24-hour rainfall measurements, a flag is assigned when over half of the 10-minute measurements from which it is derived are flagged.
+Hourly Rain Measurements
+#YY  MM DD hh mm  ACCUM
+#yr  mo dy hr mn    mm
+2008 01 01 00 30   0.0
+Hourly Rain Accumulation
+Total accumulation of precipitation in units of millimeters on station during the 60-minute period from minute 0 to minute 59:59.99 of the hour.
+Flag
+In the case of one-hour accumulation, a flag is assigned when over half of the 10-minute measurements from which it is derived have been flagged.
+10-Minute Rain Measurements
+#YY  MM DD hh mm   RATE
+#yr  mo dy hr mn   mm/h
+2008 01 01 00 00   0.0
+10-Minute Rain Rate
+Rain rate in units of millimeters per hour on station over the 10-minute period from 5 minutes before to 4 minutes 59.99 seconds after the time with which it is associated.
+Flag
+In the case of 10-minute rainfall measurements, a flag is assigned to any measurement when either the -5 or +5 minute rain measurement from which it is derived is missing or obviously an error.
+Housekeeping Measurements
+#YY  MM DD hh mm  BATTV BATTCURR BATTTEMP REMCAP
+#yr  mo dy hr mn  Volts     Amps     DegC     Ah
+2016 09 15 19 00 12.381   -0.177     32.9  116.8
+BATTV
+Hourly Average Battery Voltage (volts)
+BATTCURR
+Hourly Average Battery Current (amperes)
+BATTTEMP
+Hourly Average Battery Temperature (degrees Celsius)
+REMCAP
+Remaining Battery Capacity (ampere-hours)
+Discontinued Measurement Abbreviations
+Some historical files have column heading abbreviations that have changed over time. The old abbreviations are listed below with links to the new standardized abbreviation description.
+
+Old
+New Abbreviation
+WD
+WDIR - Wind Direction
+DIR
+WDIR - 10 Minute Wind Direction
+SPD
+WSPD - 10 Minute Wind Speed
+GSP
+GST - Gust in Continuous Winds data
+GMN
+GTIME - Time of Gust in Continuous Winds data
+BARO
+PRES - Pressure
+H0
+WVHT - Significant Wave Height
+DOMPD
+DPD - Dominant Wave Period
+AVP
+APD - Average Wave Period
+SRAD
+SWRAD - Short Wave Solar Radiation
+SRAD2
+SWRAD - LI-COR Short Wave Solar Radiation
+LRAD
+LWRAD - Long Wave Solar Radiation
+LRAD1
+LWRAD - Long Wave Solar Radiation
+
+Here you go — NDBC station IDs mapped to their official station names:
+
+46050 → Stonewall Bank – 20 NM W of Newport, OR.
+ndbc.noaa.gov
+
+46015 → Port Orford – 15 NM W of Port Orford, OR.
+ndbc.noaa.gov
+
+46027 → St Georges – 8 NM NW of Crescent City, CA.
+ndbc.noaa.gov
+
+46059 → West California – 357 NM W of San Francisco, CA.
+ndbc.noaa.gov
+
+46076 → Cape Cleare – 17 NM S of Montague Island, AK.
+ndbc.noaa.gov
+
+51002 → Southwest Hawaii – 215 NM SSW of Hilo, HI.
+ndbc.noaa.gov
+Weather.gov
+
+44065 → New York Harbor Entrance (NY Harbor Approach / Ambrose Light) – 15 NM SE of Breezy Point, NY.
+ndbc.noaa.gov
+
+41009 → Canaveral – 20 NM E of Cape Canaveral, FL.
+ndbc.noaa.gov
+
+46011 → Santa Maria – 21 NM NW of Point Arguello, CA.
+ndbc.noaa.gov
+
+46041 → Cape Elizabeth – 45 NM NW of Aberdeen, WA

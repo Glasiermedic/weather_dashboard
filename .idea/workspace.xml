@@ -4,11 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="✅ Goals for app.py&#10;Primary Functions:&#10;&#10;Serves /api endpoints for weather summaries, graphs, tables, live data, and debug tools.&#10;&#10;Pulls from PostgreSQL on Render.&#10;&#10;Uses psycopg2 + pandas.read_sql_query (with a SQLAlchemy warning).&#10;&#10;Converts weather data into JSON for React frontend.&#10;&#10;🔧 Key Fixes and Enhancements&#10;1. ✅ Fix SQLAlchemy Warnings&#10;Issue: pandas.read_sql_query warns about using psycopg2.connect() directly.&#10;&#10;Fix: Switch to a SQLAlchemy engine:&#10;&#10;python&#10;Copy&#10;Edit&#10;from sqlalchemy import create_engine&#10;engine = create_engine(DATABASE_URL)&#10;And then use:&#10;&#10;python&#10;Copy&#10;Edit&#10;df = pd.read_sql_query(&quot;SQL HERE&quot;, con=engine)&#10;2. ✅ Normalize Column Names (YTD failure root cause)&#10;Ensure that the React dropdown only passes valid backend columns.&#10;&#10;Tie in weather_columns.csv as a dictionary exposed via /api/columns.&#10;&#10;3. ✅ Improve Error Logging and Tracing&#10;Add better traceback logging in all /api/ endpoints, especially /graph_data and /table_data, which often silently fail or return [].&#10;&#10;4. ✅ Add /api/columns Endpoint&#10;Expose the validated column list:&#10;&#10;python&#10;Copy&#10;Edit&#10;@app.route(&quot;/api/columns&quot;)&#10;def get_columns_dict():&#10;    return jsonify(column_dict)&#10;5. ✅ Fix Graph API Logic&#10;Current 1-day requests return empty arrays because weather_hourly.local_time is a timestamp and comparison is done with NOW() - INTERVAL '1 day' which fails silently.&#10;&#10;Validate this logic and potentially cast timestamp explicitly or adjust local_time::date.&#10;&#10;📄 Planned app.py Changes by Section&#10;Section&#9;Description&#9;Action&#10;Imports&#9;Add sqlalchemy.create_engine&#9;✅&#10;Database Access&#9;Replace all psycopg2.connect() in read_sql with SQLAlchemy engine&#9;✅&#10;New endpoint&#9;/api/columns → expose the cleaned weather_columns.csv&#9;✅&#10;/api/graph_data&#9;Patch handling for 1d, 7d ranges to avoid time mismatch&#9;✅&#10;Error Handling&#9;Wrap and log traceback.format_exc() for all major routes&#9;✅">
-      <change afterPath="$PROJECT_DIR$/api/autobotz_flask_api.py" afterDir="false" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="making the top reps table headers align with values by using explicit column model.      Also fixing issue">
+      <change afterPath="$PROJECT_DIR$/backend/config/reset_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fetch/fix_date_column_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fetch/ndbc_api_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fetch/noa_avc_data_fetch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fetch/pred_weather_tables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/first_alter_tables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/init_render_postgres_tables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_064737.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_064839.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_065226.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_065343.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_065518.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_065618.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_072438.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_074055.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_074632.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_074757.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_074835.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_074900.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_075946.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_080252.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_080344.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_080422.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250623_142314.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250805_193742.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250805_195111.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/logs/pipeline_log_20250805_201612.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/python_sql_scripts/remove_solaruv_max_hourly_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/python_sql_scripts/stations_demo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/python_sql_scripts/upsert_stations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/NDBC_field_definitions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/station_dictionary.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/weather_dashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/weather_dashboard.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/flask_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/archived_8.18.25_flask_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/utils/validMetics.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/utils/validMetics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/autobotz_flask_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/autobotz_flask_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/Run_custom_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/Run_custom_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/check_latest_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/check_latest_times.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/convert_hour_to_timestamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/convert_hour_to_timestamp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/inspect_weather_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/inspect_weather_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/populate_time_columns.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/populate_time_columns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/test_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/test_env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/python_sql scripts/update_schema_add-time_columns.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/python_sql_scripts/update_schema_add-time_columns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/components/TopRepsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/components/TopRepsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/weather-ui/src/pages/WeatherDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +61,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -78,6 +122,8 @@
     &quot;Python.inject_sales.executor&quot;: &quot;Run&quot;,
     &quot;Python.insert_weather_raw.executor&quot;: &quot;Run&quot;,
     &quot;Python.inspect_weather_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ndbc_api_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.noa_avc_data_fetch.executor&quot;: &quot;Run&quot;,
     &quot;Python.populate_time_columns.executor&quot;: &quot;Run&quot;,
     &quot;Python.process_weather_data.executor&quot;: &quot;Run&quot;,
     &quot;Python.removal_kormcmin127_f_tables.executor&quot;: &quot;Run&quot;,
@@ -88,12 +134,13 @@
     &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_env.executor&quot;: &quot;Run&quot;,
     &quot;Python.update_schema_add-time_columns.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wd_init_db.executor&quot;: &quot;Run&quot;,
     &quot;Python.weatherjson_to_csv.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sewmo/PycharmProjects/weather_dashboard/.venv&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sewmo/PycharmProjects/weather_dashboard&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -106,17 +153,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\.venv" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\python_sql_scripts" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\python_sql scripts" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\frontend\weather-ui\src\pages" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend" />
-      <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -186,6 +234,37 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="wd_init_db" type="PythonConfigurationType" factoryName="Python">
+      <module name="weather_dashboard" />
+      <option name="ENV_FILES" value="$PROJECT_DIR$/.env" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DATABASE_URL" value="postgresql://weather_data_h5wg_user:wR3oeqjmVGmfUDDfHIJ11arGFI830R5S@dpg-d1cu3ih5pdvs73c5vueg-a.oregon-postgres.render.com/weather_data_h5wg" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (weather_dashboard)" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="wd_backend.common.init_db" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.app" />
+      <item itemvalue="Python.inject_sales" />
+      <item itemvalue="Python.process_weather_data" />
+      <item itemvalue="Python.wd_init_db" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -210,30 +289,9 @@
       <workItem from="1752561020553" duration="2514000" />
       <workItem from="1752703031624" duration="38623000" />
       <workItem from="1755880018141" duration="1583000" />
-    </task>
-    <task id="LOCAL-00003" summary="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features">
-      <option name="closed" value="true" />
-      <created>1749218659933</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1749218659933</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features">
-      <option name="closed" value="true" />
-      <created>1749218698610</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1749218698610</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features">
-      <option name="closed" value="true" />
-      <created>1749218867509</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1749218867509</updated>
+      <workItem from="1756099885317" duration="91201000" />
+      <workItem from="1757636131865" duration="31641000" />
+      <workItem from="1760139424982" duration="3377000" />
     </task>
     <task id="LOCAL-00006" summary="🔧 Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking">
       <option name="closed" value="true" />
@@ -603,7 +661,31 @@
       <option name="project" value="LOCAL" />
       <updated>1753344061778</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Adding in the components and react page along with backend data scripts.">
+      <option name="closed" value="true" />
+      <created>1756510396080</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1756510396081</updated>
+    </task>
+    <task id="LOCAL-00053" summary="-fixing issue with missing &quot;:&quot; from line 15 of AwtowbotzDashboard.js. &#10;&#10;-Adding in the components and react page along with backend data scripts.">
+      <option name="closed" value="true" />
+      <created>1756538011036</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1756538011036</updated>
+    </task>
+    <task id="LOCAL-00054" summary="-fixing issue with missing &quot;:&quot; from line 15 of AwtowbotzDashboard.js. &#10;&#10;-Adding in the components and react page along with backend data scripts.">
+      <option name="closed" value="true" />
+      <created>1756571722781</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1756571722781</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,27 +710,36 @@
     <MESSAGE value="adding combined and all functionality along with table of data to frontend" />
     <MESSAGE value="fixing issues with the date and time fields that were causing errors in building the graphs and tables." />
     <MESSAGE value="✅ Goals for app.py&#10;Primary Functions:&#10;&#10;Serves /api endpoints for weather summaries, graphs, tables, live data, and debug tools.&#10;&#10;Pulls from PostgreSQL on Render.&#10;&#10;Uses psycopg2 + pandas.read_sql_query (with a SQLAlchemy warning).&#10;&#10;Converts weather data into JSON for React frontend.&#10;&#10; Key Fixes and Enhancements&#10;1. ✅ Fix SQLAlchemy Warnings&#10;Issue: pandas.read_sql_query warns about using psycopg2.connect() directly.&#10;&#10;Fix: Switch to a SQLAlchemy engine:&#10;&#10;python&#10;Copy&#10;Edit&#10;from sqlalchemy import create_engine&#10;engine = create_engine(DATABASE_URL)&#10;And then use:&#10;&#10;python&#10;Copy&#10;Edit&#10;df = pd.read_sql_query(&quot;SQL HERE&quot;, con=engine)&#10;2. ✅ Normalize Column Names (YTD failure root cause)&#10;Ensure that the React dropdown only passes valid backend columns.&#10;&#10;Tie in weather_columns.csv as a dictionary exposed via /api/columns.&#10;&#10;3. ✅ Improve Error Logging and Tracing&#10;Add better traceback logging in all /api/ endpoints, especially /graph_data and /table_data, which often silently fail or return [].&#10;&#10;4. ✅ Add /api/columns Endpoint&#10;Expose the validated column list:&#10;&#10;python&#10;Copy&#10;Edit&#10;@app.route(&quot;/api/columns&quot;)&#10;def get_columns_dict():&#10;    return jsonify(column_dict)&#10;5. ✅ Fix Graph API Logic&#10;Current 1-day requests return empty arrays because weather_hourly.local_time is a timestamp and comparison is done with NOW() - INTERVAL '1 day' which fails silently.&#10;&#10;Validate this logic and potentially cast timestamp explicitly or adjust local_time::date.&#10;&#10; Planned app.py Changes by Section&#10;Section&#9;Description&#9;Action&#10;Imports&#9;Add sqlalchemy.create_engine&#9;✅&#10;Database Access&#9;Replace all psycopg2.connect() in read_sql with SQLAlchemy engine&#9;✅&#10;New endpoint&#9;/api/columns → expose the cleaned weather_columns.csv&#9;✅&#10;/api/graph_data&#9;Patch handling for 1d, 7d ranges to avoid time mismatch&#9;✅&#10;Error Handling&#9;Wrap and log traceback.format_exc() for all major routes&#9;✅" />
-    <option name="LAST_COMMIT_MESSAGE" value="✅ Goals for app.py&#10;Primary Functions:&#10;&#10;Serves /api endpoints for weather summaries, graphs, tables, live data, and debug tools.&#10;&#10;Pulls from PostgreSQL on Render.&#10;&#10;Uses psycopg2 + pandas.read_sql_query (with a SQLAlchemy warning).&#10;&#10;Converts weather data into JSON for React frontend.&#10;&#10; Key Fixes and Enhancements&#10;1. ✅ Fix SQLAlchemy Warnings&#10;Issue: pandas.read_sql_query warns about using psycopg2.connect() directly.&#10;&#10;Fix: Switch to a SQLAlchemy engine:&#10;&#10;python&#10;Copy&#10;Edit&#10;from sqlalchemy import create_engine&#10;engine = create_engine(DATABASE_URL)&#10;And then use:&#10;&#10;python&#10;Copy&#10;Edit&#10;df = pd.read_sql_query(&quot;SQL HERE&quot;, con=engine)&#10;2. ✅ Normalize Column Names (YTD failure root cause)&#10;Ensure that the React dropdown only passes valid backend columns.&#10;&#10;Tie in weather_columns.csv as a dictionary exposed via /api/columns.&#10;&#10;3. ✅ Improve Error Logging and Tracing&#10;Add better traceback logging in all /api/ endpoints, especially /graph_data and /table_data, which often silently fail or return [].&#10;&#10;4. ✅ Add /api/columns Endpoint&#10;Expose the validated column list:&#10;&#10;python&#10;Copy&#10;Edit&#10;@app.route(&quot;/api/columns&quot;)&#10;def get_columns_dict():&#10;    return jsonify(column_dict)&#10;5. ✅ Fix Graph API Logic&#10;Current 1-day requests return empty arrays because weather_hourly.local_time is a timestamp and comparison is done with NOW() - INTERVAL '1 day' which fails silently.&#10;&#10;Validate this logic and potentially cast timestamp explicitly or adjust local_time::date.&#10;&#10; Planned app.py Changes by Section&#10;Section&#9;Description&#9;Action&#10;Imports&#9;Add sqlalchemy.create_engine&#9;✅&#10;Database Access&#9;Replace all psycopg2.connect() in read_sql with SQLAlchemy engine&#9;✅&#10;New endpoint&#9;/api/columns → expose the cleaned weather_columns.csv&#9;✅&#10;/api/graph_data&#9;Patch handling for 1d, 7d ranges to avoid time mismatch&#9;✅&#10;Error Handling&#9;Wrap and log traceback.format_exc() for all major routes&#9;✅" />
+    <MESSAGE value="Adding in the components and react page along with backend data scripts." />
+    <MESSAGE value="-fixing issue with missing &quot;:&quot; from line 15 of AwtowbotzDashboard.js. &#10;&#10;-Adding in the components and react page along with backend data scripts." />
+    <option name="LAST_COMMIT_MESSAGE" value="-fixing issue with missing &quot;:&quot; from line 15 of AwtowbotzDashboard.js. &#10;&#10;-Adding in the components and react page along with backend data scripts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/backend/fetch/aggregate_to_hourly.py</url>
+          <url>file://$PROJECT_DIR$/wd_backend/fetch/aggregate_to_hourly.py</url>
           <line>10</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/wd_backend/fetch/ndbc_api_test.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/weather_dashboard$process_weather_data.coverage" NAME="process_weather_data Coverage Results" MODIFIED="1752338669067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1752341109473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$inspect_weather_tables.coverage" NAME="inspect_weather_tables Coverage Results" MODIFIED="1753000031625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1752341109473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$noa_avc_data_fetch.coverage" NAME="noa_avc_data_fetch Coverage Results" MODIFIED="1756755061305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$removal_kormcmin127_f_tables.coverage" NAME="removal_kormcmin127_f_tables Coverage Results" MODIFIED="1749194379565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$convert_hour_to_timestamp.coverage" NAME="convert_hour_to_timestamp Coverage Results" MODIFIED="1753109459670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql scripts" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$ndbc_api_test.coverage" NAME="ndbc_api_test Coverage Results" MODIFIED="1756978066396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$data_freshness.coverage" NAME="data_freshness Coverage Results" MODIFIED="1749217873872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$Run_custom_query.coverage" NAME="Run_custom_query Coverage Results" MODIFIED="1753341067863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql scripts" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$Run_custom_query.coverage" NAME="Run_custom_query Coverage Results" MODIFIED="1760157963637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql_scripts" />
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_5min_raw.coverage" NAME="fetch_pws_5min_raw Coverage Results" MODIFIED="1749231299455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$fetch_pws_history.coverage" NAME="fetch_pws_history Coverage Results" MODIFIED="1750349933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_weather_hourly_table.coverage" NAME="repair_weather_hourly_table Coverage Results" MODIFIED="1749230861653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
@@ -657,6 +748,7 @@
     <SUITE FILE_PATH="coverage/weather_dashboard$init_weather_tables.coverage" NAME="init_weather_tables Coverage Results" MODIFIED="1750661422357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$check_latest_times.coverage" NAME="check_latest_times Coverage Results" MODIFIED="1752421662759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$Patch_schema.coverage" NAME="Patch_schema Coverage Results" MODIFIED="1749193955366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$wd_init_db.coverage" NAME="wd_init_db Coverage Results" MODIFIED="1760157762132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\sewmo\PycharmProjects\weather_dashboard" />
     <SUITE FILE_PATH="coverage/weather_dashboard$repair_wather_raw_table.coverage" NAME="repair_wather_raw_table Coverage Results" MODIFIED="1749227024488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$update_schema_add_time_columns.coverage" NAME="update_schema_add-time_columns Coverage Results" MODIFIED="1753001130705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$aggregate_to_daily.coverage" NAME="aggregate_to_daily Coverage Results" MODIFIED="1750351659795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />

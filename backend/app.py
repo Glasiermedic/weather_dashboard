@@ -8,8 +8,22 @@ from process_weather_data import run_all
 import requests
 from urllib.parse import urlparse
 
+TWC_API_KEY = os.getenv("WEATHER_API_KEY")  # set this in Render/Vercel env
+PWS_CACHE_TTL = int(os.getenv("PWS_CACHE_TTL", "60"))  # seconds
+_pws_cache = {}  # {station_id: (expires_epoch, payload)}
+
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ENV_PATH = os.path.join(ROOT_DIR, ".env")
+
+from contextlib import contextmanager
+
+@contextmanager
+def pooled_conn():
+    conn = get_pg_connection()
+    try:
+        yield conn
+    finally:
+        release_pg_connection(conn)
 
 print("Looking for .env at:", ENV_PATH)
 load_dotenv(dotenv_path=ENV_PATH)
@@ -179,65 +193,116 @@ def get_graph_data():
     finally:
         release_pg_connection(conn)
 
-@app.route("/api/current_data_live")
-def get_current_data_live():
+@app.route("/api/pws_current")
+def pws_current():
     station_id = request.args.get("station_id")
     if not station_id:
         return jsonify({"error": "Missing station_id"}), 400
+    if not TWC_API_KEY:
+        return jsonify({"error": "TWC_API_KEY not configured"}), 500
 
-    conn = get_pg_connection()
+    url = "https://api.weather.com/v2/pws/observations/current"
+    params = {
+        "stationId": station_id,
+        "format": "json",
+        "units": "e",                 # e = English (°F, mph, inHg, inches)
+        "numericPrecision": "decimal",
+        "apiKey": TWC_API_KEY,
+    }
+
     try:
-        df = pd.read_sql_query(
-            "SELECT * FROM weather_raw WHERE station_id = %s ORDER BY local_time DESC LIMIT 1",
-            conn,
-            params=(station_id,)
-        )
-        if not df.empty:
-            row = df.iloc[0]
-            return jsonify({
-                "temp": row.get("avg_temp"),
-                "humidity": row.get("avg_humidity"),
-                "wind_speed": row.get("avg_wnd_spd"),
-                "precip": row.get("precip_rate", 0.0),
-                "timestamp": row.get("local_time"),
-                "fallback": True
-            })
-    except Exception as e:
-        print(f"❌ Fallback error: {e}")
-    finally:
-        release_pg_connection(conn)
+        r = requests.get(url, params=params, timeout=8)
+        # Some stations return 204 or 200 with empty observations when >60 min old
+        if r.status_code == 204:
+            return jsonify({"expired": True, "message": "No recent observation"}), 200
 
-    return jsonify({"error": "No data available"}), 500
+        r.raise_for_status()
+        payload = r.json()
+
+        obs_list = payload.get("observations") or []
+        if not obs_list:
+            # TWC returns no obs when data is older than 60min (“data expired” case)
+            return jsonify({"expired": True, "message": "No recent observation"}), 200
+
+        obs = obs_list[0]
+        imp = obs.get("imperial", {})  # because we requested units=e
+        result = {
+            "station_id": obs.get("stationID"),
+            "timestamp_local": obs.get("obsTimeLocal"),
+            "timestamp_utc": obs.get("obsTimeUtc"),
+            "humidity": obs.get("humidity"),
+            "uv": obs.get("uv"),
+            "solar_radiation": obs.get("solarRadiation"),
+            "wind_dir": obs.get("winddir"),
+            # imperial block
+            "temp": imp.get("temp"),
+            "dew_point": imp.get("dewpt"),
+            "wind_speed": imp.get("windSpeed"),
+            "wind_gust": imp.get("windGust"),
+            "wind_chill": imp.get("windChill"),
+            "heat_index": imp.get("heatIndex"),
+            "pressure": imp.get("pressure"),
+            "precip": imp.get("precipRate"),
+            "precip_total": imp.get("precipTotal"),
+            "elev": imp.get("elev"),
+            # flags
+            "expired": False,
+            "fallback": False,
+        }
+        return jsonify(result)
+    except requests.HTTPError as e:
+        return jsonify({"error": "TWC HTTP error", "detail": str(e), "expired": True}), 200
+    except Exception as e:
+        return jsonify({"error": "Upstream error", "detail": str(e)}), 502
 
 @app.route("/api/table_data")
 def get_table_data():
+    """
+    Returns recent rows for one or more stations.
+    Query params:
+      - station_id (or station_ids=ID1,ID2)
+      - hours: integer (e.g., 24, 48) -> returns rows where local_time >= now - hours
+      - limit: integer (fallback if 'hours' not provided) -> returns last N rows ordered by time desc
+    """
     station_ids_param = request.args.get("station_id") or request.args.get("station_ids")
     if not station_ids_param:
         return jsonify({"error": "Missing station_id(s)"}), 400
 
     station_ids = station_ids_param.split(",")
-    conn = get_pg_connection()
+    hours = request.args.get("hours")
+    limit = request.args.get("limit", "100")  # default last 100 rows
+
     try:
-        station_placeholders = ",".join(["%s"] * len(station_ids))
-        df = pd.read_sql_query(
-            f"""
-            SELECT *
-            FROM weather_hourly
-            WHERE station_id IN ({station_placeholders})
-              AND local_time >= NOW() - INTERVAL '48 hours'
-            ORDER BY local_time DESC
-            """,
-            conn,
-            params=station_ids
-        )
-        return jsonify({
-            "rows": df.to_dict(orient="records")
-        })
+        with pooled_conn() as conn:
+            placeholders = ",".join(["%s"] * len(station_ids))
+
+            if hours:
+                # Filter by last X hours
+                sql = f"""
+                    SELECT *
+                    FROM weather_hourly
+                    WHERE station_id IN ({placeholders})
+                      AND local_time >= NOW() - INTERVAL %s
+                    ORDER BY local_time DESC
+                """
+                params = station_ids + [f"{int(hours)} hours"]
+            else:
+                # Return last N rows
+                sql = f"""
+                    SELECT *
+                    FROM weather_hourly
+                    WHERE station_id IN ({placeholders})
+                    ORDER BY local_time DESC
+                    LIMIT %s
+                """
+                params = station_ids + [int(limit)]
+
+            df = pd.read_sql_query(sql, conn, params=params)
+
+        return jsonify({"rows": df.to_dict(orient="records")})
     except Exception as e:
         print("❌ Error fetching table data:", e)
         return jsonify({"error": "Internal server error"}), 500
-    finally:
-        release_pg_connection(conn)
 
 @app.route("/api/debug/weather_daily_columns")
 def get_weather_daily_columns():

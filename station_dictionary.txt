@@ -1,0 +1,259 @@
+Drop-in registry (paste into a .py file)
+# stations_registry.py
+
+from __future__ import annotations
+from typing import Dict, Optional
+
+def ckey(kind: str, code: str) -> str:
+    """Canonical key: 'icao:KMMV', 'ndbc:46050', 'pws:KORMCMIN133'."""
+    return f"{kind.lower()}:{code.upper()}"
+
+def display_name(entry: dict) -> Optional[str]:
+    """Pick the first available name using the entry's preferred order."""
+    for src in entry.get("preferred_name_order", []):
+        n = entry.get("names", {}).get(src)
+        if n:
+            return n
+    # fallback: any name you have
+    names = entry.get("names", {})
+    return next(iter(names.values()), None) if names else None
+
+
+# -------------------------
+# YOUR STATIONS DICTIONARY
+# -------------------------
+stations: Dict[str, dict] = {
+
+    # ---------- PWS / Weather.com ----------
+    ckey("pws", "KORMCMIN133"): {
+        "kind": "pws",
+        "ids": {"twc": "KORMCMIN133"},
+        "names": {"twc": "McMinnville NE (PWS)"},
+        "location": { },  # add lat/lon when you have them
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    },
+    ckey("pws", "KORMCMIN127"): {
+        "kind": "pws",
+        "ids": {"twc": "KORMCMIN127"},
+        "names": {"twc": "McMinnville East (PWS)"},
+        "location": { },
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    },
+
+    # ---------- AWC / Airports (ICAO) ----------
+    ckey("icao", "KMMV"): {
+        "kind": "icao",
+        "ids": {"awc": "KMMV", "twc": "KMMV"},
+        "names": {"awc": "McMinnville Municipal Airport"},
+        "location": { },  # lat/lon optional
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    },
+    ckey("icao", "KHIO"): {
+        "kind": "icao",
+        "ids": {"awc": "KHIO", "twc": "KHIO"},
+        "names": {"awc": "Portland–Hillsboro Airport"},
+        "location": { },
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    },
+    ckey("icao", "KUAO"): {
+        "kind": "icao",
+        "ids": {"awc": "KUAO", "twc": "KUAO"},
+        "names": {"awc": "Aurora State Airport"},
+        "location": { },
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    },
+
+    # ---------- NDBC / Buoys ----------
+    ckey("ndbc", "46050"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46050", "twc": "46050"},
+        "names": {"ndbc": "Stonewall Bank – 20 NM W of Newport, OR"},
+        "location": { },
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46015"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46015", "twc": "46015"},
+        "names": {"ndbc": "Port Orford – 15 NM W of Port Orford, OR"},
+        "location": { },
+        "meta": {"state": "OR", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46027"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46027", "twc": "46027"},
+        "names": {"ndbc": "St Georges – 8 NM NW of Crescent City, CA"},
+        "location": { },
+        "meta": {"state": "CA", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46059"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46059", "twc": "46059"},
+        "names": {"ndbc": "West California – 357 NM W of San Francisco, CA"},
+        "location": { },
+        "meta": {"state": "CA", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46076"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46076", "twc": "46076"},
+        "names": {"ndbc": "Cape Cleare – 17 NM S of Montague Island, AK"},
+        "location": { },
+        "meta": {"state": "AK", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "51002"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "51002", "twc": "51002"},
+        "names": {"ndbc": "Southwest Hawaii – 215 NM SSW of Hilo, HI"},
+        "location": { },
+        "meta": {"state": "HI", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "44065"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "44065", "twc": "44065"},
+        "names": {"ndbc": "New York Harbor Entrance (Ambrose Light) – 15 NM SE of Breezy Point, NY"},
+        "location": { },
+        "meta": {"state": "NY", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "41009"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "41009", "twc": "41009"},
+        "names": {"ndbc": "Canaveral – 20 NM E of Cape Canaveral, FL"},
+        "location": { },
+        "meta": {"state": "FL", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46011"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46011", "twc": "46011"},
+        "names": {"ndbc": "Santa Maria – 21 NM NW of Point Arguello, CA"},
+        "location": { },
+        "meta": {"state": "CA", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+    ckey("ndbc", "46041"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46041", "twc": "46041"},
+        "names": {"ndbc": "Cape Elizabeth – 45 NM NW of Aberdeen, WA"},
+        "location": { },
+        "meta": {"state": "WA", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+
+    # (optional) placeholder for 46029
+    ckey("ndbc", "46029"): {
+        "kind": "ndbc",
+        "ids": {"ndbc": "46029", "twc": "46029"},
+        "names": {"ndbc": "NDBC 46029"},   # update with the official label 
+        "location": { },
+        "meta": {"state": "WA", "country": "US"},
+        "preferred_name_order": ["twc", "ndbc", "awc"],
+    },
+}
+
+
+# -------------------------
+# Helpers: add / update
+# -------------------------
+def upsert_station(
+    kind: str,
+    code: str,
+    *,
+    name_by_provider: Optional[dict] = None,
+    ids_by_provider: Optional[dict] = None,
+    lat: float | None = None,
+    lon: float | None = None,
+    meta: Optional[dict] = None,
+    preferred_name_order: Optional[list[str]] = None,
+) -> dict:
+    """
+    Add or update a station entry. Returns the entry.
+    """
+    key = ckey(kind, code)
+    entry = stations.get(key) or {
+        "kind": kind.lower(),
+        "ids": {},
+        "names": {},
+        "location": {},
+        "meta": {},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    }
+
+    if ids_by_provider:
+        for prov, pid in ids_by_provider.items():
+            if pid:
+                entry["ids"][prov.lower()] = str(pid).upper()
+
+    if name_by_provider:
+        for prov, nm in name_by_provider.items():
+            if nm:
+                entry["names"][prov.lower()] = str(nm)
+
+    if lat is not None and lon is not None:
+        entry["location"].update({"lat": float(lat), "lon": float(lon)})
+
+    if meta:
+        entry["meta"].update(meta)
+
+    if preferred_name_order:
+        entry["preferred_name_order"] = [p.lower() for p in preferred_name_order]
+
+    stations[key] = entry
+    return entry
+
+
+def link_id(canonical_key: str, provider: str, provider_id: str) -> None:
+    """Attach an additional provider ID to an existing station."""
+    entry = stations.setdefault(canonical_key, {
+        "kind": canonical_key.split(":")[0],
+        "ids": {}, "names": {}, "location": {}, "meta": {},
+        "preferred_name_order": ["twc", "awc", "ndbc"],
+    })
+    entry["ids"][provider.lower()] = provider_id.upper()
+
+How to add new entries (two quick examples)
+1) Add Salem airport (KSLE) with AWC + TWC ids
+upsert_station(
+    "icao", "KSLE",
+    ids_by_provider={"awc": "KSLE", "twc": "KSLE"},
+    name_by_provider={"awc": "Salem Municipal Airport"},
+    meta={"state": "OR", "country": "US"}
+)
+
+2) Add another buoy (46029) with a better name + coords later
+# Update the placeholder with official label & coordinates
+upsert_station(
+    "ndbc", "46029",
+    name_by_provider={"ndbc": "Columbia River Bar (example label)"},
+    lat=46.1, lon=-124.2,  # replace with accurate values when you have them
+    meta={"state": "WA", "country": "US"}
+)
+
+Common operations you’ll do
+
+Get a display name to show in your UI
+
+name = display_name(stations["icao:KMMV"])
+
+
+Link an extra provider ID later (e.g., FAA “MMV”)
+
+link_id("icao:KMMV", "faa", "MMV")
+
+
+Iterate all entries (e.g., to seed BigQuery metadata)
+
+for key, entry in stations.items():
+    print(key, display_name(entry), entry["ids"], entry.get("location"))
+
+

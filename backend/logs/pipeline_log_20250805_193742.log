@@ -1,0 +1,472 @@
+2025-08-05 19:37:42,146 [INFO] 🚀 Starting weather data pipeline...
+
+2025-08-05 19:37:42,146 [INFO] ▶️ Running fetch/fetch_pws_history.py...
+2025-08-05 19:37:46,856 [INFO] 
+🔍 Checking propdada (KORMCMIN133) for 20240805 to 20240904
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240805&endDate=20240904&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240905 to 20241005
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240905&endDate=20241005&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241006 to 20241105
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241006&endDate=20241105&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241106 to 20241206
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241106&endDate=20241206&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241207 to 20250106
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241207&endDate=20250106&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250107 to 20250206
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250107&endDate=20250206&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250207 to 20250309
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250207&endDate=20250309&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250310 to 20250409
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250310&endDate=20250409&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250410 to 20250510
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250410&endDate=20250510&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250410_20250510.json
+
+🔍 Checking propdada (KORMCMIN133) for 20250511 to 20250610
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250511&endDate=20250610&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250511_20250610.json
+
+🔍 Checking propdada (KORMCMIN133) for 20250611 to 20250711
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250611&endDate=20250711&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250611_20250711.json
+
+🔍 Checking propdada (KORMCMIN133) for 20250712 to 20250805
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250712&endDate=20250805&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN133_20250712_20250805.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20240805 to 20240904
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240805&endDate=20240904&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240905 to 20241005
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240905&endDate=20241005&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241006 to 20241105
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241006&endDate=20241105&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241106 to 20241206
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241106&endDate=20241206&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241207 to 20250106
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241207&endDate=20250106&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20241207_20250106.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250107 to 20250206
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250107&endDate=20250206&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250107_20250206.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250207 to 20250309
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250207&endDate=20250309&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250207_20250309.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250310 to 20250409
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250310&endDate=20250409&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250310_20250409.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250410 to 20250510
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250410&endDate=20250510&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250410_20250510.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250511 to 20250610
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250511&endDate=20250610&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250511_20250610.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250611 to 20250711
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250611&endDate=20250711&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250611_20250711.json
+
+🔍 Checking dustprop (KORMCMIN127) for 20250712 to 20250805
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20250712&endDate=20250805&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+✅ Data saved: KORMCMIN127_20250712_20250805.json
+
+2025-08-05 19:37:46,860 [INFO] ▶️ Running fetch/weatherjson_to_csv.py...
+2025-08-05 19:37:53,325 [INFO] CSV columns: Index(['Source Field (from JSON)', 'Suggested DB Column Name', 'alias'], dtype='object')
+
+2025-08-05 19:37:53,326 [WARNING] 2025-08-05 19:37:47,271 [INFO] 📁 Reading JSON files from: C:\Users\sewmo\PycharmProjects\weather_dashboard\data
+C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\weatherjson_to_csv.py:73: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  combined_df = pd.concat(all_dfs, ignore_index=True)
+2025-08-05 19:37:53,280 [INFO] ✅ Conversion complete and saved to PostgreSQL.
+
+2025-08-05 19:37:53,326 [INFO] ▶️ Running process_weather_data.py...
+2025-08-05 19:37:54,004 [INFO] ✅ Loaded DATABASE_URL: postgresql://weather_data_h5wg_user:wR3oeqjmVGmfUDDfHIJ11arGFI830R5S@dpg-d1cu3ih5pdvs73c5vueg-a.oregon-postgres.render.com/weather_data_h5wg
+✅ ETL process_weather_data.py ran successfully
+
+2025-08-05 19:37:54,005 [INFO] ▶️ Running fetch/aggregate_to_daily.py...
+2025-08-05 19:38:05,530 [INFO] ⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-22, local_time 2024-12-22 00:00:00, day 2024-12-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-23, local_time 2024-12-23 00:00:00, day 2024-12-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-24, local_time 2024-12-24 00:00:00, day 2024-12-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-25, local_time 2024-12-25 00:00:00, day 2024-12-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-26, local_time 2024-12-26 00:00:00, day 2024-12-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-27, local_time 2024-12-27 00:00:00, day 2024-12-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-28, local_time 2024-12-28 00:00:00, day 2024-12-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-29, local_time 2024-12-29 00:00:00, day 2024-12-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-30, local_time 2024-12-30 00:00:00, day 2024-12-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2024-12-31, local_time 2024-12-31 00:00:00, day 2024-12-31
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-01, local_time 2025-01-01 00:00:00, day 2025-01-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-02, local_time 2025-01-02 00:00:00, day 2025-01-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-03, local_time 2025-01-03 00:00:00, day 2025-01-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-04, local_time 2025-01-04 00:00:00, day 2025-01-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-05, local_time 2025-01-05 00:00:00, day 2025-01-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-06, local_time 2025-01-06 00:00:00, day 2025-01-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-07, local_time 2025-01-07 00:00:00, day 2025-01-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-08, local_time 2025-01-08 00:00:00, day 2025-01-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-09, local_time 2025-01-09 00:00:00, day 2025-01-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-10, local_time 2025-01-10 00:00:00, day 2025-01-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-11, local_time 2025-01-11 00:00:00, day 2025-01-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-12, local_time 2025-01-12 00:00:00, day 2025-01-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-13, local_time 2025-01-13 00:00:00, day 2025-01-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-14, local_time 2025-01-14 00:00:00, day 2025-01-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-15, local_time 2025-01-15 00:00:00, day 2025-01-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-16, local_time 2025-01-16 00:00:00, day 2025-01-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-17, local_time 2025-01-17 00:00:00, day 2025-01-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-18, local_time 2025-01-18 00:00:00, day 2025-01-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-19, local_time 2025-01-19 00:00:00, day 2025-01-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-20, local_time 2025-01-20 00:00:00, day 2025-01-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-21, local_time 2025-01-21 00:00:00, day 2025-01-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-22, local_time 2025-01-22 00:00:00, day 2025-01-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-23, local_time 2025-01-23 00:00:00, day 2025-01-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-24, local_time 2025-01-24 00:00:00, day 2025-01-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-25, local_time 2025-01-25 00:00:00, day 2025-01-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-26, local_time 2025-01-26 00:00:00, day 2025-01-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-27, local_time 2025-01-27 00:00:00, day 2025-01-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-28, local_time 2025-01-28 00:00:00, day 2025-01-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-29, local_time 2025-01-29 00:00:00, day 2025-01-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-30, local_time 2025-01-30 00:00:00, day 2025-01-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-01-31, local_time 2025-01-31 00:00:00, day 2025-01-31
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-01, local_time 2025-02-01 00:00:00, day 2025-02-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-02, local_time 2025-02-02 00:00:00, day 2025-02-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-03, local_time 2025-02-03 00:00:00, day 2025-02-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-04, local_time 2025-02-04 00:00:00, day 2025-02-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-05, local_time 2025-02-05 00:00:00, day 2025-02-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-06, local_time 2025-02-06 00:00:00, day 2025-02-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-07, local_time 2025-02-07 00:00:00, day 2025-02-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-08, local_time 2025-02-08 00:00:00, day 2025-02-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-09, local_time 2025-02-09 00:00:00, day 2025-02-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-10, local_time 2025-02-10 00:00:00, day 2025-02-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-11, local_time 2025-02-11 00:00:00, day 2025-02-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-12, local_time 2025-02-12 00:00:00, day 2025-02-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-13, local_time 2025-02-13 00:00:00, day 2025-02-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-14, local_time 2025-02-14 00:00:00, day 2025-02-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-15, local_time 2025-02-15 00:00:00, day 2025-02-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-16, local_time 2025-02-16 00:00:00, day 2025-02-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-17, local_time 2025-02-17 00:00:00, day 2025-02-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-18, local_time 2025-02-18 00:00:00, day 2025-02-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-19, local_time 2025-02-19 00:00:00, day 2025-02-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-20, local_time 2025-02-20 00:00:00, day 2025-02-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-21, local_time 2025-02-21 00:00:00, day 2025-02-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-22, local_time 2025-02-22 00:00:00, day 2025-02-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-23, local_time 2025-02-23 00:00:00, day 2025-02-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-24, local_time 2025-02-24 00:00:00, day 2025-02-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-25, local_time 2025-02-25 00:00:00, day 2025-02-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-26, local_time 2025-02-26 00:00:00, day 2025-02-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-27, local_time 2025-02-27 00:00:00, day 2025-02-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-02-28, local_time 2025-02-28 00:00:00, day 2025-02-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-01, local_time 2025-03-01 00:00:00, day 2025-03-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-02, local_time 2025-03-02 00:00:00, day 2025-03-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-03, local_time 2025-03-03 00:00:00, day 2025-03-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-04, local_time 2025-03-04 00:00:00, day 2025-03-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-05, local_time 2025-03-05 00:00:00, day 2025-03-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-06, local_time 2025-03-06 00:00:00, day 2025-03-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-07, local_time 2025-03-07 00:00:00, day 2025-03-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-08, local_time 2025-03-08 00:00:00, day 2025-03-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-09, local_time 2025-03-09 00:00:00, day 2025-03-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-10, local_time 2025-03-10 00:00:00, day 2025-03-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-11, local_time 2025-03-11 00:00:00, day 2025-03-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-12, local_time 2025-03-12 00:00:00, day 2025-03-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-13, local_time 2025-03-13 00:00:00, day 2025-03-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-14, local_time 2025-03-14 00:00:00, day 2025-03-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-15, local_time 2025-03-15 00:00:00, day 2025-03-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-16, local_time 2025-03-16 00:00:00, day 2025-03-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-17, local_time 2025-03-17 00:00:00, day 2025-03-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-18, local_time 2025-03-18 00:00:00, day 2025-03-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-19, local_time 2025-03-19 00:00:00, day 2025-03-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-20, local_time 2025-03-20 00:00:00, day 2025-03-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-21, local_time 2025-03-21 00:00:00, day 2025-03-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-22, local_time 2025-03-22 00:00:00, day 2025-03-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-23, local_time 2025-03-23 00:00:00, day 2025-03-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-24, local_time 2025-03-24 00:00:00, day 2025-03-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-25, local_time 2025-03-25 00:00:00, day 2025-03-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-26, local_time 2025-03-26 00:00:00, day 2025-03-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-27, local_time 2025-03-27 00:00:00, day 2025-03-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-28, local_time 2025-03-28 00:00:00, day 2025-03-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-29, local_time 2025-03-29 00:00:00, day 2025-03-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-30, local_time 2025-03-30 00:00:00, day 2025-03-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-03-31, local_time 2025-03-31 00:00:00, day 2025-03-31
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-01, local_time 2025-04-01 00:00:00, day 2025-04-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-02, local_time 2025-04-02 00:00:00, day 2025-04-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-03, local_time 2025-04-03 00:00:00, day 2025-04-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-04, local_time 2025-04-04 00:00:00, day 2025-04-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-05, local_time 2025-04-05 00:00:00, day 2025-04-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-06, local_time 2025-04-06 00:00:00, day 2025-04-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-07, local_time 2025-04-07 00:00:00, day 2025-04-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-08, local_time 2025-04-08 00:00:00, day 2025-04-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-09, local_time 2025-04-09 00:00:00, day 2025-04-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-10, local_time 2025-04-10 00:00:00, day 2025-04-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-11, local_time 2025-04-11 00:00:00, day 2025-04-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-12, local_time 2025-04-12 00:00:00, day 2025-04-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-13, local_time 2025-04-13 00:00:00, day 2025-04-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-14, local_time 2025-04-14 00:00:00, day 2025-04-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-15, local_time 2025-04-15 00:00:00, day 2025-04-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-16, local_time 2025-04-16 00:00:00, day 2025-04-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-17, local_time 2025-04-17 00:00:00, day 2025-04-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-18, local_time 2025-04-18 00:00:00, day 2025-04-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-19, local_time 2025-04-19 00:00:00, day 2025-04-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-20, local_time 2025-04-20 00:00:00, day 2025-04-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-21, local_time 2025-04-21 00:00:00, day 2025-04-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-22, local_time 2025-04-22 00:00:00, day 2025-04-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-23, local_time 2025-04-23 00:00:00, day 2025-04-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-24, local_time 2025-04-24 00:00:00, day 2025-04-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-25, local_time 2025-04-25 00:00:00, day 2025-04-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-26, local_time 2025-04-26 00:00:00, day 2025-04-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-27, local_time 2025-04-27 00:00:00, day 2025-04-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-28, local_time 2025-04-28 00:00:00, day 2025-04-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-29, local_time 2025-04-29 00:00:00, day 2025-04-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-04-30, local_time 2025-04-30 00:00:00, day 2025-04-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-01, local_time 2025-05-01 00:00:00, day 2025-05-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-02, local_time 2025-05-02 00:00:00, day 2025-05-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-03, local_time 2025-05-03 00:00:00, day 2025-05-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-04, local_time 2025-05-04 00:00:00, day 2025-05-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-05, local_time 2025-05-05 00:00:00, day 2025-05-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-06, local_time 2025-05-06 00:00:00, day 2025-05-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-07, local_time 2025-05-07 00:00:00, day 2025-05-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-08, local_time 2025-05-08 00:00:00, day 2025-05-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-09, local_time 2025-05-09 00:00:00, day 2025-05-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-10, local_time 2025-05-10 00:00:00, day 2025-05-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-11, local_time 2025-05-11 00:00:00, day 2025-05-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-12, local_time 2025-05-12 00:00:00, day 2025-05-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-13, local_time 2025-05-13 00:00:00, day 2025-05-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-14, local_time 2025-05-14 00:00:00, day 2025-05-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-15, local_time 2025-05-15 00:00:00, day 2025-05-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-16, local_time 2025-05-16 00:00:00, day 2025-05-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-17, local_time 2025-05-17 00:00:00, day 2025-05-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-18, local_time 2025-05-18 00:00:00, day 2025-05-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-19, local_time 2025-05-19 00:00:00, day 2025-05-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-20, local_time 2025-05-20 00:00:00, day 2025-05-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-21, local_time 2025-05-21 00:00:00, day 2025-05-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-22, local_time 2025-05-22 00:00:00, day 2025-05-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-23, local_time 2025-05-23 00:00:00, day 2025-05-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-24, local_time 2025-05-24 00:00:00, day 2025-05-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-25, local_time 2025-05-25 00:00:00, day 2025-05-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-26, local_time 2025-05-26 00:00:00, day 2025-05-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-27, local_time 2025-05-27 00:00:00, day 2025-05-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-28, local_time 2025-05-28 00:00:00, day 2025-05-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-29, local_time 2025-05-29 00:00:00, day 2025-05-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-30, local_time 2025-05-30 00:00:00, day 2025-05-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-05-31, local_time 2025-05-31 00:00:00, day 2025-05-31
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-01, local_time 2025-06-01 00:00:00, day 2025-06-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-02, local_time 2025-06-02 00:00:00, day 2025-06-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-03, local_time 2025-06-03 00:00:00, day 2025-06-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-04, local_time 2025-06-04 00:00:00, day 2025-06-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-05, local_time 2025-06-05 00:00:00, day 2025-06-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-06, local_time 2025-06-06 00:00:00, day 2025-06-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-07, local_time 2025-06-07 00:00:00, day 2025-06-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-08, local_time 2025-06-08 00:00:00, day 2025-06-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-09, local_time 2025-06-09 00:00:00, day 2025-06-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-10, local_time 2025-06-10 00:00:00, day 2025-06-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-11, local_time 2025-06-11 00:00:00, day 2025-06-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-12, local_time 2025-06-12 00:00:00, day 2025-06-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-13, local_time 2025-06-13 00:00:00, day 2025-06-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-14, local_time 2025-06-14 00:00:00, day 2025-06-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-15, local_time 2025-06-15 00:00:00, day 2025-06-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-16, local_time 2025-06-16 00:00:00, day 2025-06-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-17, local_time 2025-06-17 00:00:00, day 2025-06-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-18, local_time 2025-06-18 00:00:00, day 2025-06-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-19, local_time 2025-06-19 00:00:00, day 2025-06-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-20, local_time 2025-06-20 00:00:00, day 2025-06-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-21, local_time 2025-06-21 00:00:00, day 2025-06-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-22, local_time 2025-06-22 00:00:00, day 2025-06-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-23, local_time 2025-06-23 00:00:00, day 2025-06-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-24, local_time 2025-06-24 00:00:00, day 2025-06-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-25, local_time 2025-06-25 00:00:00, day 2025-06-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-26, local_time 2025-06-26 00:00:00, day 2025-06-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-27, local_time 2025-06-27 00:00:00, day 2025-06-27
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-28, local_time 2025-06-28 00:00:00, day 2025-06-28
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-29, local_time 2025-06-29 00:00:00, day 2025-06-29
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-06-30, local_time 2025-06-30 00:00:00, day 2025-06-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-01, local_time 2025-07-01 00:00:00, day 2025-07-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-02, local_time 2025-07-02 00:00:00, day 2025-07-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-03, local_time 2025-07-03 00:00:00, day 2025-07-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-04, local_time 2025-07-04 00:00:00, day 2025-07-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-05, local_time 2025-07-05 00:00:00, day 2025-07-05
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-06, local_time 2025-07-06 00:00:00, day 2025-07-06
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-07, local_time 2025-07-07 00:00:00, day 2025-07-07
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-08, local_time 2025-07-08 00:00:00, day 2025-07-08
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-09, local_time 2025-07-09 00:00:00, day 2025-07-09
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-10, local_time 2025-07-10 00:00:00, day 2025-07-10
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-11, local_time 2025-07-11 00:00:00, day 2025-07-11
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-12, local_time 2025-07-12 00:00:00, day 2025-07-12
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-13, local_time 2025-07-13 00:00:00, day 2025-07-13
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-14, local_time 2025-07-14 00:00:00, day 2025-07-14
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-15, local_time 2025-07-15 00:00:00, day 2025-07-15
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-16, local_time 2025-07-16 00:00:00, day 2025-07-16
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-17, local_time 2025-07-17 00:00:00, day 2025-07-17
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-18, local_time 2025-07-18 00:00:00, day 2025-07-18
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-19, local_time 2025-07-19 00:00:00, day 2025-07-19
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-20, local_time 2025-07-20 00:00:00, day 2025-07-20
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-21, local_time 2025-07-21 00:00:00, day 2025-07-21
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-22, local_time 2025-07-22 00:00:00, day 2025-07-22
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-23, local_time 2025-07-23 00:00:00, day 2025-07-23
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-24, local_time 2025-07-24 00:00:00, day 2025-07-24
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-25, local_time 2025-07-25 00:00:00, day 2025-07-25
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-26, local_time 2025-07-26 00:00:00, day 2025-07-26
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-30, local_time 2025-07-30 00:00:00, day 2025-07-30
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-07-31, local_time 2025-07-31 00:00:00, day 2025-07-31
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-08-01, local_time 2025-08-01 00:00:00, day 2025-08-01
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-08-02, local_time 2025-08-02 00:00:00, day 2025-08-02
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-08-03, local_time 2025-08-03 00:00:00, day 2025-08-03
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-08-04, local_time 2025-08-04 00:00:00, day 2025-08-04
+⬇️ Inserting row with station_id KORMCMIN127, date 2025-08-05, local_time 2025-08-05 00:00:00, day 2025-08-05
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-04-28, local_time 2025-04-28 00:00:00, day 2025-04-28
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-04-29, local_time 2025-04-29 00:00:00, day 2025-04-29
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-04-30, local_time 2025-04-30 00:00:00, day 2025-04-30
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-01, local_time 2025-05-01 00:00:00, day 2025-05-01
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-02, local_time 2025-05-02 00:00:00, day 2025-05-02
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-03, local_time 2025-05-03 00:00:00, day 2025-05-03
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-04, local_time 2025-05-04 00:00:00, day 2025-05-04
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-05, local_time 2025-05-05 00:00:00, day 2025-05-05
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-06, local_time 2025-05-06 00:00:00, day 2025-05-06
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-07, local_time 2025-05-07 00:00:00, day 2025-05-07
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-08, local_time 2025-05-08 00:00:00, day 2025-05-08
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-09, local_time 2025-05-09 00:00:00, day 2025-05-09
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-10, local_time 2025-05-10 00:00:00, day 2025-05-10
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-11, local_time 2025-05-11 00:00:00, day 2025-05-11
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-12, local_time 2025-05-12 00:00:00, day 2025-05-12
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-13, local_time 2025-05-13 00:00:00, day 2025-05-13
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-14, local_time 2025-05-14 00:00:00, day 2025-05-14
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-15, local_time 2025-05-15 00:00:00, day 2025-05-15
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-16, local_time 2025-05-16 00:00:00, day 2025-05-16
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-17, local_time 2025-05-17 00:00:00, day 2025-05-17
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-18, local_time 2025-05-18 00:00:00, day 2025-05-18
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-19, local_time 2025-05-19 00:00:00, day 2025-05-19
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-20, local_time 2025-05-20 00:00:00, day 2025-05-20
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-21, local_time 2025-05-21 00:00:00, day 2025-05-21
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-22, local_time 2025-05-22 00:00:00, day 2025-05-22
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-23, local_time 2025-05-23 00:00:00, day 2025-05-23
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-24, local_time 2025-05-24 00:00:00, day 2025-05-24
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-25, local_time 2025-05-25 00:00:00, day 2025-05-25
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-26, local_time 2025-05-26 00:00:00, day 2025-05-26
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-27, local_time 2025-05-27 00:00:00, day 2025-05-27
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-28, local_time 2025-05-28 00:00:00, day 2025-05-28
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-29, local_time 2025-05-29 00:00:00, day 2025-05-29
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-30, local_time 2025-05-30 00:00:00, day 2025-05-30
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-05-31, local_time 2025-05-31 00:00:00, day 2025-05-31
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-01, local_time 2025-06-01 00:00:00, day 2025-06-01
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-02, local_time 2025-06-02 00:00:00, day 2025-06-02
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-03, local_time 2025-06-03 00:00:00, day 2025-06-03
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-04, local_time 2025-06-04 00:00:00, day 2025-06-04
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-05, local_time 2025-06-05 00:00:00, day 2025-06-05
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-06, local_time 2025-06-06 00:00:00, day 2025-06-06
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-07, local_time 2025-06-07 00:00:00, day 2025-06-07
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-08, local_time 2025-06-08 00:00:00, day 2025-06-08
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-09, local_time 2025-06-09 00:00:00, day 2025-06-09
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-10, local_time 2025-06-10 00:00:00, day 2025-06-10
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-11, local_time 2025-06-11 00:00:00, day 2025-06-11
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-12, local_time 2025-06-12 00:00:00, day 2025-06-12
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-13, local_time 2025-06-13 00:00:00, day 2025-06-13
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-14, local_time 2025-06-14 00:00:00, day 2025-06-14
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-15, local_time 2025-06-15 00:00:00, day 2025-06-15
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-16, local_time 2025-06-16 00:00:00, day 2025-06-16
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-17, local_time 2025-06-17 00:00:00, day 2025-06-17
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-18, local_time 2025-06-18 00:00:00, day 2025-06-18
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-19, local_time 2025-06-19 00:00:00, day 2025-06-19
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-20, local_time 2025-06-20 00:00:00, day 2025-06-20
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-21, local_time 2025-06-21 00:00:00, day 2025-06-21
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-22, local_time 2025-06-22 00:00:00, day 2025-06-22
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-23, local_time 2025-06-23 00:00:00, day 2025-06-23
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-24, local_time 2025-06-24 00:00:00, day 2025-06-24
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-25, local_time 2025-06-25 00:00:00, day 2025-06-25
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-26, local_time 2025-06-26 00:00:00, day 2025-06-26
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-27, local_time 2025-06-27 00:00:00, day 2025-06-27
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-28, local_time 2025-06-28 00:00:00, day 2025-06-28
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-29, local_time 2025-06-29 00:00:00, day 2025-06-29
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-06-30, local_time 2025-06-30 00:00:00, day 2025-06-30
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-01, local_time 2025-07-01 00:00:00, day 2025-07-01
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-02, local_time 2025-07-02 00:00:00, day 2025-07-02
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-03, local_time 2025-07-03 00:00:00, day 2025-07-03
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-04, local_time 2025-07-04 00:00:00, day 2025-07-04
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-05, local_time 2025-07-05 00:00:00, day 2025-07-05
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-06, local_time 2025-07-06 00:00:00, day 2025-07-06
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-07, local_time 2025-07-07 00:00:00, day 2025-07-07
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-08, local_time 2025-07-08 00:00:00, day 2025-07-08
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-09, local_time 2025-07-09 00:00:00, day 2025-07-09
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-10, local_time 2025-07-10 00:00:00, day 2025-07-10
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-11, local_time 2025-07-11 00:00:00, day 2025-07-11
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-12, local_time 2025-07-12 00:00:00, day 2025-07-12
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-13, local_time 2025-07-13 00:00:00, day 2025-07-13
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-14, local_time 2025-07-14 00:00:00, day 2025-07-14
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-15, local_time 2025-07-15 00:00:00, day 2025-07-15
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-16, local_time 2025-07-16 00:00:00, day 2025-07-16
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-17, local_time 2025-07-17 00:00:00, day 2025-07-17
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-18, local_time 2025-07-18 00:00:00, day 2025-07-18
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-19, local_time 2025-07-19 00:00:00, day 2025-07-19
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-20, local_time 2025-07-20 00:00:00, day 2025-07-20
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-21, local_time 2025-07-21 00:00:00, day 2025-07-21
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-22, local_time 2025-07-22 00:00:00, day 2025-07-22
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-23, local_time 2025-07-23 00:00:00, day 2025-07-23
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-24, local_time 2025-07-24 00:00:00, day 2025-07-24
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-25, local_time 2025-07-25 00:00:00, day 2025-07-25
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-26, local_time 2025-07-26 00:00:00, day 2025-07-26
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-30, local_time 2025-07-30 00:00:00, day 2025-07-30
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-07-31, local_time 2025-07-31 00:00:00, day 2025-07-31
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-08-01, local_time 2025-08-01 00:00:00, day 2025-08-01
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-08-02, local_time 2025-08-02 00:00:00, day 2025-08-02
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-08-03, local_time 2025-08-03 00:00:00, day 2025-08-03
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-08-04, local_time 2025-08-04 00:00:00, day 2025-08-04
+⬇️ Inserting row with station_id KORMCMIN133, date 2025-08-05, local_time 2025-08-05 00:00:00, day 2025-08-05
+✅ Daily aggregation complete and inserted into weather_daily.
+
+2025-08-05 19:38:05,536 [INFO] ▶️ Running fetch/aggregate_to_hourly.py...
+2025-08-05 19:41:52,058 [INFO] ✅ Hourly aggregation complete and inserted into weather_hourly.
+
+2025-08-05 19:41:52,058 [INFO] ▶️ Running fetch/inject_sales.py...
+2025-08-05 19:41:52,485 [ERROR] ❌ Error running fetch/inject_sales.py
+2025-08-05 19:41:52,485 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\inject_sales.py", line 4, in <module>
+    from google.cloud import bigquery
+ModuleNotFoundError: No module named 'google'
+
+2025-08-05 19:41:52,485 [INFO] 
+✅ Pipeline complete.

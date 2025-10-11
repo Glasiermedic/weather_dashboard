@@ -2,7 +2,7 @@
 import base64
 
 from flask import Flask
-# handles cross-origin resource sharing - allowing Vercel to make API requests to a separate backend (render)
+# handles cross-origin resource sharing - allowing Vercel to make API requests to a separate wd_backend (render)
 # and prevents browser from blocking requests due to origin mismatch
 #lets our app talk to bigquery to run queries  and simulate the cloud environment locally
 # loads .env file variables into os.environ for local deployment/testing

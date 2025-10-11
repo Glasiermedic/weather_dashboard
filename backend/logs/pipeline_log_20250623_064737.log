@@ -1,0 +1,28 @@
+2025-06-23 06:47:37,195 [INFO] 🚀 Starting weather data pipeline...
+
+2025-06-23 06:47:37,195 [INFO] ▶️ Running fetch/aggregate_to_daily.py...
+2025-06-23 06:47:37,287 [ERROR] ❌ Error running fetch/aggregate_to_daily.py
+2025-06-23 06:47:37,287 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\aggregate_to_daily.py", line 2, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+2025-06-23 06:47:37,288 [INFO] ▶️ Running fetch/fetch_pws_history.py...
+2025-06-23 06:47:37,375 [ERROR] ❌ Error running fetch/fetch_pws_history.py
+2025-06-23 06:47:37,376 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\fetch_pws_history.py", line 2, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+2025-06-23 06:47:37,377 [INFO] ▶️ Running fetch/weatherjson_to_csv.py...
+2025-06-23 06:47:37,465 [ERROR] ❌ Error running fetch/weatherjson_to_csv.py
+2025-06-23 06:47:37,465 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\weatherjson_to_csv.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+2025-06-23 06:47:37,465 [INFO] ▶️ Running process_weather_data.py...
+2025-06-23 06:47:37,555 [ERROR] ❌ Error running process_weather_data.py
+2025-06-23 06:47:37,555 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\process_weather_data.py", line 2, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+2025-06-23 06:47:37,555 [INFO] 
+✅ Pipeline complete.

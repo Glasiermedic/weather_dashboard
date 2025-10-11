@@ -1,0 +1,132 @@
+2025-06-23 07:48:35,980 [INFO] 🚀 Starting weather data pipeline...
+
+2025-06-23 07:48:35,980 [INFO] ▶️ Running fetch/fetch_pws_history.py...
+2025-06-23 07:48:37,600 [INFO] 
+🔍 Checking propdada (KORMCMIN133) for 20240623 to 20240723
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240623&endDate=20240723&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240724 to 20240823
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240724&endDate=20240823&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240824 to 20240923
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240824&endDate=20240923&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20240924 to 20241024
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20240924&endDate=20241024&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241025 to 20241124
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241025&endDate=20241124&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241125 to 20241225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241125&endDate=20241225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20241226 to 20250125
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20241226&endDate=20250125&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250126 to 20250225
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250126&endDate=20250225&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250226 to 20250328
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN133&format=json&units=e&startDate=20250226&endDate=20250328&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking propdada (KORMCMIN133) for 20250329 to 20250428
+✅ Skipping KORMCMIN133_20250329_20250428.json, already exists.
+
+🔍 Checking propdada (KORMCMIN133) for 20250429 to 20250529
+✅ Skipping KORMCMIN133_20250429_20250529.json, already exists.
+
+🔍 Checking propdada (KORMCMIN133) for 20250530 to 20250623
+✅ Skipping KORMCMIN133_20250530_20250623.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240623 to 20240723
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240623&endDate=20240723&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240724 to 20240823
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240724&endDate=20240823&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240824 to 20240923
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240824&endDate=20240923&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20240924 to 20241024
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20240924&endDate=20241024&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241025 to 20241124
+➡️ Requesting: https://api.weather.com/v2/pws/history/hourly?stationId=KORMCMIN127&format=json&units=e&startDate=20241025&endDate=20241124&apiKey=44f4caba4641485db4caba4641e85d76
+📡 Status Code: 200
+⚠️ No observations in response — skipping save.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241125 to 20241225
+✅ Skipping KORMCMIN127_20241125_20241225.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20241226 to 20250125
+✅ Skipping KORMCMIN127_20241226_20250125.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20250126 to 20250225
+✅ Skipping KORMCMIN127_20250126_20250225.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20250226 to 20250328
+✅ Skipping KORMCMIN127_20250226_20250328.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20250329 to 20250428
+✅ Skipping KORMCMIN127_20250329_20250428.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20250429 to 20250529
+✅ Skipping KORMCMIN127_20250429_20250529.json, already exists.
+
+🔍 Checking dustprop (KORMCMIN127) for 20250530 to 20250623
+✅ Skipping KORMCMIN127_20250530_20250623.json, already exists.
+
+2025-06-23 07:48:37,602 [INFO] ▶️ Running fetch/weatherjson_to_csv.py...
+2025-06-23 07:48:38,164 [INFO] CSV columns: Index(['Source Field (from JSON)', 'Suggested DB Column Name', 'alias'], dtype='object')
+
+2025-06-23 07:48:38,164 [WARNING] 2025-06-23 07:48:37,966 [INFO] 📁 Reading JSON files from: C:\Users\sewmo\PycharmProjects\weather_dashboard\data
+C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\weatherjson_to_csv.py:77: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  combined_df = pd.concat(valid_dfs, ignore_index=True) if valid_dfs else pd.DataFrame()
+2025-06-23 07:48:38,113 [INFO] ✅ Conversion complete and saving to SQLite.
+
+2025-06-23 07:48:38,164 [INFO] ▶️ Running process_weather_data.py...
+2025-06-23 07:48:38,737 [INFO] 📦 Connecting to DB...
+📊 Columns in df: ['station_id', 'local_time', 'epoch', 'avg_humidity', 'humidity_max', 'humidity_min', 'avg_dewpt', 'dewpt_max', 'dewpt_min', 'avg_heat_indx', 'heat_index_max', 'heat_index_min', 'precip_rate', 'total_precip', 'pressure_max', 'pressure_min', 'pressure_trend', 'avg_temp', 'temp_max', 'temp_min', 'avg_wnd_chill', 'wnd_chill_max', 'wnd_chill_min', 'avg_wnd_gust', 'wnd_gust_max', 'wnd_gust_min', 'avg_wnd_spd', 'wnd_spd_max', 'wnd_spd_min', 'lat', 'lon', 'utc_time', 'qcStatus', 'solar_rad_max', 'stationID', 'tz', 'uv_max', 'avg_wnd_dir']
+✅ Saved processed data to 'weather_hourly' table.
+
+2025-06-23 07:48:38,737 [INFO] ▶️ Running fetch/aggregate_to_daily.py...
+2025-06-23 07:48:39,177 [INFO] ✅ Aggregated daily data saved to weather_daily.
+
+2025-06-23 07:48:39,177 [INFO] ▶️ Running fetch/aggregate_to_hourly.py...
+2025-06-23 07:48:39,565 [ERROR] ❌ Error running fetch/aggregate_to_hourly.py
+2025-06-23 07:48:39,565 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\aggregate_to_hourly.py", line 83, in <module>
+    aggregate_hourly()
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\aggregate_to_hourly.py", line 10, in aggregate_hourly
+    conn = sqlite3.connect(DB_PATH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: unable to open database file
+
+2025-06-23 07:48:39,565 [INFO] 
+✅ Pipeline complete.

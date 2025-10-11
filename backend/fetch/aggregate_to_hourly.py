@@ -34,9 +34,7 @@ def main():
         "pressure_max": "max",
         "pressure_min": "min",
         "pressure_trend": "mean",
-        "total_precip": "sum",
-        "solar_rad_max": "max",
-        "uv_max": "max"
+        "total_precip": "sum
     })
 
     # Rename columns
@@ -46,7 +44,7 @@ def main():
         "wind_speed_avg", "wind_speed_min", "wind_speed_max",
         "wind_gust_max", "dew_point_avg", "windchill_avg",
         "heatindex_avg", "pressure_max", "pressure_min",
-        "pressure_avg", "precip_total", "solar_rad_max", "uv_max"
+        "pressure_avg", "precip_total"
     ]
     agg = agg.reset_index()
 
@@ -65,7 +63,7 @@ def main():
                     wind_speed_avg, wind_speed_min, wind_speed_max,
                     wind_gust_max, dew_point_avg, windchill_avg, heatindex_avg,
                     pressure_max, pressure_min, pressure_avg,
-                    precip_total, solar_rad_max, uv_max
+                    precip_total
                 )
                 VALUES (
                     :station_id, :hour, :local_time, :day,
@@ -74,7 +72,7 @@ def main():
                     :wind_speed_avg, :wind_speed_min, :wind_speed_max,
                     :wind_gust_max, :dew_point_avg, :windchill_avg, :heatindex_avg,
                     :pressure_max, :pressure_min, :pressure_avg,
-                    :precip_total, :solar_rad_max, :uv_max
+                    :precip_total
                 )
                 ON CONFLICT (station_id, hour) DO UPDATE
                 SET
@@ -96,9 +94,7 @@ def main():
                 pressure_max = EXCLUDED.pressure_max,
                 pressure_min = EXCLUDED.pressure_min,
                 pressure_avg = EXCLUDED.pressure_avg,
-                precip_total = EXCLUDED.precip_total,
-                solar_rad_max = EXCLUDED.solar_rad_max,
-                uv_max = EXCLUDED.uv_max
+                precip_total = EXCLUDED.precip_total
             """), row_dict)
 
     print("✅ Hourly aggregation complete and inserted into weather_hourly.")

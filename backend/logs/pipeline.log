@@ -1,0 +1,16 @@
+2025-06-23 06:43:27,039 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\aggregate_to_daily.py", line 2, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+2025-06-23 06:43:27,136 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\fetch_pws_history.py", line 2, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+2025-06-23 06:43:27,241 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\fetch\weatherjson_to_csv.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+2025-06-23 06:43:27,341 [ERROR] Traceback (most recent call last):
+  File "C:\Users\sewmo\PycharmProjects\weather_dashboard\backend\process_weather_data.py", line 2, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
