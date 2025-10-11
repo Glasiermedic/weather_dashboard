@@ -34,7 +34,7 @@ def main():
         "pressure_max": "max",
         "pressure_min": "min",
         "pressure_trend": "mean",
-        "total_precip": "sum
+        "total_precip": "sum"
     })
 
     # Rename columns
