@@ -1,0 +1,14 @@
+(
+  echo node_modules/
+  echo .pnpm-store/
+  echo dist/
+  echo .vercel/
+  echo **/.venv/
+  echo **/__pycache__/
+  echo .pytest_cache/
+  echo .ruff_cache/
+  echo .env
+  echo *.log
+  echo .DS_Store
+  echo Thumbs.db
+) >> .gitignore
