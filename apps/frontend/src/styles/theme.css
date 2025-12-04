@@ -1,0 +1,364 @@
+/* src/styles/theme.css */
+
+/* --------- Global theme tokens --------- */
+:root {
+  --bg-deep: #020617;
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --accent-blue: #38bdf8;
+  --accent-teal: #22c1c3;
+  --border-subtle: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #0b1620 0, #020617 55%, #000000 100%);
+  color: var(--text-main);
+}
+
+/* --------- App shell (Layout.jsx) --------- */
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #1f2937;
+  background: linear-gradient(to right, #020617, #020617, #020617dd);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+}
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.app-logo-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px rgba(148, 163, 184, 0.7),
+    0 0 18px rgba(56, 189, 248, 0.9);
+}
+
+.app-name {
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+.app-top-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  font-size: 0.8rem;
+}
+
+.top-nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+}
+
+.top-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.25rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent-teal), var(--accent-blue));
+  opacity: 0;
+  transform: scaleX(0.4);
+  transform-origin: center;
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.top-nav-link:hover {
+  color: #e5e7eb;
+}
+
+.top-nav-link.active {
+  color: var(--text-main);
+}
+
+.top-nav-link.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.app-status {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #d1d5db;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.status-ok {
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+}
+
+.user-chip {
+  border-radius: 999px;
+  border: 1px solid #374151;
+  padding: 0.2rem 0.7rem;
+  background: radial-gradient(circle at 30% 0, #1f2937, #020617);
+  color: #f9fafb;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-sidebar {
+  border-right: 1px solid var(--border-subtle);
+  background: radial-gradient(circle at top left, #020617, #020617, #020617);
+  padding: 0.9rem;
+  overflow-y: auto;
+}
+
+.sidebar-section + .sidebar-section {
+  margin-top: 1.6rem;
+}
+
+.sidebar-section-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.5rem;
+  color: #9ca3af;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 0.3rem 0.45rem;
+  border-radius: 0.3rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.sidebar-link + .sidebar-link {
+  margin-top: 0.2rem;
+}
+
+.sidebar-link:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.sidebar-link-external::after {
+  content: "↗";
+  font-size: 0.7rem;
+  margin-left: 0.2rem;
+  opacity: 0.7;
+}
+
+
+/* --------- Landing page sections --------- */
+
+.landing-page-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.landing-page-subtitle {
+  color: #e5e7eb;
+  margin-bottom: 1.8rem;
+  font-size: 0.95rem;
+}
+
+.landing-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* One row: text + circle, 2/3 vs 1/3 */
+.landing-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;   /* 🔹 text 2/3, button 1/3 */
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: 1rem;
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.85));
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.9),
+    0 0 30px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+/* Right-aligned row: flip proportions to put button on the outside edge */
+.landing-section-right {
+  grid-template-columns: 1fr 2fr;   /* 🔹 button 1/3, text 2/3, but text is on the right now */
+  text-align: right;
+}
+
+.landing-section-text {
+  max-width: 100%;    /* let it use the full 2fr column */
+}
+
+.landing-section-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.landing-section-text h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.landing-section-text p {
+  font-size: 0.95rem;
+  color: #cbd5f5;
+  line-height: 1.45;
+}
+
+/* --------- Circular portal buttons --------- */
+
+.circle-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 999px;
+  width: 6.5rem;   /* 30% larger */
+  height: 6.5rem;
+  background: radial-gradient(circle at 30% 30%, #f9fafb, #e5e7eb, #6b7280);
+  padding: 3px;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.9),
+    0 6px 14px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(56, 189, 248, 0.4);
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+}
+
+.circle-link-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0, #e0f2fe 0, #0f172a 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.circle-link-image {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8));
+}
+
+.circle-link:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.9),
+    0 10px 22px rgba(0, 0, 0, 1),
+    0 0 50px rgba(56, 189, 248, 0.8);
+}
+/* App main background, from demo HTML */
+.app-main {
+  padding: 1.3rem 1.6rem;
+  overflow-y: auto;
+  background: radial-gradient(circle at top right, #020617, #020617 40%, #020617 100%);
+}
+
+/* Column wrapper inside each landing section */
+.landing-section-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive behavior from the demo HTML */
+@media (max-width: 900px) {
+  .app-body {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .sidebar-section-title {
+    display: none;
+  }
+
+  .sidebar-link {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-root {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .app-body {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    display: none;
+  }
+
+  .landing-section,
+  .landing-section-right {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .landing-section-right {
+    flex-direction: column;
+  }
+
+  .landing-section-text {
+    text-align: center;
+  }
+}
