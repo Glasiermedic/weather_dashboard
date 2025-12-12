@@ -1,29 +1,40 @@
-// src/App.jsx
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layout/Layout";
 
-// 🔹 Lazy-loaded pages (code-splitting)
+// Lazy main pages
 const WeatherDashboard = lazy(() => import("./pages/WeatherDashboard"));
-const Results = lazy(() => import("./pages/Results"));
 const About = lazy(() => import("./pages/About"));
+const Results = lazy(() => import("./pages/Results"));
+
+// Lazy tab panels for Results
+const MlResultsTab = lazy(() => import("./pages/results/MlResultsTab"));
+const EtlResultsTab = lazy(() => import("./pages/results/EtlResultsTab"));
+const WaveResultsTab = lazy(() => import("./pages/results/WaveResultsTab"));
+const MaintenanceResultsTab = lazy(
+  () => import("./pages/results/MaintenanceResultsTab")
+);
 
 function App() {
   return (
     <BrowserRouter>
-      {/* Suspense shows a fallback while lazy chunks load */}
-      <Suspense fallback={<div className="app-main">Loading...</div>}>
+      <Suspense fallback={<div className="app-main">Loading…</div>}>
         <Routes>
-          {/* Layout is the shared shell (header + sidebar + glasier theme) */}
+          {/* Layout = shared shell (header + navbar + sidebar) */}
           <Route element={<Layout />}>
-            {/* index = "/" → main landing page / dashboard */}
+            {/* "/" → Weather dashboard */}
             <Route index element={<WeatherDashboard />} />
 
-            {/* Results page for roadmap/tabs/etc. */}
-            <Route path="/results" element={<Results />} />
-
-            {/* About page (this will also match your sidebar /about link) */}
+            {/* About page */}
             <Route path="/about" element={<About />} />
+
+            {/* Results with nested tab routes */}
+            <Route path="/results" element={<Results />}>
+              <Route index element={<MlResultsTab />} />
+              <Route path="etl" element={<EtlResultsTab />} />
+              <Route path="wave" element={<WaveResultsTab />} />
+              <Route path="maintenance" element={<MaintenanceResultsTab />} />
+            </Route>
           </Route>
         </Routes>
       </Suspense>

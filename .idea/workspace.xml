@@ -253,10 +253,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.testingJira" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.inject_sales" />
       <item itemvalue="Python.process_weather_data" />
+      <item itemvalue="Python.testingJira" />
       <item itemvalue="Python.wd_init_db" />
     </list>
   </component>

@@ -72,11 +72,34 @@ body {
 
 .top-nav-link {
   position: relative;
+  display: inline-flex;          /* 🔹 so icon + label sit in a row */
+  align-items: center;           /* center vertically */
   text-decoration: none;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.7rem;
+}
+
+/* Inner wrapper from NavIcon (icon + label) */
+.top-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Round icon – your circular transparent PNGs */
+.top-nav-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+}
+
+/* Label next to icon */
+.top-nav-label {
+  line-height: 1;
 }
 
 .top-nav-link::after {
