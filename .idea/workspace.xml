@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="&#10;&#10;adding vercel.json to help with refreshing the sub pages doesn't 404" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="&#10;fixing case issue with with import call inside of main.jsx  now says styles/theme.css" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -319,15 +319,7 @@
       <workItem from="1764482697310" duration="16509000" />
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
-      <workItem from="1768677272710" duration="33064000" />
-    </task>
-    <task id="LOCAL-00014" summary="adding temporary debug route to app.py to get the column names">
-      <option name="closed" value="true" />
-      <created>1752341191674</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1752341191676</updated>
+      <workItem from="1768677272710" duration="33423000" />
     </task>
     <task id="LOCAL-00015" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <option name="closed" value="true" />
@@ -713,14 +705,21 @@
       <option name="project" value="LOCAL" />
       <updated>1769877115859</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="&#10;fixing case issue with with import call inside of main.jsx  now says styles/theme.css">
+      <option name="closed" value="true" />
+      <created>1769877480706</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1769877480706</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement dynamic graph data API routing and hybrid aggregation tables&#10;&#10;- Added smart routing to /api/graph_data for raw, hourly, and daily tables&#10;- Integrated time-based logic to select weather_raw (1d), weather_hourly (7d), or weather_daily (30d, ytd)&#10;- Added support for local_time, local_hour, and local_date time fields&#10;- Confirmed that all three tables are updating with accurate timestamps&#10;- Verified that fetch, hourly, and daily aggregation scripts work in sequence&#10;- Resolved module and encoding issues in run_pipeline.py&#10;&#10;Ready for frontend sync and additional visual features" />
     <MESSAGE value=" Major updates to hybrid data pipeline and API/database handling&#10;&#10;- Implemented 5-minute raw data ingestion via fetch_pws_5min_raw.py&#10;- Built and tested aggregation scripts for hourly and daily summaries&#10;- Created weather_raw, weather_hourly, and weather_daily tables&#10;- Added run_pipeline.py to automate full ETL flow&#10;- Corrected DB_PATH usage across backend scripts for proper SQLite access&#10;- Verified and cleaned up database schema and column alignment&#10;- Repaired weather_hourly table structure to match new schema&#10;- Updated process_weather_data.py to convert timestamps and fix filtering issues&#10;- Improved logging and error handling in key scripts&#10;- Committed updated .gitignore and removed .env from tracking" />
     <MESSAGE value="Updated the Readme to reflect current status and the new changes to the road map and data validation/cleaning processes" />
     <MESSAGE value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
@@ -745,7 +744,8 @@
     <MESSAGE value="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide" />
     <MESSAGE value="Detailed Work&#10;Use `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4`. Implement card sizing for charts/summaries/controls; test in DevTools; keep palette minimal. This was done in the WeatherDashboard.jsx &#10;&#10;imported the theme.css to implement our layout changes &#10;&#10;Also added in the index.html and main.jsx to make testing easier as we go.  Then went into dev tools in browser to test the layout as the size of screen changes&#10;&#10;Faith Integration&#10;To the weak I became weak, to win the weak. I have become all things to all people so that by all possible means I might save some.&#10;&#10;Resources&#10;&#10;Tailwind grid&#10;&#10;CSS-Tricks responsive grids" />
     <MESSAGE value="&#10;&#10;adding vercel.json to help with refreshing the sub pages doesn't 404" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;&#10;adding vercel.json to help with refreshing the sub pages doesn't 404" />
+    <MESSAGE value="&#10;fixing case issue with with import call inside of main.jsx  now says styles/theme.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;fixing case issue with with import call inside of main.jsx  now says styles/theme.css" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
