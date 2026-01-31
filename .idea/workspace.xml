@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="Updating the repository to reflect current schema/architecture.">
-      <change afterPath="$PROJECT_DIR$/apps/frontend/.env.development" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/.env.production" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/api/apiClient.js" afterDir="false" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide">
+      <change afterPath="$PROJECT_DIR$/apps/frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/frontend/src/components/Card.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/frontend/src/main.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/frontend/vite.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/frontend/src/pages/WeatherDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/pages/WeatherDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/frontend/src/styles/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/styles/theme.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +70,7 @@
     "Node.js.App.js.executor": "Run",
     "Node.js.App.jsx.executor": "Run",
     "Node.js.LandingPage.jsx.executor": "Run",
+    "Node.js.WeatherDashboard.jsx.executor": "Run",
     "Node.js.testapp.js.executor": "Run",
     "Python.Patch_schema.executor": "Run",
     "Python.Run_custom_query.executor": "Run",
@@ -324,15 +328,7 @@
       <workItem from="1764482697310" duration="16509000" />
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
-      <workItem from="1768677272710" duration="27935000" />
-    </task>
-    <task id="LOCAL-00010" summary="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress">
-      <option name="closed" value="true" />
-      <created>1752336891808</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1752336891808</updated>
+      <workItem from="1768677272710" duration="30602000" />
     </task>
     <task id="LOCAL-00011" summary="fixing potential error from the app.py file allowing us to render the data needed for our site.">
       <option name="closed" value="true" />
@@ -718,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769843536549</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide">
+      <option name="closed" value="true" />
+      <created>1769871570844</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1769871570844</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -748,7 +752,8 @@
     <MESSAGE value="making the top reps table headers align with values by using explicit column model.      Also fixing issue" />
     <MESSAGE value="updating awtowbotz and weather data aggregates to address errors since last reviewed pipelines and final site" />
     <MESSAGE value="Updating the repository to reflect current schema/architecture." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating the repository to reflect current schema/architecture." />
+    <MESSAGE value="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
