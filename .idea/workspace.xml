@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="&#10;adding the assets to the git repository - for some reason they didn't get added during creation" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="refactored the name of NavBar.jsx to Navbar.jsx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -319,15 +319,7 @@
       <workItem from="1764482697310" duration="16509000" />
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
-      <workItem from="1768677272710" duration="33787000" />
-    </task>
-    <task id="LOCAL-00016" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752344935770</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1752344935771</updated>
+      <workItem from="1768677272710" duration="34473000" />
     </task>
     <task id="LOCAL-00017" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <option name="closed" value="true" />
@@ -713,14 +705,21 @@
       <option name="project" value="LOCAL" />
       <updated>1769877850285</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="refactored the name of NavBar.jsx to Navbar.jsx">
+      <option name="closed" value="true" />
+      <created>1769878041474</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1769878041474</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated the Readme to reflect current status and the new changes to the road map and data validation/cleaning processes" />
     <MESSAGE value="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions" />
     <MESSAGE value="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress" />
     <MESSAGE value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
@@ -745,7 +744,8 @@
     <MESSAGE value="&#10;&#10;adding vercel.json to help with refreshing the sub pages doesn't 404" />
     <MESSAGE value="&#10;fixing case issue with with import call inside of main.jsx  now says styles/theme.css" />
     <MESSAGE value="&#10;adding the assets to the git repository - for some reason they didn't get added during creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;adding the assets to the git repository - for some reason they didn't get added during creation" />
+    <MESSAGE value="refactored the name of NavBar.jsx to Navbar.jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored the name of NavBar.jsx to Navbar.jsx" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
