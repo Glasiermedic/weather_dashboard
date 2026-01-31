@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide">
-      <change afterPath="$PROJECT_DIR$/apps/frontend/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/components/Card.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/main.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/pages/WeatherDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/pages/WeatherDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/styles/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/styles/theme.css" afterDir="false" />
-    </list>
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="Detailed Work&#10;Use `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4`. Implement card sizing for charts/summaries/controls; test in DevTools; keep palette minimal. This was done in the WeatherDashboard.jsx &#10;&#10;imported the theme.css to implement our layout changes &#10;&#10;Also added in the index.html and main.jsx to make testing easier as we go.  Then went into dev tools in browser to test the layout as the size of screen changes&#10;&#10;Faith Integration&#10;To the weak I became weak, to win the weak. I have become all things to all people so that by all possible means I might save some.&#10;&#10;Resources&#10;&#10;Tailwind grid&#10;&#10;CSS-Tricks responsive grids" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -328,15 +319,7 @@
       <workItem from="1764482697310" duration="16509000" />
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
-      <workItem from="1768677272710" duration="30602000" />
-    </task>
-    <task id="LOCAL-00011" summary="fixing potential error from the app.py file allowing us to render the data needed for our site.">
-      <option name="closed" value="true" />
-      <created>1752336937296</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1752336937296</updated>
+      <workItem from="1768677272710" duration="30915000" />
     </task>
     <task id="LOCAL-00012" summary="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt.">
       <option name="closed" value="true" />
@@ -722,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769871570844</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Detailed Work&#10;Use `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4`. Implement card sizing for charts/summaries/controls; test in DevTools; keep palette minimal. This was done in the WeatherDashboard.jsx &#10;&#10;imported the theme.css to implement our layout changes &#10;&#10;Also added in the index.html and main.jsx to make testing easier as we go.  Then went into dev tools in browser to test the layout as the size of screen changes&#10;&#10;Faith Integration&#10;To the weak I became weak, to win the weak. I have become all things to all people so that by all possible means I might save some.&#10;&#10;Resources&#10;&#10;Tailwind grid&#10;&#10;CSS-Tricks responsive grids">
+      <option name="closed" value="true" />
+      <created>1769874460509</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1769874460509</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,7 +744,8 @@
     <MESSAGE value="updating awtowbotz and weather data aggregates to address errors since last reviewed pipelines and final site" />
     <MESSAGE value="Updating the repository to reflect current schema/architecture." />
     <MESSAGE value="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide" />
-    <option name="LAST_COMMIT_MESSAGE" value="Detailed Work&#10;Install Axios; create `apiClient.js` with `baseURL=process.env.VITE_API_BASE_URL`. Add interceptors for errors/offline fallback. Configure `.env.*` for dev/prod Vercel.&#10;&#10;Faith Integration&#10;'I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.' &#10;&#10;Resources&#10;&#10;Axios docs&#10;&#10;Vercel env vars guide" />
+    <MESSAGE value="Detailed Work&#10;Use `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4`. Implement card sizing for charts/summaries/controls; test in DevTools; keep palette minimal. This was done in the WeatherDashboard.jsx &#10;&#10;imported the theme.css to implement our layout changes &#10;&#10;Also added in the index.html and main.jsx to make testing easier as we go.  Then went into dev tools in browser to test the layout as the size of screen changes&#10;&#10;Faith Integration&#10;To the weak I became weak, to win the weak. I have become all things to all people so that by all possible means I might save some.&#10;&#10;Resources&#10;&#10;Tailwind grid&#10;&#10;CSS-Tricks responsive grids" />
+    <option name="LAST_COMMIT_MESSAGE" value="Detailed Work&#10;Use `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4`. Implement card sizing for charts/summaries/controls; test in DevTools; keep palette minimal. This was done in the WeatherDashboard.jsx &#10;&#10;imported the theme.css to implement our layout changes &#10;&#10;Also added in the index.html and main.jsx to make testing easier as we go.  Then went into dev tools in browser to test the layout as the size of screen changes&#10;&#10;Faith Integration&#10;To the weak I became weak, to win the weak. I have become all things to all people so that by all possible means I might save some.&#10;&#10;Resources&#10;&#10;Tailwind grid&#10;&#10;CSS-Tricks responsive grids" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
