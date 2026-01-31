@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="updating awtowbotz and weather data aggregates to address errors since last reviewed pipelines and final site">
-      <change afterPath="$PROJECT_DIR$/apps/backend/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/components/Circlelink.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/components/NavBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/components/Sidebar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/layout/Layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/pages/LandingPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/styles/theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/dev/start_local_env.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/jira/testingJira.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +18,7 @@
         <option value="Jupyter Notebook" />
         <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -134,7 +124,7 @@
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.testingJira">
+  <component name="RunManager" selected="Python.create_backlog">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -150,6 +140,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="create_backlog" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="weather_dashboard" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 virtualenv at D:\glasier_projects\weather_dashboard_v2\backend\.venv" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/jira" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/jira/create_backlog.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -253,6 +277,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.create_backlog" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.inject_sales" />
       <item itemvalue="Python.process_weather_data" />
@@ -292,6 +317,8 @@
       <workItem from="1764093841946" duration="2551000" />
       <workItem from="1764482697310" duration="16509000" />
       <workItem from="1764832696368" duration="5000" />
+      <workItem from="1768353117509" duration="968000" />
+      <workItem from="1768677272710" duration="17976000" />
     </task>
     <task id="LOCAL-00009" summary="updated the pipeline to include a file for the awtowbotz project which inserts 1-4 simulated realistic and weighted transactions">
       <option name="closed" value="true" />
@@ -734,9 +761,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/weather_dashboard$process_weather_data.coverage" NAME="process_weather_data Coverage Results" MODIFIED="1752338669067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/create_backlog_py$create_backlog.coverage" NAME="create_backlog Coverage Results" MODIFIED="1768353590354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/jira" />
     <SUITE FILE_PATH="coverage/weather_dashboard$testingJira.coverage" NAME="testingJira Coverage Results" MODIFIED="1762585860737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/reports" />
-    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1752341109473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$inspect_weather_tables.coverage" NAME="inspect_weather_tables Coverage Results" MODIFIED="1753000031625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/weather_dashboard$app.coverage" NAME="app Coverage Results" MODIFIED="1752341109473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
     <SUITE FILE_PATH="coverage/weather_dashboard$noa_avc_data_fetch.coverage" NAME="noa_avc_data_fetch Coverage Results" MODIFIED="1756755061305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$removal_kormcmin127_f_tables.coverage" NAME="removal_kormcmin127_f_tables Coverage Results" MODIFIED="1749194379565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/fetch" />
     <SUITE FILE_PATH="coverage/weather_dashboard$convert_hour_to_timestamp.coverage" NAME="convert_hour_to_timestamp Coverage Results" MODIFIED="1753109459670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/python_sql scripts" />
