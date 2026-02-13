@@ -5,10 +5,10 @@ import NavIcon from "./NavIcon";
 
 // 🔹 Round transparent icons in apps/frontend/src/assets
 // (filenames taken from your uploads – keep them if they match)
-import stationsIcon from "../assets/Weather Data_transparent.png";
-import waveIcon from "../assets/Buoy Analytics_transparent.png";
-import mlIcon from "../assets/Machine Learning_transparent.png";
-import resultsIcon from "../assets/Results_transparent.png";
+import stationsIcon from "../assets/optimized/Weather Data_transparent.webp";
+import waveIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
+import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
+import resultsIcon from "../assets/optimized/Results_transparent.webp";
 
 // Default nav items for the main Glasier shell
 const DEFAULT_NAV_ITEMS = [

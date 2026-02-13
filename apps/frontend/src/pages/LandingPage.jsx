@@ -2,9 +2,9 @@
 import React from "react";
 import CircleLink from "../components/CircleLink";
 
-import weatherIcon from "../assets/Weather Data_transparent.png";
-import buoyIcon from "../assets/Buoy Analytics_transparent.png";
-import mlIcon from "../assets/Machine Learning_transparent.png";
+import weatherIcon from "../assets/optimized/Weather Data_transparent.webp";
+import buoyIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
+import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
 
 function LandingPage() {
   return (
