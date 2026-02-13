@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="After running Lighthouse on application identiified need for robots.txt and sitemap.xml.  Also updated the index.html to have a meta data description.">
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="surfaced the optimized assets in assets/optimized">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/assets/glasier_layout_preview.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/assets/glasier_layout_preview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/pages/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/pages/LandingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/frontend/src/layout/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/layout/Layout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,23 +327,7 @@
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
       <workItem from="1768677272710" duration="41916000" />
-      <workItem from="1770968141889" duration="5523000" />
-    </task>
-    <task id="LOCAL-00018" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752384257269</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1752384257270</updated>
-    </task>
-    <task id="LOCAL-00019" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752384396824</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1752384396824</updated>
+      <workItem from="1770968141889" duration="8469000" />
     </task>
     <task id="LOCAL-00020" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <option name="closed" value="true" />
@@ -724,15 +705,29 @@
       <option name="project" value="LOCAL" />
       <updated>1769878758368</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="troubleshooting an issue with the results page:  updated the MlResultsTab.jsx to have appropriate code">
+      <option name="closed" value="true" />
+      <created>1771007148863</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1771007148863</updated>
+    </task>
+    <task id="LOCAL-00068" summary="surfaced the optimized assets in assets/optimized">
+      <option name="closed" value="true" />
+      <created>1771007499042</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1771007499042</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="creating the combined website with Hompage as the landing and subpages for awtowbotz, WeatherDashboard, and SkateToneForge.  Also added a navigation and layout component to allow for the same look and feel across pages. Fixing WeatherDashboard backend to allow data to popluate-inprogress" />
-    <MESSAGE value="fixing potential error from the app.py file allowing us to render the data needed for our site." />
     <MESSAGE value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
     <MESSAGE value="adding temporary debug route to app.py to get the column names" />
     <MESSAGE value="fixing issue with weather data loading into weatherdashboard.js - table field misalignment" />
@@ -756,7 +751,9 @@
     <MESSAGE value="&#10;adding the assets to the git repository - for some reason they didn't get added during creation" />
     <MESSAGE value="refactored the name of NavBar.jsx to Navbar.jsx" />
     <MESSAGE value="After running Lighthouse on application identiified need for robots.txt and sitemap.xml.  Also updated the index.html to have a meta data description." />
-    <option name="LAST_COMMIT_MESSAGE" value="After running Lighthouse on application identiified need for robots.txt and sitemap.xml.  Also updated the index.html to have a meta data description." />
+    <MESSAGE value="troubleshooting an issue with the results page:  updated the MlResultsTab.jsx to have appropriate code" />
+    <MESSAGE value="surfaced the optimized assets in assets/optimized" />
+    <option name="LAST_COMMIT_MESSAGE" value="surfaced the optimized assets in assets/optimized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

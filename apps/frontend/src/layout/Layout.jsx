@@ -1,7 +1,7 @@
 // src/layout/Layout.jsx
 import React from "react";
 import { Outlet } from "react-router-dom";
-import glasierLogo from "../assets/Glasier Data Logo.png";
+import glasierLogo from "../assets/optimized/Glasier Data Logo.webp";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
