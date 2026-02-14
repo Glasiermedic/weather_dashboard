@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layout/Layout";
 
 // Lazy main pages
+const LandingPage = lazy(() => import("./pages/LandingPage"));
 const WeatherDashboard = lazy(() => import("./pages/WeatherDashboard"));
 const About = lazy(() => import("./pages/About"));
 const Results = lazy(() => import("./pages/Results"));
@@ -22,8 +23,11 @@ function App() {
         <Routes>
           {/* Layout = shared shell (header + navbar + sidebar) */}
           <Route element={<Layout />}>
-            {/* "/" → Weather dashboard */}
-            <Route index element={<WeatherDashboard />} />
+            {/* "/" → Landing page */}
+            <Route index element={<LandingPage />} />
+
+            {/* "/stations" → Weather dashboard */}
+            <Route path="/stations" element={<WeatherDashboard />} />
 
             {/* About page */}
             <Route path="/about" element={<About />} />

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="surfaced the optimized assets in assets/optimized" />
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="surfaced the optimized assets in assets/optimized">
+      <change afterPath="$PROJECT_DIR$/apps/frontend/src/api/graphData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/frontend/src/api/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/api/apiClient.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +133,7 @@
       <recent name="C:\Users\sewmo\PycharmProjects\weather_dashboard\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.create_backlog">
+  <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="weather_dashboard" />
       <option name="ENV_FILES" value="" />
@@ -324,15 +328,7 @@
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
       <workItem from="1768677272710" duration="41916000" />
-      <workItem from="1770968141889" duration="11258000" />
-    </task>
-    <task id="LOCAL-00022" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752418141173</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1752418141173</updated>
+      <workItem from="1770968141889" duration="14745000" />
     </task>
     <task id="LOCAL-00023" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <option name="closed" value="true" />
@@ -718,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771023554239</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="surfaced the optimized assets in assets/optimized">
+      <option name="closed" value="true" />
+      <created>1771024246214</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1771024246214</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
