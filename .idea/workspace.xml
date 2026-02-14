@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="surfaced the optimized assets in assets/optimized">
-      <change afterPath="$PROJECT_DIR$/apps/frontend/src/api/graphData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/frontend/src/api/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/frontend/src/api/apiClient.js" afterDir="false" />
-    </list>
+    <list default="true" id="6bfb788f-b747-4800-83d0-88d8b3f5e1e2" name="Changes" comment="temporary loading into weatherdashboard reverted to home page loading into LandingPage abnd fixed capitalization in CircleLink.jsx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -328,23 +324,7 @@
       <workItem from="1764832696368" duration="5000" />
       <workItem from="1768353117509" duration="968000" />
       <workItem from="1768677272710" duration="41916000" />
-      <workItem from="1770968141889" duration="14745000" />
-    </task>
-    <task id="LOCAL-00023" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752419695536</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1752419695536</updated>
-    </task>
-    <task id="LOCAL-00024" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
-      <option name="closed" value="true" />
-      <created>1752420476516</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1752420476516</updated>
+      <workItem from="1770968141889" duration="15135000" />
     </task>
     <task id="LOCAL-00025" summary="fixing issue with weather data loading into weatherdashboard.js - table field misalignment">
       <option name="closed" value="true" />
@@ -722,15 +702,29 @@
       <option name="project" value="LOCAL" />
       <updated>1771024246214</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="surfaced the optimized assets in assets/optimized">
+      <option name="closed" value="true" />
+      <created>1771028460794</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1771028460794</updated>
+    </task>
+    <task id="LOCAL-00073" summary="temporary loading into weatherdashboard reverted to home page loading into LandingPage abnd fixed capitalization in CircleLink.jsx">
+      <option name="closed" value="true" />
+      <created>1771028775307</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1771028775307</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixing issue with pipeline by adding google-cloud-bigquery to requirements.txt." />
-    <MESSAGE value="adding temporary debug route to app.py to get the column names" />
     <MESSAGE value="fixing issue with weather data loading into weatherdashboard.js - table field misalignment" />
     <MESSAGE value="fixing issue with api/graph_data to generate correct response expected by frontend." />
     <MESSAGE value="issue with react-scripts not installed and in package.json" />
@@ -754,7 +748,9 @@
     <MESSAGE value="After running Lighthouse on application identiified need for robots.txt and sitemap.xml.  Also updated the index.html to have a meta data description." />
     <MESSAGE value="troubleshooting an issue with the results page:  updated the MlResultsTab.jsx to have appropriate code" />
     <MESSAGE value="surfaced the optimized assets in assets/optimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="surfaced the optimized assets in assets/optimized" />
+    <MESSAGE value="temporary loading into weatherdashboard reverted to home page loading into LandingPage" />
+    <MESSAGE value="temporary loading into weatherdashboard reverted to home page loading into LandingPage abnd fixed capitalization in CircleLink.jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="temporary loading into weatherdashboard reverted to home page loading into LandingPage abnd fixed capitalization in CircleLink.jsx" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
