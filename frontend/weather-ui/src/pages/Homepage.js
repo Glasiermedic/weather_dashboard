@@ -42,6 +42,12 @@ function Homepage() {
           <p>Music-powered skate park-animation! Upload a song to generate ramps.</p>
           <Link to="/skatestone">Explore →</Link>
         </div>
+        <div style={{ ...cardStyle, background: '#f5ede0' }}>
+          <div style={iconStyle}>🎙️</div>
+          <h3>Wesley Rolfson Music</h3>
+          <p>Original songs about faith, family, purpose, redemption, and hope.</p>
+          <Link to="/music">Explore →</Link>
+        </div>
       </div>
     </div>
   );

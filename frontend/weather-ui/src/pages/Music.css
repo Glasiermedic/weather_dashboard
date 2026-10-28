@@ -1,0 +1,362 @@
+.music-page {
+  --music-ink: #17283a;
+  --music-muted: #526274;
+  --music-gold: #a66f27;
+  --music-cream: #f5ede0;
+  max-width: 1180px;
+  margin: 0 auto 5rem;
+  color: var(--music-ink);
+}
+
+.music-page h1,
+.music-page h2,
+.music-page p {
+  margin-top: 0;
+}
+
+.music-page h1 {
+  font-size: clamp(2.7rem, 6vw, 5.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.music-page h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.music-eyebrow {
+  margin-bottom: 0.85rem;
+  color: var(--music-gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.music-eyebrow-light {
+  color: #f6c982;
+}
+
+.music-hero {
+  position: relative;
+  min-height: min(660px, 68vw);
+  overflow: hidden;
+  border-radius: 28px;
+  background: #1a130d;
+  box-shadow: 0 24px 70px rgba(33, 25, 16, 0.22);
+}
+
+.music-hero-image,
+.music-hero-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.music-hero-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.music-hero-shade {
+  background: linear-gradient(90deg, rgba(13, 10, 7, 0.86) 0%, rgba(13, 10, 7, 0.46) 45%, rgba(13, 10, 7, 0.06) 75%);
+}
+
+.music-hero-copy {
+  position: absolute;
+  z-index: 1;
+  left: clamp(1.5rem, 5vw, 4.5rem);
+  bottom: clamp(1.75rem, 7vw, 5rem);
+  max-width: 610px;
+  color: #fffaf2;
+}
+
+.music-hero-copy h1 {
+  margin-bottom: 1.2rem;
+  text-wrap: balance;
+}
+
+.music-hero-copy > p:last-child {
+  max-width: 520px;
+  margin-bottom: 0;
+  color: #f4e8d6;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 1.6;
+}
+
+.music-section,
+.album-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.78fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: center;
+  padding: clamp(4rem, 9vw, 8rem) clamp(0rem, 3vw, 2rem);
+}
+
+.music-section-heading > p:not(.music-eyebrow),
+.music-statement > p:last-child,
+.music-lead {
+  color: var(--music-muted);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.music-cover-link {
+  display: block;
+  border-radius: 24px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.music-cover-link:hover,
+.music-cover-link:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 55px rgba(23, 40, 58, 0.2);
+}
+
+.music-cover,
+.album-art {
+  display: block;
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(23, 40, 58, 0.18);
+}
+
+.music-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.95rem 1.35rem;
+  border-radius: 999px;
+  background: var(--music-ink);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.music-button:hover,
+.music-button:focus-visible {
+  background: #31516c;
+  transform: translateY(-2px);
+}
+
+.music-statement {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5.5rem);
+  border: 1px solid #e4d6c3;
+  border-radius: 28px;
+  background: var(--music-cream);
+}
+
+.music-statement h2 {
+  max-width: 760px;
+}
+
+.music-contact {
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.music-page a:not(.music-button) {
+  color: #31516c;
+}
+
+.music-back {
+  display: inline-block;
+  margin: 0 0 1rem;
+  color: #31516c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.music-back:hover,
+.music-back:focus-visible {
+  text-decoration: underline;
+}
+
+.album-header {
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1fr);
+  padding-top: clamp(2rem, 6vw, 5rem);
+}
+
+.album-intro h1 {
+  margin-bottom: 1.25rem;
+}
+
+.album-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  margin: 2rem 0 0;
+}
+
+.album-meta div {
+  border-top: 1px solid #d9dee3;
+  padding-top: 0.8rem;
+}
+
+.album-meta dt {
+  margin-bottom: 0.3rem;
+  color: var(--music-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.album-meta dd {
+  margin: 0;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.music-panel,
+.track-section {
+  margin-bottom: 2rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border: 1px solid #e4d6c3;
+  border-radius: 26px;
+  background: var(--music-cream);
+}
+
+.panel-heading h2 {
+  margin-bottom: 1.5rem;
+}
+
+.spotify-embed {
+  display: block;
+  width: 100%;
+  height: 352px;
+  border: 0;
+  border-radius: 14px;
+}
+
+.track-section {
+  background: #f7f9fb;
+  border-color: #e1e6eb;
+}
+
+.track-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: tracks;
+}
+
+.track-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-top: 1px solid #d9dee3;
+  counter-increment: tracks;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-weight: 650;
+}
+
+.track-list li::before {
+  content: counter(tracks, decimal-leading-zero);
+  color: var(--music-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.track-list time {
+  color: var(--music-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.album-note {
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+@media (max-width: 760px) {
+  .music-page {
+    margin-bottom: 2.5rem;
+  }
+
+  .music-hero {
+    min-height: 620px;
+    border-radius: 20px;
+  }
+
+  .music-hero-image {
+    object-position: 65% center;
+  }
+
+  .music-hero-shade {
+    background: linear-gradient(0deg, rgba(13, 10, 7, 0.9) 0%, rgba(13, 10, 7, 0.3) 68%, rgba(13, 10, 7, 0.06) 100%);
+  }
+
+  .music-hero-copy {
+    right: 1.5rem;
+  }
+
+  .music-section,
+  .album-header {
+    grid-template-columns: 1fr;
+  }
+
+  .music-section {
+    padding: 4rem 0;
+  }
+
+  .music-section-heading {
+    order: 2;
+  }
+
+  .album-header {
+    gap: 2.5rem;
+    padding: 2rem 0 4rem;
+  }
+
+  .music-cover,
+  .album-art {
+    border-radius: 18px;
+  }
+
+  .music-statement,
+  .music-panel,
+  .track-section {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .music-hero {
+    min-height: 540px;
+  }
+
+  .music-hero-copy {
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1.5rem;
+  }
+
+  .music-hero-copy h1 {
+    font-size: clamp(2.35rem, 13vw, 3.2rem);
+  }
+
+  .album-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .music-statement,
+  .music-panel,
+  .track-section {
+    padding: 1.35rem;
+  }
+
+  .track-list li {
+    gap: 0.7rem;
+  }
+}
+

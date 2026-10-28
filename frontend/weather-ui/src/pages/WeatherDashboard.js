@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios'; //http client for making requests
 import { Line } from 'react-chartjs-2';
 import {
@@ -54,14 +54,7 @@ function WeatherDashboard() {
   const [tableData, setTableData] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
 
-  const [isLoadingGraph, setIsLoadingGraph] = useState(false);
-  const [isLoadingCurrent, setIsLoadingCurrent] = useState(false);
-  const [isLoadingTable, setIsLoadingTable] = useState(false);
-
-  const fetchGraphAndCurrent = async () => {
-    setIsLoadingGraph(true);
-    setIsLoadingCurrent(true);
-
+  const fetchGraphAndCurrent = useCallback(async () => {
     const newGraphs = {};
     const newCurrent = {};
 
@@ -84,29 +77,14 @@ function WeatherDashboard() {
 
     setGraphSeries(newGraphs);
     setCurrentData(newCurrent);
-    setIsLoadingGraph(false);
-    setIsLoadingCurrent(false);
-  };
+  }, [selectedMetric, selectedPeriod, selectedStations]);
 
-  const fetchTable = async () => {
-    setIsLoadingTable(true);
+  const fetchTable = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/table_data?station_id=${tableStation}`);
       const rows = res.data?.rows || [];
       setTableData(rows);
 
-     const hiddenColumns = new Set(['day'
-                                                      , 'humidity_max'
-                                                      , 'humidity_min'
-                                                      , 'hour'
-                                                      , 'pressure_max'
-                                                      , 'pressure_min'
-                                                      , 'temp_max'
-                                                      , 'temp_min'
-                                                      , 'wind_speed_max'
-                                                      , 'wind_speed_min'
-                                                      ,'solar_rad_max'
-                                                      , 'uv_max']);
 const preferredOrder = [
   "station_id", "local_time", "temp_avg",
   "humidity_avg", "dew_point_avg", "wind_speed_avg", "wind_gust_max",
@@ -120,16 +98,13 @@ rows.forEach(row => Object.keys(row).forEach(key => allActualKeys.add(key)));
 // Only include preferred columns that actually exist in the data
 const ordered = preferredOrder.filter(col => allActualKeys.has(col));
 
-// Add any unexpected columns (optional)
-const extras = [...allActualKeys].filter(col => !preferredOrder.includes(col));
-setTableColumns([...ordered]);   //, ...extras
+setTableColumns(ordered);
 
 
     } catch (err) {
       console.error(`Failed to load table data for ${tableStation}:`, err.message);
     }
-    setIsLoadingTable(false);
-  };
+  }, [tableStation]);
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/debug/weather_daily_columns`)
@@ -141,11 +116,11 @@ setTableColumns([...ordered]);   //, ...extras
 
   useEffect(() => {
     fetchGraphAndCurrent();
-  }, [selectedStations, selectedPeriod, selectedMetric]);
+  }, [fetchGraphAndCurrent]);
 
   useEffect(() => {
     fetchTable();
-  }, [tableStation]);
+  }, [fetchTable]);
 
   const nowData = () => {
     const count = selectedStations.length;
@@ -282,3 +257,4 @@ setTableColumns([...ordered]);   //, ...extras
 }
 
 export default WeatherDashboard;
+

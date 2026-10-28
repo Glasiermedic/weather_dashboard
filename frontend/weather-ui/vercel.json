@@ -1,8 +1,13 @@
 {
+  "outputDirectory": "build",
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://weather-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
