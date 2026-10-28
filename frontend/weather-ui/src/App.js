@@ -11,6 +11,8 @@ import Homepage from './pages/Homepage';
 import WeatherDashboard from './pages/WeatherDashboard';
 import AwtowbotzDashboard from './pages/AwtowbotzDashboard';
 import SkateToneForge from './pages/SkateToneForge';
+import Music from './pages/Music';
+import MoreRoadAhead from './pages/MoreRoadAhead';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
       <Route path="weather" element={<WeatherDashboard />} />
       <Route path="awtowbotz" element={<AwtowbotzDashboard />} />
       <Route path="skatestone" element={<SkateToneForge />} />
+      <Route path="music" element={<Music />} />
+      <Route path="music/more-road-ahead" element={<MoreRoadAhead />} />
     </Route>
   ),
   {
