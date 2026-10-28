@@ -5,6 +5,7 @@ import CircleLink from "../components/CircleLink";
 import weatherIcon from "../assets/optimized/Weather Data_transparent.webp";
 import buoyIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
 import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
+import musicIcon from "../assets/optimized/more-road-ahead.jpg";
 
 function LandingPage() {
   return (
@@ -68,9 +69,29 @@ function LandingPage() {
             </div>
           </div>
         </section>
+
+        <section className="landing-section landing-section-right">
+          <div className="landing-section-col">
+            <div className="landing-section-text">
+              <h2>Wesley Rolfson Music</h2>
+              <p>
+                Original songs about faith, family, purpose, redemption, and
+                hope—including the six-song demo album More Road Ahead.
+              </p>
+            </div>
+          </div>
+          <div className="landing-section-col">
+            <CircleLink
+              to="/music"
+              src={musicIcon}
+              alt="Wesley Rolfson Music"
+            />
+          </div>
+        </section>
       </div>
     </div>
   );
 }
 
 export default LandingPage;
+
