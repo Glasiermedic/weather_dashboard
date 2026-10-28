@@ -6,6 +6,7 @@ import weatherIcon from "../assets/optimized/Weather Data_transparent.webp";
 import buoyIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
 import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
 import musicIcon from "../assets/optimized/more-road-ahead.jpg";
+import ebeLogo from "../assets/ebe-logo-dark.jpg";
 
 function LandingPage() {
   return (
@@ -86,6 +87,21 @@ function LandingPage() {
               src={musicIcon}
               alt="Wesley Rolfson Music"
             />
+          </div>
+        </section>
+
+        <section className="landing-section">
+          <div className="landing-section-col">
+            <CircleLink to="/ebe" src={ebeLogo} alt="Ebe" />
+          </div>
+          <div className="landing-section-col">
+            <div className="landing-section-text">
+              <h2>Ebe</h2>
+              <p>
+                A personal thought engine for capturing ideas, finding meaningful
+                connections, and shaping them into creative work.
+              </p>
+            </div>
           </div>
         </section>
       </div>
