@@ -9,6 +9,7 @@ import stationsIcon from "../assets/optimized/Weather Data_transparent.webp";
 import waveIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
 import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
 import resultsIcon from "../assets/optimized/Results_transparent.webp";
+import musicIcon from "../assets/optimized/more-road-ahead.jpg";
 
 // Default nav items for the main Glasier shell
 const DEFAULT_NAV_ITEMS = [
@@ -17,6 +18,7 @@ const DEFAULT_NAV_ITEMS = [
   { to: "/wave-energy", label: "Wave Energy", icon: waveIcon },
   { to: "/results", label: "Results", icon: resultsIcon },
   { to: "/ml/hourly-forecasts", label: "ML Forecasts", icon: mlIcon },
+  { to: "/music", label: "Music", icon: musicIcon },
 ];
 
 function Navbar({ items = DEFAULT_NAV_ITEMS }) {
@@ -40,3 +42,4 @@ function Navbar({ items = DEFAULT_NAV_ITEMS }) {
 
 export default Navbar;
 export { DEFAULT_NAV_ITEMS };
+

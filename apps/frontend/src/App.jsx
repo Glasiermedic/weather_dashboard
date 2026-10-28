@@ -7,6 +7,8 @@ const LandingPage = lazy(() => import("./pages/LandingPage"));
 const WeatherDashboard = lazy(() => import("./pages/WeatherDashboard"));
 const About = lazy(() => import("./pages/About"));
 const Results = lazy(() => import("./pages/Results"));
+const Music = lazy(() => import("./pages/Music"));
+const MoreRoadAhead = lazy(() => import("./pages/MoreRoadAhead"));
 
 // Lazy tab panels for Results
 const MlResultsTab = lazy(() => import("./pages/results/MlResultsTab"));
@@ -32,6 +34,10 @@ function App() {
             {/* About page */}
             <Route path="/about" element={<About />} />
 
+            {/* Wesley Rolfson music pages */}
+            <Route path="/music" element={<Music />} />
+            <Route path="/music/more-road-ahead" element={<MoreRoadAhead />} />
+
             {/* Results with nested tab routes */}
             <Route path="/results" element={<Results />}>
               <Route index element={<MlResultsTab />} />
@@ -47,3 +53,4 @@ function App() {
 }
 
 export default App;
+
