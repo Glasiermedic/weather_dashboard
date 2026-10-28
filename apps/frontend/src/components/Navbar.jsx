@@ -10,6 +10,7 @@ import waveIcon from "../assets/optimized/Buoy Analytics_transparent.webp";
 import mlIcon from "../assets/optimized/Machine Learning_transparent.webp";
 import resultsIcon from "../assets/optimized/Results_transparent.webp";
 import musicIcon from "../assets/optimized/more-road-ahead.jpg";
+import ebeLogo from "../assets/ebe-logo-dark.jpg";
 
 // Default nav items for the main Glasier shell
 const DEFAULT_NAV_ITEMS = [
@@ -19,6 +20,7 @@ const DEFAULT_NAV_ITEMS = [
   { to: "/results", label: "Results", icon: resultsIcon },
   { to: "/ml/hourly-forecasts", label: "ML Forecasts", icon: mlIcon },
   { to: "/music", label: "Music", icon: musicIcon },
+  { to: "/ebe", label: "Ebe", icon: ebeLogo },
 ];
 
 function Navbar({ items = DEFAULT_NAV_ITEMS }) {

@@ -9,6 +9,7 @@ const About = lazy(() => import("./pages/About"));
 const Results = lazy(() => import("./pages/Results"));
 const Music = lazy(() => import("./pages/Music"));
 const MoreRoadAhead = lazy(() => import("./pages/MoreRoadAhead"));
+const Ebe = lazy(() => import("./pages/Ebe"));
 
 // Lazy tab panels for Results
 const MlResultsTab = lazy(() => import("./pages/results/MlResultsTab"));
@@ -37,6 +38,9 @@ function App() {
             {/* Wesley Rolfson music pages */}
             <Route path="/music" element={<Music />} />
             <Route path="/music/more-road-ahead" element={<MoreRoadAhead />} />
+
+            {/* Ebe coming-soon page */}
+            <Route path="/ebe" element={<Ebe />} />
 
             {/* Results with nested tab routes */}
             <Route path="/results" element={<Results />}>
