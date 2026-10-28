@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Music.css';
 
 // Add the verified Spotify album URL here when available.
-const spotifyAlbumUrl = '';
+const spotifyAlbumUrl = 'https://open.spotify.com/album/75AlWQPHTO9YS7puVXA8zF';
 
 function getSpotifyEmbedUrl(url) {
   const match = url.match(/^https:\/\/open\.spotify\.com\/album\/([A-Za-z0-9]+)(?:[/?#]|$)/);
